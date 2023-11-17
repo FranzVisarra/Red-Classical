@@ -23,7 +23,6 @@ public class PlBodMov : MonoBehaviour
         moveSpeed = 0.5f;
         rotateSpeed = 50f;
         cannon = GameObject.Find("Cannon");
-        //cannon.SetActive(true);
         Instantiate(cannon, this.transform);
         cannon.SetActive(false);
     }

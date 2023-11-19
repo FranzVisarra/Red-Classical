@@ -18,6 +18,11 @@ public class PlGunMov : MonoBehaviour
     {
         moveSpeed = 0.5f;
         rotateSpeed = 50f;
+        /*
+        projectile = GameObject.Find("Projectile");
+        Instantiate(projectile, this.transform);
+        cannon.SetActive(false);
+        */
     }
 
     // Update is called once per frame

@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/*
 public class ProjectileStats
 {
     public float speed;
@@ -18,8 +18,10 @@ public class ProjectileStats
         lifetime = LifeTime;
     }
 }
+*/
 public class Projectile : MonoBehaviour
 {
+/*list stuff unused
     public List<Projectile> plist = new List<Projectile>();
     public float speed;
     public int tfired;
@@ -34,7 +36,7 @@ public class Projectile : MonoBehaviour
         startpos = StartPos;
         lifetime = LifeTime;
     }
-
+*/
 
     public GameObject projectile;
     // Start is called before the first frame update

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlGunMov : MonoBehaviour
 {
+    public GameObject mcns;
+    public Projectile ptile;
     public float moveSpeed;
     public float rotateSpeed;
     public Transform transform;
@@ -18,11 +20,9 @@ public class PlGunMov : MonoBehaviour
     {
         moveSpeed = 0.5f;
         rotateSpeed = 50f;
-        /*
-        projectile = GameObject.Find("Projectile");
-        Instantiate(projectile, this.transform);
-        cannon.SetActive(false);
-        */
+        ptile = mcns.GetComponent<Projectile>();
+        //move cannon rotation point
+        transform.Translate(1, 0, 0);
     }
 
     // Update is called once per frame
@@ -34,9 +34,16 @@ public class PlGunMov : MonoBehaviour
             targPos = mousePos;
         }
         curPos.Set(transform.position.x, transform.position.y);
+        
     }
     void Update()
     {
+        //fire test
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            ptile.fire(10, transform.rotation, transform.position, 10);
+        }
+        //rotate
         angle = Mathf.Atan2(transform.position.y - targPos.y, transform.position.x - targPos.x) * Mathf.Rad2Deg;
         targRot = Quaternion.Euler(new Vector3(0, 0, angle));
         transform.rotation = Quaternion.RotateTowards(transform.rotation, targRot, rotateSpeed * Time.deltaTime);

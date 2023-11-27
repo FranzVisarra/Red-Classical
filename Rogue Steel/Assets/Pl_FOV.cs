@@ -5,15 +5,15 @@ using UnityEngine;
 public class Pl_FOV : MonoBehaviour
 {
     public float radius = 5f;
-    [Range(1,360)]public float angle = 4f;
+    [Range(1,360)]public float angle = 360f;
     public LayerMask targetLayer;
     public LayerMask obstructionLayer;
-    public GameObject PlToFollow;
+    public GameObject ThingToFollow;
     public bool CanSeeTarg { get; private set; }
     // Start is called before the first frame update
     void Start()
     {
-        PlToFollow = GameObject.Find("Cannon");
+        ThingToFollow = GameObject.FindGameObjectWithTag("Enemy");
         StartCoroutine(FOVCheck());
     }
     private IEnumerator FOVCheck()
@@ -33,6 +33,8 @@ public class Pl_FOV : MonoBehaviour
         {
             Transform target = rangeCheck[0].transform;
             Vector2 directionToTarget = (target.position - transform.position).normalized;
+            CanSeeTarg = true;
+            /*
             if (Vector2.Angle(transform.up, directionToTarget) < angle / 2)
             {
                 float distanceToTarget = Vector2.Distance(transform.position, target.position);
@@ -45,10 +47,17 @@ public class Pl_FOV : MonoBehaviour
                     CanSeeTarg = false;
                 }
             }
-            else if (CanSeeTarg)
+            else
             {
                 CanSeeTarg = false;
             }
+            */
         }
+        /*
+        else if (CanSeeTarg)
+        {
+            CanSeeTarg = false;
+        }
+        */
     }
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlFOV : MonoBehaviour
 {
+    /*
     // Start is called before the first frame update
     private void Start()
     {
@@ -29,7 +30,17 @@ public class PlFOV : MonoBehaviour
         for (int i = 0; i <= rayCount; i++)
         {
             float angleRad = angle * (Mathf.PI / 180f);
-            Vector3 vertex = origin + new Vector3(Mathf.Cos(angleRad), Mathf.Sin(angleRad)) * viewDistance;
+            Vector3 temp1 = new Vector3(Mathf.Cos(angleRad), Mathf.Sin(angleRad));
+            Vector3 vertex;
+            RaycastHit2D raycastHit2D = Physics2D.Raycast(origin, temp1, viewDistance);
+            if (raycastHit2D.collider == null)
+            {
+                vertex = origin + temp1 * viewDistance;
+            }
+            else
+            {
+                vertex = raycastHit2D.point;
+            }
             vertices[vertexIndex] = vertex;
 
             if (i > 0)
@@ -52,7 +63,7 @@ public class PlFOV : MonoBehaviour
         triangles[0] = 0;
         triangles[1] = 1;
         triangles[2] = 2;
-        */
+        //
 
         mesh.vertices = vertices;
         mesh.uv = uv;
@@ -64,4 +75,5 @@ public class PlFOV : MonoBehaviour
     {
         
     }
+    */
 }

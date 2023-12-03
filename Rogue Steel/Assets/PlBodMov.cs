@@ -14,17 +14,11 @@ public class PlBodMov : MonoBehaviour
     public Quaternion targRot;
     public float angle;
 
-    public GameObject cannon;
-
-
     // Start is called before the first frame update
     void Start()
     {
         moveSpeed = 0.5f;
         rotateSpeed = 50f;
-        cannon = GameObject.Find("Cannon");
-        Instantiate(cannon, this.transform);
-        cannon.SetActive(false);
     }
 
     // Update is called once per frame

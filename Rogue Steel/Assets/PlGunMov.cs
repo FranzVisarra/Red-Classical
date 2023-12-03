@@ -22,7 +22,7 @@ public class PlGunMov : MonoBehaviour
         rotateSpeed = 50f;
         ptile = mcns.GetComponent<Projectile>();
         //move cannon rotation point
-        transform.Translate(1, 0, 0);
+        //transform.Translate(1, 0, 0);
     }
 
     // Update is called once per frame

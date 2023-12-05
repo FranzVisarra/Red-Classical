@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlBodComponents : MonoBehaviour
 {
     // Start is called before the first frame update
-    private int length = 5;//<->
+    private int length = 6;//<->
     private int width = 3;
     public GameObject cannonTemp;
     public GameObject cannon;

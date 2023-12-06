@@ -29,7 +29,7 @@ public class PlBodComponents : MonoBehaviour
         cannonTemp.SetActive(false);
         //----------Cannon----------*/
 
-        //----------Tank Components----------
+        /*----------Tank Components----------
         //mechanics = GameObject.Find("Mechanics");
         PlTankComponents innardsscript = mechanics.GetComponent<PlTankComponents>();
         innards = innardsscript.PlTank;
@@ -47,7 +47,7 @@ public class PlBodComponents : MonoBehaviour
                 component.transform.Translate(0 - ((float)length / 2) + 0.5f + n, ((float)width / 2) - 0.5f - i,-1);
             }
         }
-        //----------Tank Components----------
+        //----------Tank Components----------*/
         //----------Armor Tile----------
         //front
         directionalTiles(length, width, 0);

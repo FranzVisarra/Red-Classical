@@ -5,16 +5,14 @@ using UnityEngine;
 public class PlBodComponents : MonoBehaviour
 {
     // Start is called before the first frame update
-    private int width;
-    private int length;//<->
+    private int width = 3;
+    private int length = 6;//<->
     private GameObject Modules;
-    /*
     private GameObject cannonTemp;
     private GameObject cannon;
-    */
-    public GameObject armorTemp;
+    private GameObject armorTemp;
     private GameObject armor;
-    public GameObject mechanics;
+    private GameObject mechanics;
     private GameObject componentTemp;
     private GameObject component;
 
@@ -30,7 +28,7 @@ public class PlBodComponents : MonoBehaviour
         //----------Cannon----------*/
 
         //----------Tank Components----------
-        //mechanics = GameObject.Find("Mechanics");
+        mechanics = GameObject.Find("Mechanics");
         PlTankComponents innardsscript = mechanics.GetComponent<PlTankComponents>();
         innards = innardsscript.PlTank;
         width = innards.GetLength(0);
@@ -39,7 +37,6 @@ public class PlBodComponents : MonoBehaviour
         {
             for (int n = 0; n < length; n++)
             {
-                Debug.Log(com(innards[i, n]));
                 //get component
                 componentTemp = GameObject.Find(com(innards[i,n]));
                 component = Instantiate(componentTemp, this.transform);
@@ -59,8 +56,8 @@ public class PlBodComponents : MonoBehaviour
         directionalTiles(width, length, 270);
         armorTemp.SetActive(false);
         //----------Armor Tile----------
-        Modules = GameObject.Find("Tank Modules");
-        //Modules.SetActive(false);
+        Modules = GameObject.Find("Modules");
+        Modules.SetActive(false);
     }
 
     // Update is called once per frame
@@ -75,7 +72,7 @@ public class PlBodComponents : MonoBehaviour
         for (int i = 0; i < side; i++)
         {
             //Debug.Log(i);
-            //armorTemp = GameObject.Find("Side Armor");
+            armorTemp = GameObject.Find("Side Armor");
             armor = Instantiate(armorTemp, this.transform);
             armor.transform.eulerAngles = new Vector3(0,0,degrees);
             armor.transform.Translate(0-(float)forward/2,0 - ((float)side / 2) + 0.5f + i, -1);

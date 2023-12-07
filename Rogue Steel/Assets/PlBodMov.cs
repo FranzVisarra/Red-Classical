@@ -37,10 +37,10 @@ public class PlBodMov : MonoBehaviour
         //*
         angle = Mathf.Atan2(transform.position.y - targPos.y, transform.position.x - targPos.x) * Mathf.Rad2Deg;
         targRot = Quaternion.Euler(new Vector3(0, 0, angle));
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, targRot, rotateSpeed * Time.deltaTime);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, targRot, rotateSpeed * Time.fixedDeltaTime);
         if (Vector2.Distance(targPos, curPos) > 1)
         {
-            transform.position += -transform.right * moveSpeed * Time.deltaTime;
+            transform.position += -transform.right * moveSpeed * Time.fixedDeltaTime;
         }
     }
 }

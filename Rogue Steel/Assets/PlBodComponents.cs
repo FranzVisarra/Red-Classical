@@ -10,8 +10,8 @@ public class PlBodComponents : MonoBehaviour
     //public GameObject cannonTemp;
     //public GameObject cannon;
     public GameObject armorTemp;
-    public GameObject armor;
-    private GameObject mechanics;
+    private GameObject armor;
+    public GameObject mechanics;
     private GameObject componentTemp;
     private GameObject component;
     private GameObject Modules;
@@ -27,8 +27,8 @@ public class PlBodComponents : MonoBehaviour
         cannonTemp.SetActive(false);
         //--------------------      Cannon      --------------------*/
         //--------------------  Tank Components --------------------//
-        mechanics = GameObject.Find("Mechanics");
-        PlTankComp innardsscript = mechanics.GetComponent<PlTankComp>();
+        //mechanics = GameObject.Find("Mechanics");
+        PlTankComponent innardsscript = mechanics.GetComponent<PlTankComponent>();
         innards = innardsscript.PlTank;
         width = innards.GetLength(0);
         length = innards.GetLength(1);
@@ -66,7 +66,7 @@ public class PlBodComponents : MonoBehaviour
             case "am":
                 return "Ammunition";
             case "ar":
-                return "Armor";
+                return "Armor Block";
             case "en":
                 return "Engine";
             case "fu":

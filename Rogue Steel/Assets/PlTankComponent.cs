@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlTankComp : MonoBehaviour
+public class PlTankComponent : MonoBehaviour
 {
     public string[,] PlTank;
     public string[,] Rcvd = new string[,] { { "cd", "cg", "am", "en" }, { "ar", "cl", "hd", "fu" } };

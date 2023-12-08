@@ -6,12 +6,15 @@ public class ProStats : MonoBehaviour
 {
     public float Dam;
     public float Speed = 100f;
-    public int Pen;
+    public float Pen;
+    public float angle;
     // Start is called before the first frame update
     void Start()
     {
         Dam = 5f;
         Speed = 100f;
+        Pen = 50f;
+        angle = this.transform.eulerAngles.z;
     }
 
     // Update is called once per frame

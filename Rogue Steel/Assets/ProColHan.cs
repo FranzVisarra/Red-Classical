@@ -19,12 +19,12 @@ public class ProColHan : MonoBehaviour
         if (this.transform.gameObject.layer == LayerMask.NameToLayer("PlayerCollision"))
         {
             Debug.Log("Hit");
-            other.gameObject.GetComponent<ModuleInfo>().HitByPro(stats.Dam);
+            other.gameObject.GetComponent<ModuleInfo>().HitByPro(stats.Dam,stats.Pen,stats.angle);
         }
         else if (this.transform.gameObject.layer == LayerMask.NameToLayer("EnemyCollision"))
         {
             Debug.Log("Hit");
-            other.gameObject.GetComponent<ModuleInfo>().HitByPro(stats.Dam);
+            other.gameObject.GetComponent<ModuleInfo>().HitByPro(stats.Dam,stats.Pen,stats.angle);
         }
     }
 }

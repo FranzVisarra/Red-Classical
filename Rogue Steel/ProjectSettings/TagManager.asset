@@ -12,12 +12,12 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
   - Player
-  - Obstruction
+  - PlayerCollision
   - Enemy
+  - EnemyCollision
+  - Obstruction
+  - 
   - 
   - 
   - 

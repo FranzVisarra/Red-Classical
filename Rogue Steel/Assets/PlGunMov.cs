@@ -20,7 +20,6 @@ public class PlGunMov : MonoBehaviour
     {
         moveSpeed = 0.5f;
         rotateSpeed = 50f;
-        ptile = mcns.GetComponent<Projectile>();
         //move cannon rotation point
         //transform.Translate(1, 0, 0);
     }
@@ -38,11 +37,7 @@ public class PlGunMov : MonoBehaviour
     }
     void Update()
     {
-        //fire test
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            ptile.fire(10, transform.rotation, transform.position, 10);
-        }
+        
         //rotate
         angle = Mathf.Atan2(transform.position.y - targPos.y, transform.position.x - targPos.x) * Mathf.Rad2Deg;
         targRot = Quaternion.Euler(new Vector3(0, 0, angle));

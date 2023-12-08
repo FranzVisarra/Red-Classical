@@ -38,7 +38,8 @@ public class Projectile : MonoBehaviour
     }
 */
 
-    public GameObject projectile;
+    public GameObject ProTemp;
+    public GameObject Pro;
     // Start is called before the first frame update
     void Start()
     {
@@ -50,11 +51,12 @@ public class Projectile : MonoBehaviour
     {
         
     }
-    public void fire(float Speed, Quaternion Angle, Vector3 StartPos, float LifeTime)
+    public void fire(float Speed, Quaternion Angle, Vector3 StartPos, float LifeTime, int layer)
     {
         //instantiate projectile
-        projectile = GameObject.Find("ProjectileThing");
-        Instantiate(projectile, StartPos, Angle);
+        ProTemp = GameObject.Find("ProjectileThing");
+        Pro = Instantiate(ProTemp, StartPos, Angle);
+        Pro.layer = layer;
         //plist.Add(new Projectile(Speed, Angle, StartPos, LifeTime));
 
     }

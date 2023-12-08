@@ -41,6 +41,7 @@ public class PlBodComponents : MonoBehaviour
                 component = Instantiate(componentTemp, this.transform);
                 //transform component
                 component.transform.Translate(0 - ((float)length / 2) + 0.5f + n, ((float)width / 2) - 0.5f - i, -1);
+                component.layer = 7;
             }
         }
         //--------------------  Tank Components --------------------//
@@ -94,6 +95,7 @@ public class PlBodComponents : MonoBehaviour
             //Debug.Log(i);
             //armorTemp = GameObject.Find("Armor");
             armor = Instantiate(armorTemp, this.transform);
+            armor.layer = 7;
             armor.transform.eulerAngles = new Vector3(0,0,degrees);
             armor.transform.Translate(0-(float)forward/2,0 - ((float)side / 2) + 0.5f + i, -1);
         }

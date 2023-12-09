@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlBodComponents : MonoBehaviour
 {
     // Start is called before the first frame update
-    private int length = 6;//<->
-    private int width = 3;
+    private int length = 3;//<->
+    private int width = 6;
     //public GameObject cannonTemp;
     //public GameObject cannon;
     public GameObject armorTemp;
@@ -15,6 +16,8 @@ public class PlBodComponents : MonoBehaviour
     private GameObject componentTemp;
     private GameObject component;
     private GameObject Modules;
+    public GameObject TRight;
+    public GameObject TLeft;
     public string[,] innards;
     void Start()
     {
@@ -57,6 +60,12 @@ public class PlBodComponents : MonoBehaviour
         directionalTiles(width,length,180);
         armorTemp.SetActive(false);
         //--------------------      Armor Tile  --------------------//
+        //--------------------      Treads      --------------------//
+        TRight.GetComponent<BoxCollider2D>().size = new Vector2(1,width);
+        TRight.GetComponent<BoxCollider2D>().offset = new Vector2(((float)length/2) - 0.5f, 0);
+        TLeft.GetComponent<BoxCollider2D>().size = new Vector2(1,width);
+        TLeft.GetComponent<BoxCollider2D>().offset = new Vector2(0.5f-((float)length / 2), 0);
+        //--------------------      Treads      --------------------//
         Modules = GameObject.Find("Modules");
         Modules.SetActive(false);
     }

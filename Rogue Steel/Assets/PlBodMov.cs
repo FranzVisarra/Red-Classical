@@ -27,6 +27,7 @@ public class PlBodMov : MonoBehaviour
     public GameObject FWS;
     public GameObject TPS;
     public string movDir="", movRot = "";
+    public string moveMode;
 
     // Start is called before the first frame update
     void Start()
@@ -38,17 +39,29 @@ public class PlBodMov : MonoBehaviour
         FWS = Instantiate(FWS, this.transform);
         TPS = GameObject.Find("SquareForTest");
         TPS = Instantiate(TPS, this.transform);
+        moveMode = "";
     }
 
     // Update is called once per frame
     void Update()
     {
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+        curPos.Set(this.transform.position.x, this.transform.position.y);
         if (Input.GetKey(KeyCode.Mouse1))
         {
             targPos = mousePos;
         }
-        curPos.Set(this.transform.position.x, this.transform.position.y);
+        if (Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            if (Vector2.Distance(targPos, curPos) < 10)
+            {
+                moveMode = "Rotate Only";
+            }
+            else
+            {
+                moveMode = "Quick Move";
+            }
+        }
     }
 
     void FixedUpdate()
@@ -70,35 +83,55 @@ public class PlBodMov : MonoBehaviour
         angle = Vector2.Angle(forPos-curPos, targPos-curPos);
         anglePlus = Vector2.Angle(forPosPlus - curPos, targPos - curPos);
         angleMinus = Vector2.Angle(forPosMinus - curPos, targPos - curPos);
-        if (Vector2.Distance(targPos, curPos) > 1)
+
+        if (moveMode == "Rotate Only")
         {
-            movDir = "Forward";
-        }
-        else
-        {
-            movDir = "None";
-        }
-        //check if angle to turn is greater than one
-        if (angle >= 1)
-        {
-            //check which direction to turn
-            if (anglePlus > angleMinus)
-            {//lean towards angleplus
-                //Debug.Log("Right");
-                movRot = "Right";
-                }
-            else if (anglePlus < angleMinus)
+            if (angle >= 1)
             {
-                //Debug.Log("Left");
-                movRot = "Left";
+                //check which direction to turn
+                if (anglePlus > angleMinus)
+                {//lean towards angleplus
+                 //Debug.Log("Right");
+                    shortRef("Rotate Right");
+                }
+                else if (anglePlus < angleMinus)
+                {
+                    //Debug.Log("Left");
+                    shortRef("Rotate Left");
+                }
             }
         }
-        TLeft.GetComponent<TrdL>().Movement(movRot, movDir);
-        TRight.GetComponent<TrdR>().Movement(movRot, movDir);
-        movDir = "";
-        movRot = "";
+        else if (moveMode == "Quick Move")
+        {
+            if (angle >= 1)
+            {
+                //check which direction to turn
+                if (anglePlus > angleMinus)
+                {//lean towards angleplus
+                 //Debug.Log("Right");
+                    shortRef("Forward Right");
+                }
+                else if (anglePlus < angleMinus)
+                {
+                    //Debug.Log("Left");
+                    shortRef("Forward Left");
+                }
+            }
+            else
+            {
+                shortRef("Forward");
+            }
+        }
+        //TLeft.GetComponent<TrdL>().Movement(movRot, movDir);
+        //TRight.GetComponent<TrdR>().Movement(movRot, movDir);
         //angle = Mathf.Atan2(transform.position.y - targPos.y, transform.position.x - targPos.x) * Mathf.Rad2Deg;
     }
+    public void shortRef(string TrackMov)
+    {
+        TLeft.GetComponent<TrdL>().Movement(TrackMov);
+        TRight.GetComponent<TrdR>().Movement(TrackMov);
+    }
+
     public float returny(float i)
     {
         return Dis * (Mathf.Sin((dirDeg + 90+i) * Mathf.Deg2Rad)) + curPos.y;
@@ -107,4 +140,6 @@ public class PlBodMov : MonoBehaviour
     {
         return Dis * (Mathf.Cos((dirDeg + 90+i) * Mathf.Deg2Rad)) + curPos.x;
     }
+
+
 }

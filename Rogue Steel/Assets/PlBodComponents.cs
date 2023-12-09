@@ -18,6 +18,7 @@ public class PlBodComponents : MonoBehaviour
     private GameObject Modules;
     public GameObject TRight;
     public GameObject TLeft;
+    public Rigidbody2D rb;
     public string[,] innards;
     void Start()
     {
@@ -35,6 +36,8 @@ public class PlBodComponents : MonoBehaviour
         innards = innardsscript.PlTank;
         width = innards.GetLength(0);
         length = innards.GetLength(1);
+        rb = this.GetComponent<Rigidbody2D>();
+        this.GetComponent<BoxCollider2D>().size = new Vector2(length,width);
         for (int i = 0; i < width; i++)
         {
             for (int n = 0; n < length; n++)

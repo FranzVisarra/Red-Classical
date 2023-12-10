@@ -29,9 +29,9 @@ public class AllGunShoot : MonoBehaviour
     void Update()
     {
         //fire test
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space)&& this.transform.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            
+            Debug.Log("Shoot Script Says "+transform.position);
             ptile.fire(10, transform.rotation, transform.position, 10, ColLay);
         }
     }

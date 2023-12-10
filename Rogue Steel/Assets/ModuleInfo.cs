@@ -10,31 +10,42 @@ public class ModuleInfo : MonoBehaviour
     public float CurPenRes;
     public float efficiency;
     public float dirDeg;
-    public float ModAngDeg;
-    // Start is called before the first frame update
-    void Update()
+    public GameObject testSquare;
+    public GameObject testSquareF;
+    public void Start()
     {
-        dirDeg = this.transform.eulerAngles.z;
+        testSquare = GameObject.Find("SquareForTest");
     }
 
-    // Update is called once per frame
-    public void HitByPro(float Dam,float Pen, float ProAngDeg)
+    public float getDirDeg()
+    {
+        return this.transform.eulerAngles.z;
+    }
+
+    public Vector2 getVector2()
+    {
+        return new Vector2(transform.position.x,transform.position.y);
+    }
+    /*
+    public void ArmorHitByPro(float Dam,float Pen, Vector2 sp, Vector2 hp)
     {
         //calculate angle of intercept
-
-        Dam = Dam * CurPenRes / 100;
-        CurHp -= Dam;
-        efficiency = CurHp / MaxHp;
+        GameObject perprep = Instantiate(testSquare, this.transform);
+        perprep.transform.Translate(0, -1, 0);
     }
+    */
+    /*
+    public void tsq(Vector2 i)
+    {
+        GameObject s = Instantiate(testSquare);
+        s.transform.position = new Vector2(i.x,i.y);
+    }
+    */
     public void setValues(float MHP, float MPR)
     {
         MaxHp = MHP;
         CurHp = MaxHp;
         MaxPenRes = MPR;
         CurPenRes = MaxPenRes;
-    }
-    public float returnDam(float Dam)
-    {
-        return Dam;
     }
 }

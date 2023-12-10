@@ -7,16 +7,15 @@ public class ProStats : MonoBehaviour
     public float Dam;
     public float Speed = 100f;
     public float Pen;
-    public float angle;
+    public Vector2 startPos;
     // Start is called before the first frame update
     void Start()
     {
         Dam = 5f;
         Speed = 100f;
         Pen = 50f;
-        angle = this.transform.eulerAngles.z;
+        //startPos = new Vector2(transform.position.x,transform.position.y);
     }
-
     // Update is called once per frame
     void Update()
     {

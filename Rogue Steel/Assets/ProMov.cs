@@ -7,7 +7,6 @@ public class ProMov : MonoBehaviour
 {
     public float Speed;
     public Rigidbody2D rb;
-    public Transform transform;
     // Start is called before the first frame update
     void Start()
     {

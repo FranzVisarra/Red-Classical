@@ -8,7 +8,6 @@ public class PlGunMov : MonoBehaviour
     public Projectile ptile;
     public float moveSpeed;
     public float rotateSpeed;
-    public Transform transform;
     public Camera cam;
     Vector2 mousePos;
     public Vector2 targPos;

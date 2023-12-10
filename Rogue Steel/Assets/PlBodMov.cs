@@ -8,7 +8,6 @@ public class PlBodMov : MonoBehaviour
 {
     public float moveSpeed;
     public float rotateSpeed;
-    public Transform transform;
     public Camera cam;
     Vector2 mousePos;
     public Vector2 targPos;
@@ -43,7 +42,7 @@ public class PlBodMov : MonoBehaviour
     void Update()
     {
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-        curPos.Set(this.transform.position.x, this.transform.position.y);
+        curPos.Set(transform.position.x, transform.position.y);
         if (Input.GetKey(KeyCode.Mouse1))
         {
             targPos = mousePos;

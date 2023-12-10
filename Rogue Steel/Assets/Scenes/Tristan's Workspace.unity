@@ -277,7 +277,6 @@ MonoBehaviour:
   ptile: {fileID: 0}
   moveSpeed: 0
   rotateSpeed: 0
-  transform: {fileID: 186013085}
   cam: {fileID: 2064928826}
   targPos: {x: 0, y: 0}
   curPos: {x: 0, y: 0}
@@ -486,7 +485,8 @@ MonoBehaviour:
   CurPenRes: 0
   efficiency: 0
   dirDeg: 0
-  ModAngDeg: 0
+  testSquare: {fileID: 0}
+  testSquareF: {fileID: 0}
 --- !u!61 &242743551
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -664,7 +664,8 @@ MonoBehaviour:
   CurPenRes: 0
   efficiency: 0
   dirDeg: 0
-  ModAngDeg: 0
+  testSquare: {fileID: 0}
+  testSquareF: {fileID: 0}
 --- !u!61 &254780749
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -842,7 +843,8 @@ MonoBehaviour:
   CurPenRes: 0
   efficiency: 0
   dirDeg: 0
-  ModAngDeg: 0
+  testSquare: {fileID: 0}
+  testSquareF: {fileID: 0}
 --- !u!61 &320781810
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1242,7 +1244,8 @@ MonoBehaviour:
   CurPenRes: 0
   efficiency: 0
   dirDeg: 0
-  ModAngDeg: 0
+  testSquare: {fileID: 0}
+  testSquareF: {fileID: 0}
 --- !u!61 &533163767
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1504,7 +1507,8 @@ MonoBehaviour:
   CurPenRes: 0
   efficiency: 0
   dirDeg: 0
-  ModAngDeg: 0
+  testSquare: {fileID: 0}
+  testSquareF: {fileID: 0}
 --- !u!61 &546711268
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1683,7 +1687,8 @@ MonoBehaviour:
   CurPenRes: 0
   efficiency: 0
   dirDeg: 0
-  ModAngDeg: 0
+  testSquare: {fileID: 0}
+  testSquareF: {fileID: 0}
 --- !u!61 &586402918
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2014,7 +2019,8 @@ MonoBehaviour:
   CurPenRes: 0
   efficiency: 0
   dirDeg: 0
-  ModAngDeg: 0
+  testSquare: {fileID: 0}
+  testSquareF: {fileID: 0}
 --- !u!61 &830172280
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2276,7 +2282,8 @@ MonoBehaviour:
   CurPenRes: 0
   efficiency: 0
   dirDeg: 0
-  ModAngDeg: 0
+  testSquare: {fileID: 0}
+  testSquareF: {fileID: 0}
 --- !u!61 &964105686
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2575,7 +2582,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 0
   rotateSpeed: 0
-  transform: {fileID: 985868281}
   cam: {fileID: 2064928826}
   targPos: {x: 0, y: 0}
   curPos: {x: 0, y: 0}
@@ -2985,7 +2991,8 @@ MonoBehaviour:
   CurPenRes: 0
   efficiency: 0
   dirDeg: 0
-  ModAngDeg: 0
+  testSquare: {fileID: 0}
+  testSquareF: {fileID: 0}
 --- !u!61 &1271707171
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3564,7 +3571,8 @@ MonoBehaviour:
   CurPenRes: 0
   efficiency: 0
   dirDeg: 0
-  ModAngDeg: 0
+  testSquare: {fileID: 0}
+  testSquareF: {fileID: 0}
 --- !u!61 &1972263849
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4125,7 +4133,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 0
   rb: {fileID: 0}
-  transform: {fileID: 2051995095}
 --- !u!50 &2051995098
 Rigidbody2D:
   serializedVersion: 4
@@ -4167,6 +4174,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats: {fileID: 0}
   layer: 0
+  startPos: {x: 0, y: 0}
+  hitPos: {x: 0, y: 0}
+  armPos: {x: 0, y: 0}
+  FrontPen: {x: 0, y: 0}
+  BackPen: {x: 0, y: 0}
+  outPenAng: 0
+  inPenAng: 0
+  angPen: 0
+  othInf: {fileID: 0}
+  armDeg: 0
 --- !u!114 &2051995100
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4182,9 +4199,9 @@ MonoBehaviour:
   Dam: 0
   Speed: 0
   Pen: 0
-  angle: 0
---- !u!61 &2051995101
-BoxCollider2D:
+  startPos: {x: 0, y: 0}
+--- !u!58 &2051995101
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -4215,19 +4232,9 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_Offset: {x: 0, y: 0.00000047683716}
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
+  m_Radius: 0.5
 --- !u!1 &2064928824
 GameObject:
   m_ObjectHideFlags: 0

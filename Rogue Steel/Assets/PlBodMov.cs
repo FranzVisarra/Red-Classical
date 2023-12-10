@@ -18,9 +18,6 @@ public class PlBodMov : MonoBehaviour
     public Quaternion targRot;
     public float angle, anglePlus, angleMinus;
     public Rigidbody2D rb;
-    float accelerationPower = 5f;
-    float steeringPower = 5f;
-    float steeringAmount, speed, direction;
     public float dirDeg;
     public GameObject TRight;
     public GameObject TLeft;

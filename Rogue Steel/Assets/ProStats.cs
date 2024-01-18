@@ -12,7 +12,7 @@ public class ProStats : MonoBehaviour
     void Start()
     {
         Dam = 5f;
-        Speed = 300f;
+        Speed = 600f;
         Pen = 0.5f;
         //startPos = new Vector2(transform.position.x,transform.position.y);
     }

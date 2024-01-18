@@ -11,7 +11,7 @@ public class AllBodCom : MonoBehaviour
     //public GameObject cannon;
     public GameObject armorTemp;
     private GameObject armor;
-    public GameObject mechanics;
+    //public GameObject mechanics;
     private GameObject componentTemp;
     private GameObject component;
     public GameObject TRight;
@@ -34,8 +34,8 @@ public class AllBodCom : MonoBehaviour
         //setup
         //--------------------  Tank Components --------------------//
         //mechanics = GameObject.Find("Mechanics");
-        AllTnkPre innardsscript = mechanics.GetComponent<AllTnkPre>();
-        innards = innardsscript.PlTank;
+        //AllTnkPre innardsscript = mechanics.GetComponent<AllTnkPre>();
+        //innards = innardsscript.PlTank;
         width = innards.GetLength(0);
         length = innards.GetLength(1);
         rb = this.GetComponent<Rigidbody2D>();

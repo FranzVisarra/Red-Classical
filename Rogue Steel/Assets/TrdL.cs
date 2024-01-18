@@ -25,13 +25,13 @@ public class TrdL : MonoBehaviour
                 rb.AddRelativeForce(Vector2.up * movsp/2);
                 break;
             case "Back":
-                // Code
+                rb.AddRelativeForce(Vector2.down * movsp);
                 break;
             case "Back Right":
-                // Code
+                rb.AddRelativeForce(Vector2.down * 2 * movsp);
                 break;
             case "Back Left":
-                // Code
+                rb.AddRelativeForce(Vector2.down * movsp / 2);
                 break;
             case "Rotate Right":
                 rb.AddRelativeForce(Vector2.up * movsp);

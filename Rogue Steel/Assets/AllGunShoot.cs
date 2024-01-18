@@ -14,7 +14,9 @@ public class AllGunShoot : MonoBehaviour
     void Start()
     {
         layer = this.transform.gameObject.layer;
+        Debug.Log("Geting Projectile");
         ptile = mcns.GetComponent<Projectile>();
+        Debug.Log("Got");
         if (layer == LayerMask.NameToLayer("Player"))
         {
             ColLay = LayerMask.NameToLayer("EnemyCollision");
@@ -29,7 +31,7 @@ public class AllGunShoot : MonoBehaviour
     void Update()
     {
         //fire test
-        if (Input.GetKeyDown(KeyCode.Space)&& this.transform.gameObject.layer == LayerMask.NameToLayer("Player"))
+        if (Input.GetKeyDown(KeyCode.Space) && this.transform.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             Debug.Log("Shoot Script Says "+transform.position);
             ptile.fire(10, transform.rotation, transform.position, 10, ColLay);

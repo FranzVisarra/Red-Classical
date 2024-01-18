@@ -2,19 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Startup : MonoBehaviour
+public class TestSpawnEnemy : MonoBehaviour
 {
-    public GameObject Player;
-    private GameObject InstPlay;
+    public GameObject Enemy;
+    private GameObject InstEnemy;
     public string[,] Rcvd = new string[,] { { "cd", "ar" }, { "cg", "cl" }, { "am", "hd" }, { "en", "fu" } };
     // Start is called before the first frame update
     void Start()
     {
-        //load player
-        InstPlay = Instantiate(Player);
-        InstPlay.GetComponentInChildren<AllBodCom>().innards = Rcvd;
-        //load map
-
+        InstEnemy = Instantiate(Enemy);
+        InstEnemy.GetComponentInChildren<AllBodCom>().innards = Rcvd;
     }
 
     // Update is called once per frame

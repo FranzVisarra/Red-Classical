@@ -17,6 +17,8 @@ public class PlGunMov : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        mcns = GameObject.Find("Mechanics");
+        cam = Camera.main;
         moveSpeed = 0.5f;
         rotateSpeed = 50f;
         //move cannon rotation point
@@ -29,16 +31,21 @@ public class PlGunMov : MonoBehaviour
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
         if (Input.GetKey(KeyCode.Mouse0))
         {
-            targPos = mousePos;
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                targPos.x = (mousePos.x - curPos.x) * 100 + curPos.x;
+                targPos.y = (mousePos.y - curPos.y) * 100 + curPos.y;
+            }
+            else
+            {
+                targPos = mousePos;
+            }
         }
         curPos.Set(transform.position.x, transform.position.y);
         
     }
     void Update()
-    {
-        
-        //rotate
-        angle = Mathf.Atan2(transform.position.y - targPos.y, transform.position.x - targPos.x) * Mathf.Rad2Deg;
+    {   angle = Mathf.Atan2(transform.position.y - targPos.y, transform.position.x - targPos.x) * Mathf.Rad2Deg;
         targRot = Quaternion.Euler(new Vector3(0, 0, angle));
         transform.rotation = Quaternion.RotateTowards(transform.rotation, targRot, rotateSpeed * Time.deltaTime);
     }

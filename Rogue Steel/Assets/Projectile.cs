@@ -56,6 +56,7 @@ public class Projectile : MonoBehaviour
         //instantiate projectile
         ProTemp = GameObject.Find("ProjectileThing");
         Pro = Instantiate(ProTemp, StartPos, Angle);
+        Debug.Log(layer);
         Pro.layer = layer;
         Pro.gameObject.GetComponent<ProStats>().setStartPos(new Vector2(StartPos.x, StartPos.y));
         Debug.Log("Projectile Script Says" + StartPos);

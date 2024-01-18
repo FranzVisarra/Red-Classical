@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class AllGunShoot : MonoBehaviour
@@ -13,6 +14,8 @@ public class AllGunShoot : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        mcns = GameObject.Find("Mechanics");
+        Debug.Log("Layer = " + this.transform.gameObject.layer);
         layer = this.transform.gameObject.layer;
         Debug.Log("Geting Projectile");
         ptile = mcns.GetComponent<Projectile>();
@@ -20,11 +23,13 @@ public class AllGunShoot : MonoBehaviour
         if (layer == LayerMask.NameToLayer("Player"))
         {
             ColLay = LayerMask.NameToLayer("EnemyCollision");
+            this.AddComponent<PlGunMov>();
         }
         else if (layer == LayerMask.NameToLayer("Enemy"))
         {
             ColLay = LayerMask.NameToLayer("PlayerCollision");
         }
+        Debug.Log("ColLay = "+ColLay);
     }
 
     // Update is called once per frame

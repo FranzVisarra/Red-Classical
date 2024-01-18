@@ -20,8 +20,8 @@ public class PlBodMov : MonoBehaviour
     public float dirDeg;
     public GameObject TRight;
     public GameObject TLeft;
-    public GameObject FWS;
-    public GameObject TPS;
+    //public GameObject FWS;
+    //public GameObject TPS;
     public string movDir="", movRot = "";
     public string moveMode;
 
@@ -31,10 +31,12 @@ public class PlBodMov : MonoBehaviour
         moveSpeed = 0.5f;
         rotateSpeed = 50f;
         rb = this.GetComponent<Rigidbody2D>();
+        /*
         FWS = GameObject.Find("SquareForTest");
         FWS = Instantiate(FWS, this.transform);
         TPS = GameObject.Find("SquareForTest");
         TPS = Instantiate(TPS, this.transform);
+        */
         moveMode = "";
     }
 
@@ -49,7 +51,7 @@ public class PlBodMov : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
-            if (Vector2.Distance(targPos, curPos) < 10)
+            if (Input.GetKey(KeyCode.LeftShift))
             {
                 moveMode = "Rotate Only";
             }
@@ -64,7 +66,7 @@ public class PlBodMov : MonoBehaviour
     {
         dirDeg = this.transform.eulerAngles.z;
         //test square
-        TPS.transform.position = targPos;
+        //TPS.transform.position = targPos;
         //make point forward
         Dis = Vector2.Distance(curPos, targPos);
         //set angle ahead of point with reference to direction
@@ -74,7 +76,7 @@ public class PlBodMov : MonoBehaviour
         //testdirection minus
         forPosMinus.Set(returnx(-1), returny(-1));
         //set forward square
-        FWS.transform.position = forPos;
+        //FWS.transform.position = forPos;
         //angle between player and target
         angle = Vector2.Angle(forPos-curPos, targPos-curPos);
         anglePlus = Vector2.Angle(forPosPlus - curPos, targPos - curPos);
@@ -99,7 +101,11 @@ public class PlBodMov : MonoBehaviour
         }
         else if (moveMode == "Quick Move")
         {
-            if (angle >= 1)
+            if (angle <= 1)
+            {
+                shortRef("Forward");
+            }
+            else if (angle <= 90)
             {
                 //check which direction to turn
                 if (anglePlus > angleMinus)
@@ -113,9 +119,23 @@ public class PlBodMov : MonoBehaviour
                     shortRef("Forward Left");
                 }
             }
+            else if (angle <= 170)
+            {
+                //check which direction to turn
+                if (anglePlus < angleMinus)
+                {//lean towards angleplus
+                 //Debug.Log("Right");
+                    shortRef("Back Left");
+                }
+                else if (anglePlus > angleMinus)
+                {
+                    //Debug.Log("Left");
+                    shortRef("Back Right");
+                }
+            }
             else
             {
-                shortRef("Forward");
+                shortRef("Back");
             }
         }
         //TLeft.GetComponent<TrdL>().Movement(movRot, movDir);

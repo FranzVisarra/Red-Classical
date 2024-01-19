@@ -16,7 +16,6 @@ public class PlBodMov : MonoBehaviour
     public float Dis;
     public Quaternion targRot;
     public float angle, anglePlus, angleMinus;
-    public Rigidbody2D rb;
     public float dirDeg;
     public GameObject TRight;
     public GameObject TLeft;
@@ -30,7 +29,6 @@ public class PlBodMov : MonoBehaviour
     {
         moveSpeed = 0.5f;
         rotateSpeed = 50f;
-        rb = this.GetComponent<Rigidbody2D>();
         /*
         FWS = GameObject.Find("SquareForTest");
         FWS = Instantiate(FWS, this.transform);
@@ -65,73 +63,44 @@ public class PlBodMov : MonoBehaviour
     void FixedUpdate()
     {
         dirDeg = this.transform.eulerAngles.z;
-        //test square
-        //TPS.transform.position = targPos;
         //make point forward
         Dis = Vector2.Distance(curPos, targPos);
         //set angle ahead of point with reference to direction
         forPos.Set(returnx(0), returny(0));
-        //test direction plus
-        forPosPlus.Set(returnx(1), returny(1));
-        //testdirection minus
-        forPosMinus.Set(returnx(-1), returny(-1));
-        //set forward square
-        //FWS.transform.position = forPos;
-        //angle between player and target
-        angle = Vector2.Angle(forPos-curPos, targPos-curPos);
-        anglePlus = Vector2.Angle(forPosPlus - curPos, targPos - curPos);
-        angleMinus = Vector2.Angle(forPosMinus - curPos, targPos - curPos);
+        angle = Vector2.SignedAngle(forPos-curPos, targPos-curPos);
 
         if (moveMode == "Rotate Only")
         {
-            if (angle >= 1)
+            if (angle < 0)
             {
-                //check which direction to turn
-                if (anglePlus > angleMinus)
-                {//lean towards angleplus
-                 //Debug.Log("Right");
-                    shortRef("Rotate Right");
-                }
-                else if (anglePlus < angleMinus)
-                {
-                    //Debug.Log("Left");
-                    shortRef("Rotate Left");
-                }
+                shortRef("Rotate Right");
+            }
+            else if (angle>0)
+            {
+                //Debug.Log("Left");
+                shortRef("Rotate Left");
             }
         }
         else if (moveMode == "Quick Move")
         {
-            if (angle <= 1)
+            if (angle >= -170 && angle < -90)
+            {
+                shortRef("Back Right");
+            }else if (angle >= -90 && angle <-1)
+            {
+                shortRef("Forward Right");
+            }
+            else if (angle >= -1 && angle <= 1)
             {
                 shortRef("Forward");
             }
-            else if (angle <= 90)
+            else if (angle > 1 && angle <= 90)
             {
-                //check which direction to turn
-                if (anglePlus > angleMinus)
-                {//lean towards angleplus
-                 //Debug.Log("Right");
-                    shortRef("Forward Right");
-                }
-                else if (anglePlus < angleMinus)
-                {
-                    //Debug.Log("Left");
-                    shortRef("Forward Left");
-                }
+                shortRef("Forward Left");
             }
-            else if (angle <= 170)
+            else if (angle >90 && angle <= 170)
             {
-                //check which direction to turn
-                if (anglePlus < angleMinus)
-                {//lean towards angleplus
-                 //Debug.Log("Right");
-                    shortRef("Back Left");
-                }
-                else if (anglePlus > angleMinus)
-                {
-                    //Debug.Log("Left");
-                    shortRef("Back Right");
-                }
+                shortRef("Back Left");
             }
             else
             {

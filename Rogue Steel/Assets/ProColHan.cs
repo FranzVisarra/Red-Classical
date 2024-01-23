@@ -68,6 +68,7 @@ public class ProColHan : MonoBehaviour
         }
     }
 
+    //use signed angle later
     public float angle()
     {
         hitPos = new Vector2(this.transform.position.x, this.transform.position.y);

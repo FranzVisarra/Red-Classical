@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class AllBodCom : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -27,7 +28,7 @@ public class AllBodCom : MonoBehaviour
     public GameObject Gunner;
     public GameObject Loader;
     //
-    public Rigidbody2D rb;
+    //public Rigidbody2D rb;
     public string[,] innards;
     void Start()
     {
@@ -38,7 +39,7 @@ public class AllBodCom : MonoBehaviour
         //innards = innardsscript.PlTank;
         width = innards.GetLength(0);
         length = innards.GetLength(1);
-        rb = this.GetComponent<Rigidbody2D>();
+        //rb = this.GetComponent<Rigidbody2D>();
         this.GetComponent<BoxCollider2D>().size = new Vector2(length, width);
         for (int i = 0; i < width; i++)
         {
@@ -49,7 +50,7 @@ public class AllBodCom : MonoBehaviour
                 component = Instantiate(componentTemp, this.transform);
                 component.GetComponent<ModuleInfo>().setValues(10, 0.1f);
                 //transform component
-                component.transform.Translate(0 - ((float)length / 2) + 0.5f + n, ((float)width / 2) - 0.5f - i, -1);
+                component.transform.Translate(0 - ((float)length / 2) + 0.5f + n, ((float)width / 2) - 0.5f - i, -2);
                 if (this.transform.gameObject.layer == LayerMask.NameToLayer("Player"))
                 {
                     component.layer = LayerMask.NameToLayer("PlayerCollision");
@@ -132,7 +133,7 @@ public class AllBodCom : MonoBehaviour
             armor.GetComponent<ModuleInfo>().setValues(50, 0.5f);
             armor.transform.eulerAngles = new Vector3(0, 0, degrees);
             //armor.transform.Translate(0-(float)forward/2,0 - ((float)side / 2) + 0.5f + i, -1);
-            armor.transform.Translate(0 - ((float)side / 2) + 0.5f + i, 0 - (float)forward / 2, -1);
+            armor.transform.Translate(0 - ((float)side / 2) + 0.5f + i, 0 - (float)forward / 2, -2);
         }
     }
 }

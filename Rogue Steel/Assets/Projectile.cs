@@ -54,7 +54,7 @@ public class Projectile : MonoBehaviour
     public void fire(float Speed, Quaternion Angle, Vector3 StartPos, float LifeTime, int layer)
     {
         //instantiate projectile
-        ProTemp = GameObject.Find("ProjectileThing");
+        //ProTemp = GameObject.Find("ProjectileThing");
         Pro = Instantiate(ProTemp, StartPos, Angle);
         Debug.Log(layer);
         Pro.layer = layer;

@@ -13,7 +13,7 @@ public class ProColHan : MonoBehaviour
     //a
     public Vector2 startPos;
     //b1
-    public Vector2 hitPos;
+    //ray point
     //b2
     public Vector2 armPos;
     //pen from outside
@@ -35,22 +35,26 @@ public class ProColHan : MonoBehaviour
     public float HitCh;
     public string side;
     public float test;
+    private GameObject other;
+    //public GameObject testSquare;
     public void Awake()
     {
         stats = this.transform.gameObject.GetComponent<ProStats>();
         layer = this.transform.gameObject.layer;
         rb=this.transform.gameObject.GetComponent<Rigidbody2D>();
     }
-    public void RayCastHit(GameObject other)
+    public void RayCastHit(RaycastHit2D ray)
     {
+        other = ray.collider.transform.gameObject;
         Debug.Log("Collided");
         if (this.transform.gameObject.layer == other.layer)
         {
             //Debug.Log("Hit Intended");
             if (other.name == "Side Armor(Clone)")
             {
+                Debug.Log(ray.point);
                 othInf = other.GetComponent<ModuleInfo>();
-                angPen = angle();
+                angPen = angle(ray);
                 Debug.Log("angle = "+angPen);
                 RicCh = angPen / 90;
                 HitCh = Random.Range(0f, 100f) / 100;
@@ -67,19 +71,34 @@ public class ProColHan : MonoBehaviour
             }
         }
     }
-
+    /*
+    private GameObject origin;
+    private GameObject hit;
+    private GameObject paralell;
+    private GameObject otherPos;
+    */
     //use signed angle later
-    public float angle()
+    public float angle(RaycastHit2D ray)
     {
-        hitPos = new Vector2(this.transform.position.x, this.transform.position.y);
+        Debug.Log(ray.point);
         //Debug.Log("Hit " + other.gameObject.name);
         //Debug.Log(stats.Dam + " " + stats.Pen + " " + stats.startPos + " " + hitPos);
         armDeg = othInf.getDirDeg();
         armPos = othInf.getVector2();
         OutPen.Set(returnx(-1,0,armPos), returny(-1,0, armPos));
         InPen.Set(returnx(1,0, armPos), returny(1,0, armPos));
-        outPenAng = Vector2.SignedAngle(stats.startPos - hitPos, OutPen - armPos);
-        inPenAng = Vector2.SignedAngle(stats.startPos - hitPos, InPen - armPos);
+        /* test square
+        origin = Instantiate(testSquare,this.transform);
+        origin.transform.position = ray.point;
+        hit = Instantiate(testSquare);
+        hit.transform.position = OutPen;
+        paralell = Instantiate(testSquare);
+        paralell.transform.position = InPen;
+        otherPos = Instantiate(testSquare);
+        otherPos.transform.position = armPos;
+        */
+        outPenAng = Vector2.SignedAngle((Vector2)this.transform.position - ray.point, OutPen - armPos);
+        inPenAng = Vector2.SignedAngle((Vector2)this.transform.position - ray.point, InPen - armPos);
         
         //shortest angle is closest to perpendicular
         if (Mathf.Abs(outPenAng) < Mathf.Abs(inPenAng))
@@ -117,8 +136,9 @@ public class ProColHan : MonoBehaviour
         if (side == "Front")
         {
             Debug.Log("rotation in world"+rb.rotation);
-            rb.SetRotation(rb.rotation+180);
+            rb.SetRotation(rb.rotation+180 +2*angPen);
             Debug.Log("New Rotation" + rb.rotation+2*angPen);
+            rb.transform.Translate(Vector2.up * stats.Speed * Time.deltaTime);
             //rb.SetRotation(rb.rotation+180+test*2*angPen);
             /*
             //set vel to 0

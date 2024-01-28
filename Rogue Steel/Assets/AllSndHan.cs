@@ -32,7 +32,7 @@ public class AllSndHan : MonoBehaviour
         }
         else if (type == "Grow")
         {
-            Debug.Log("Size = "+curSize);
+            //Debug.Log("Size = "+curSize);
             if (curSize >= maxSize)
             {
                 Destroy(this.transform.gameObject);

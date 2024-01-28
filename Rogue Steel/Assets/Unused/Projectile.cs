@@ -51,6 +51,7 @@ public class Projectile : MonoBehaviour
     {
         
     }
+    /*
     public void fire(float Speed, Quaternion Angle, Vector3 StartPos, float LifeTime, int layer)
     {
         //instantiate projectile
@@ -64,4 +65,5 @@ public class Projectile : MonoBehaviour
         //plist.Add(new Projectile(Speed, Angle, StartPos, LifeTime));
 
     }
+    */
 }

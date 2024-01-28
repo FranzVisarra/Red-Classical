@@ -41,22 +41,22 @@ public class ProColHan : MonoBehaviour
         layer = this.transform.gameObject.layer;
         rb=this.transform.gameObject.GetComponent<Rigidbody2D>();
     }
-    private void OnTriggerEnter2D(Collider2D other)
+    public void RayCastHit(GameObject other)
     {
-        //Debug.Log("Collided");
-        if (this.transform.gameObject.layer == other.transform.gameObject.layer)
+        Debug.Log("Collided");
+        if (this.transform.gameObject.layer == other.layer)
         {
             //Debug.Log("Hit Intended");
-            if (other.gameObject.name == "Side Armor(Clone)")
+            if (other.name == "Side Armor(Clone)")
             {
-                othInf = other.gameObject.GetComponent<ModuleInfo>();
+                othInf = other.GetComponent<ModuleInfo>();
                 angPen = angle();
                 Debug.Log("angle = "+angPen);
                 RicCh = angPen / 90;
                 HitCh = Random.Range(0f, 100f) / 100;
-                if (HitCh+stats.Pen < RicCh+othInf.CurPenRes)
+                if (true/*HitCh+stats.Pen < RicCh+othInf.CurPenRes*/)
                 {
-                    Debug.Log("Ricochet with a "+HitCh*100+"% out of "+RicCh*100+"%");
+                    //Debug.Log("Ricochet with a "+HitCh*100+"% out of "+RicCh*100+"%");
                     ricochet();
                 }
                 else
@@ -78,17 +78,17 @@ public class ProColHan : MonoBehaviour
         armPos = othInf.getVector2();
         OutPen.Set(returnx(-1,0,armPos), returny(-1,0, armPos));
         InPen.Set(returnx(1,0, armPos), returny(1,0, armPos));
-        outPenAng = Vector2.Angle(stats.startPos - hitPos, OutPen - armPos);
-        inPenAng = Vector2.Angle(stats.startPos - hitPos, InPen - armPos);
+        outPenAng = Vector2.SignedAngle(stats.startPos - hitPos, OutPen - armPos);
+        inPenAng = Vector2.SignedAngle(stats.startPos - hitPos, InPen - armPos);
         
         //shortest angle is closest to perpendicular
-        if (outPenAng < inPenAng)
+        if (Mathf.Abs(outPenAng) < Mathf.Abs(inPenAng))
         {
             Debug.Log("Front");
             //Debug.Log("Start = "+ stats.startPos +" Hit = "+hitPos+" Front Pen = "+OutPen +" armor Pos = "+ armPos);
-            testPen.Set(returnx(-1, 1, armPos), returny(-1, 1, armPos));
-            testPenAng = Vector2.Angle(stats.startPos - hitPos, testPen - armPos);
-            test = testPenAng-outPenAng;
+            //testPen.Set(returnx(-1, 1, armPos), returny(-1, 1, armPos));
+            //testPenAng = Vector2.Angle(stats.startPos - hitPos, testPen - armPos);
+            //test = testPenAng-outPenAng;
             side = "Front";
             return outPenAng;
         }
@@ -96,9 +96,9 @@ public class ProColHan : MonoBehaviour
         {
             Debug.Log("Back");
             //Debug.Log("Start = " + stats.startPos + " Hit = " + hitPos + " Back Pen = " + InPen + " armor Pos = " + armPos);
-            testPen.Set(returnx(1, 1, armPos), returny(1, 1, armPos));
-            testPenAng = Vector2.Angle(stats.startPos - hitPos, testPen - armPos);
-            test = testPenAng - inPenAng;
+            //testPen.Set(returnx(1, 1, armPos), returny(1, 1, armPos));
+            //testPenAng = Vector2.Angle(stats.startPos - hitPos, testPen - armPos);
+            //test = testPenAng - inPenAng;
             side = "Back";
             return inPenAng;
         }
@@ -117,11 +117,15 @@ public class ProColHan : MonoBehaviour
         if (side == "Front")
         {
             Debug.Log("rotation in world"+rb.rotation);
-            rb.SetRotation(rb.rotation+180+test*2*angPen);
+            rb.SetRotation(rb.rotation+180);
+            Debug.Log("New Rotation" + rb.rotation+2*angPen);
+            //rb.SetRotation(rb.rotation+180+test*2*angPen);
+            /*
             //set vel to 0
             rb.velocity = new Vector2(0, 0);
             //re add force
-            rb.AddRelativeForce(Vector2.up * stats.Speed);
+            rb.AddRelativeForce(Vector2.up * stats.Velocity);
+            */
         }
     }
     public void penetrate()
@@ -129,7 +133,7 @@ public class ProColHan : MonoBehaviour
         if (side == "Front")
         {
             Debug.Log("rotation in world" + rb.rotation);
-            rb.SetRotation(rb.rotation + test * angPen);
+            //rb.SetRotation(rb.rotation + test * angPen);
         }
     }
     //public void ArmorHitByPro(float Dam, float Pen, Vector2 sp, Vector2 hp)

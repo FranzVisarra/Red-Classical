@@ -10,6 +10,10 @@ public class CannonInfo : MonoBehaviour
     public int ColLay;
     public PlGunMov pl;
     public EnGunMov en;
+    //gun stats
+    public int shellVelocity;
+    public int shellPen;
+    public int shellSpeed;
     // Start is called before the first frame update
     void Start()
     {

@@ -701,7 +701,7 @@ GameObject:
   - component: {fileID: 242743550}
   m_Layer: 0
   m_Name: Fuel
-  m_TagString: Untagged
+  m_TagString: Module
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -880,7 +880,7 @@ GameObject:
   - component: {fileID: 254780748}
   m_Layer: 0
   m_Name: Ammunition
-  m_TagString: Untagged
+  m_TagString: Module
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1059,7 +1059,7 @@ GameObject:
   - component: {fileID: 320781809}
   m_Layer: 0
   m_Name: Armor Block
-  m_TagString: Untagged
+  m_TagString: Module
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1744,7 +1744,7 @@ GameObject:
   - component: {fileID: 533163766}
   m_Layer: 0
   m_Name: Radiator
-  m_TagString: Untagged
+  m_TagString: Module
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2007,7 +2007,7 @@ GameObject:
   - component: {fileID: 546711267}
   m_Layer: 0
   m_Name: Driver
-  m_TagString: Untagged
+  m_TagString: Module
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2186,7 +2186,7 @@ GameObject:
   - component: {fileID: 586402918}
   m_Layer: 0
   m_Name: Horizontal Drive
-  m_TagString: Untagged
+  m_TagString: Module
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2608,7 +2608,7 @@ GameObject:
   - component: {fileID: 830172282}
   m_Layer: 0
   m_Name: Side Armor
-  m_TagString: Untagged
+  m_TagString: Armor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2916,7 +2916,7 @@ GameObject:
   - component: {fileID: 964105685}
   m_Layer: 0
   m_Name: Gunner
-  m_TagString: Untagged
+  m_TagString: Module
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3091,7 +3091,7 @@ GameObject:
   - component: {fileID: 968574915}
   m_Layer: 0
   m_Name: Modules
-  m_TagString: Untagged
+  m_TagString: Module
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3802,7 +3802,7 @@ GameObject:
   - component: {fileID: 1271707170}
   m_Layer: 0
   m_Name: Engine
-  m_TagString: Untagged
+  m_TagString: Module
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4368,7 +4368,7 @@ GameObject:
   - component: {fileID: 1972263848}
   m_Layer: 0
   m_Name: Loader
-  m_TagString: Untagged
+  m_TagString: Module
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4870,11 +4870,9 @@ MonoBehaviour:
   Speed: 0
   rb: {fileID: 2051995098}
   cd: {fileID: 2051995101}
-  nextPos: {x: 0, y: 0, z: 0}
-  pch: {fileID: 2051995099}
   cf2d:
     useTriggers: 1
-    useLayerMask: 0
+    useLayerMask: 1
     useDepth: 0
     useOutsideDepth: 0
     useNormalAngle: 0
@@ -4889,6 +4887,8 @@ MonoBehaviour:
   hitmask:
     serializedVersion: 2
     m_Bits: 512
+  ps: {fileID: 2051995100}
+  pc: {fileID: 2051995099}
 --- !u!50 &2051995098
 Rigidbody2D:
   serializedVersion: 4
@@ -4932,7 +4932,6 @@ MonoBehaviour:
   rb: {fileID: 0}
   layer: 0
   startPos: {x: 0, y: 0}
-  hitPos: {x: 0, y: 0}
   armPos: {x: 0, y: 0}
   OutPen: {x: 0, y: 0}
   InPen: {x: 0, y: 0}
@@ -4962,7 +4961,10 @@ MonoBehaviour:
   Dam: 0
   Speed: 0
   Pen: 0
+  ProType: 
+  ProHit: 
   startPos: {x: 0, y: 0}
+  pm: {fileID: 2051995097}
 --- !u!58 &2051995101
 CircleCollider2D:
   m_ObjectHideFlags: 0

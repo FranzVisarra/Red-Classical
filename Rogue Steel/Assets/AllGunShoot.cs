@@ -33,9 +33,10 @@ public class AllGunShoot : MonoBehaviour
             Debug.Log("Shoot Script Says "+transform.position);
             //ptile.fire(10, transform.rotation, transform.position, 10, info.ColLay);
             proClone = Instantiate(pro, transform.position, transform.rotation);
-            proClone.layer = info.ColLay;
+            //proClone.layer = info.ColLay;
+            proClone.GetComponent<ProStats>().ProType = "AP";
             var ProPos = proClone.transform.position;
-            proClone.transform.position = new Vector3(ProPos.x,ProPos.y,-2);
+            proClone.transform.position = new Vector3(ProPos.x,ProPos.y,-3);
             /*
             soundClone = Instantiate(sound,transform.position,transform.rotation);
             bangScript = soundClone.GetComponent<AllSndHan>();

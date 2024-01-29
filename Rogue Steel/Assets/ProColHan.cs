@@ -47,27 +47,24 @@ public class ProColHan : MonoBehaviour
     {
         other = ray.collider.transform.gameObject;
         Debug.Log("Collided");
-        if (this.transform.gameObject.layer == other.layer)
+        //Debug.Log("Hit Intended");
+        if (other.name == "Side Armor(Clone)")
         {
-            //Debug.Log("Hit Intended");
-            if (other.name == "Side Armor(Clone)")
+            Debug.Log(ray.point);
+            othInf = other.GetComponent<ModuleInfo>();
+            angPen = angle(ray);
+            Debug.Log("angle = " + angPen);
+            RicCh = angPen / 90;
+            HitCh = Random.Range(0f, 100f) / 100;
+            if (true/*HitCh+stats.Pen < RicCh+othInf.CurPenRes*/)
             {
-                Debug.Log(ray.point);
-                othInf = other.GetComponent<ModuleInfo>();
-                angPen = angle(ray);
-                Debug.Log("angle = "+angPen);
-                RicCh = angPen / 90;
-                HitCh = Random.Range(0f, 100f) / 100;
-                if (true/*HitCh+stats.Pen < RicCh+othInf.CurPenRes*/)
-                {
-                    //Debug.Log("Ricochet with a "+HitCh*100+"% out of "+RicCh*100+"%");
-                    ricochet();
-                }
-                else
-                {
-                    Debug.Log("Penetrate with a " + HitCh * 100 + "% out of " + RicCh * 100 + "%");
-                    //pen();
-                }
+                //Debug.Log("Ricochet with a "+HitCh*100+"% out of "+RicCh*100+"%");
+                ricochet();
+            }
+            else
+            {
+                Debug.Log("Penetrate with a " + HitCh * 100 + "% out of " + RicCh * 100 + "%");
+                //pen();
             }
         }
     }
@@ -138,7 +135,7 @@ public class ProColHan : MonoBehaviour
             Debug.Log("rotation in world"+rb.rotation);
             rb.SetRotation(rb.rotation+180 +2*angPen);
             Debug.Log("New Rotation" + rb.rotation+2*angPen);
-            rb.transform.Translate(Vector2.up * stats.Speed * Time.deltaTime);
+            //rb.transform.Translate(Vector2.up * stats.Speed * Time.deltaTime);
             //rb.SetRotation(rb.rotation+180+test*2*angPen);
             /*
             //set vel to 0

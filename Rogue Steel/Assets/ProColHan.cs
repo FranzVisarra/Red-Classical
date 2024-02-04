@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Net;
 using System.Xml.Serialization;
+using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEditor.Experimental.GraphView.GraphView;
-
+using static UnityEditor.MaterialProperty;
+//this class concerns hitting a thing
 public class ProColHan : MonoBehaviour
 {
-    public ProStats stats;
+    public ProStats ps;
     public Rigidbody2D rb;
     public int layer;
     //a
@@ -36,10 +38,12 @@ public class ProColHan : MonoBehaviour
     public string side;
     public float test;
     private GameObject other;
+    public GameObject Projectile;
+    private GameObject ProClone;
     //public GameObject testSquare;
     public void Awake()
     {
-        stats = this.transform.gameObject.GetComponent<ProStats>();
+        ps = this.transform.gameObject.GetComponent<ProStats>();
         layer = this.transform.gameObject.layer;
         rb=this.transform.gameObject.GetComponent<Rigidbody2D>();
     }
@@ -52,19 +56,29 @@ public class ProColHan : MonoBehaviour
         {
             Debug.Log(ray.point);
             othInf = other.GetComponent<ModuleInfo>();
-            angPen = angle(ray);
-            Debug.Log("angle = " + angPen);
-            RicCh = angPen / 90;
-            HitCh = Random.Range(0f, 100f) / 100;
-            if (true/*HitCh+stats.Pen < RicCh+othInf.CurPenRes*/)
-            {
-                //Debug.Log("Ricochet with a "+HitCh*100+"% out of "+RicCh*100+"%");
-                ricochet();
-            }
-            else
-            {
-                Debug.Log("Penetrate with a " + HitCh * 100 + "% out of " + RicCh * 100 + "%");
-                //pen();
+            switch (ps.ProType) {
+                case "AP":
+                    angPen = angle(ray);
+                    Debug.Log("angle = " + angPen);
+                    /*
+                    RicCh = angPen / 90;
+                    HitCh = Random.Range(0f, 100f) / 100;
+                    */
+                    if (false/*HitCh+stats.Pen < RicCh+othInf.CurPenRes*/)
+                    {
+                        //Debug.Log("Ricochet with a "+HitCh*100+"% out of "+RicCh*100+"%");
+                        ricochet();
+                    }
+                    else
+                    {
+                        //Debug.Log("Penetrate with a " + HitCh * 100 + "% out of " + RicCh * 100 + "%");
+                        penetrate(ray);
+                    }
+                    break;
+                case "Spall":
+                    Destroy(this.transform.gameObject);
+                    //function to damage other
+                    break;
             }
         }
     }
@@ -119,14 +133,6 @@ public class ProColHan : MonoBehaviour
             return inPenAng;
         }
     }
-    public float returny(float d, float a, Vector2 w)
-    {
-        return (d*Mathf.Sin((armDeg + 90+a) * Mathf.Deg2Rad)) + w.y;
-    }
-    public float returnx(float d, float a, Vector2 w)
-    {
-        return (d*Mathf.Cos((armDeg + 90+a) * Mathf.Deg2Rad)) + w.x;
-    }
 
     public void ricochet()
     {
@@ -145,13 +151,52 @@ public class ProColHan : MonoBehaviour
             */
         }
     }
-    public void penetrate()
+    public void penetrate(RaycastHit2D ray)
     {
-        if (side == "Front")
+        if (angPen > 0)
         {
-            Debug.Log("rotation in world" + rb.rotation);
-            //rb.SetRotation(rb.rotation + test * angPen);
+            rb.SetRotation(rb.rotation + Random.Range(Random.Range(angPen - 90,0), Random.Range(0,angPen+(float)22.5)));
         }
+        else if (angPen < 0)
+        {
+            rb.SetRotation(rb.rotation + Random.Range(Random.Range(angPen-(float)22.5, 0), Random.Range(0, angPen+90)));
+        }
+        else
+        {
+            rb.SetRotation(rb.rotation += Random.Range(-90, 90));
+        }
+        for (int i = 0; i < 5; i++)
+        {
+            if (side == "Front")
+            {
+                //create spall
+                ProClone = Instantiate(Projectile, transform.position, transform.rotation);
+                ProClone.transform.Translate(Vector2.up * ray.distance);
+                ProClone.GetComponent<ProStats>().ProType = "Spall";
+                if (angPen > 0)
+                {
+                    ProClone.transform.gameObject.GetComponent<Rigidbody2D>().SetRotation(rb.rotation + Random.Range(Random.Range(angPen - 90, 0), Random.Range(0, angPen + (float)22.5)));
+                }
+                else if (angPen < 0)
+                {
+                    ProClone.transform.gameObject.GetComponent<Rigidbody2D>().SetRotation(rb.rotation + Random.Range(Random.Range(angPen - (float)22.5, 0), Random.Range(0, angPen + 90)));
+                }
+                else
+                {
+                    ProClone.transform.gameObject.GetComponent<Rigidbody2D>().SetRotation(rb.rotation += Random.Range((float)-22.5, (float)90));
+                }
+            }
+        }
+        
+    }
+    //----------useful stuff----------
+    public float returny(float d, float a, Vector2 w)
+    {
+        return (d * Mathf.Sin((armDeg + 90 + a) * Mathf.Deg2Rad)) + w.y;
+    }
+    public float returnx(float d, float a, Vector2 w)
+    {
+        return (d * Mathf.Cos((armDeg + 90 + a) * Mathf.Deg2Rad)) + w.x;
     }
     //public void ArmorHitByPro(float Dam, float Pen, Vector2 sp, Vector2 hp)
     //{

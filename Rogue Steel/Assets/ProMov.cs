@@ -4,7 +4,7 @@ using System.Linq;
 using Unity.Burst.CompilerServices;
 using UnityEditorInternal;
 using UnityEngine;
-
+//this class concerns movement and raycast
 public class ProMov : MonoBehaviour
 {
     public float Speed;
@@ -13,13 +13,12 @@ public class ProMov : MonoBehaviour
     // Start is called before the first frame update
     public List<RaycastHit2D> rc = new List<RaycastHit2D>();
     public ContactFilter2D cf2d;
-    public LayerMask hitmask;
     public ProStats ps;
     public ProColHan pc;
-    void Awake()
+    void Start()
     {
-        rb.rotation += 90;
-        cf2d.layerMask = hitmask;
+        Debug.Log("Setting layyer from pro "+LayerMask.LayerToName(this.gameObject.layer));
+        cf2d.layerMask |= (1 << this.gameObject.layer);
     }
 
     // Update is called once per frame
@@ -40,19 +39,35 @@ public class ProMov : MonoBehaviour
                     legalCast++;
                     //Debug.Log("hit " + ray.collider.name + " on layer " + ray.collider.transform.gameObject.layer + " with distance " + ray.distance);
                     //Debug.Log("Filtered");
+                    var DRC = Color.gray;//debug ray color
                     pc.RayCastHit(ray);
+                    if (ps.ProHit.Contains("Armor") && ps.ProHit.Contains("Module"))
+                    {
+                        DRC = Color.blue;
+                    }
+                    else if (ps.ProHit.Contains("Armor"))
+                    {
+                        DRC = Color.red;
+                    }
+                    else if (ps.ProHit.Contains("Module"))
+                    {
+                        DRC = Color.yellow;
+                    }
+                    Debug.DrawRay(rb.transform.position, transform.up * ray.distance, DRC, 1);
                     this.transform.Translate(Vector2.up * ray.distance);
                     //Debug.Log("transformed to " + this.transform.position);
                     break;
                 }
             }
                 if(legalCast == 0)//no raycasts hit valid
-                {
-                    this.transform.Translate(Vector2.up * Speed * Time.deltaTime);
-                }
+            {
+                Debug.DrawRay(rb.transform.position, transform.up * Speed * Time.deltaTime, new Color(1,1,1,1/10), 1);
+                this.transform.Translate(Vector2.up * Speed * Time.deltaTime);
+            }
         }
         else//ray hits nothing
         {
+            Debug.DrawRay(rb.transform.position, transform.up * Speed * Time.deltaTime, Color.gray, 1);
             this.transform.Translate(Vector2.up * Speed * Time.deltaTime);
         }
     }

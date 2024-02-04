@@ -543,6 +543,10 @@ MonoBehaviour:
   shellVelocity: 0
   shellPen: 0
   shellSpeed: 0
+  shootStatus: 
+  tSinceShot: 0
+  reloadTime: 0
+  detectionLength: 0
 --- !u!114 &186013088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -581,6 +585,21 @@ MonoBehaviour:
   angle: 0
   Enemy: {fileID: 0}
   EScript: {fileID: 0}
+  info: {fileID: 186013087}
+  cf2d:
+    useTriggers: 0
+    useLayerMask: 0
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 0
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 0
+    maxNormalAngle: 0
 --- !u!114 &186013090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -594,6 +613,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mcns: {fileID: 0}
+  info: {fileID: 186013087}
   ptile: {fileID: 0}
   moveSpeed: 0
   rotateSpeed: 0
@@ -602,6 +622,20 @@ MonoBehaviour:
   curPos: {x: 0, y: 0}
   targRot: {x: 0, y: 0, z: 0, w: 0}
   angle: 0
+  cf2d:
+    useTriggers: 1
+    useLayerMask: 1
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 256
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 0
+    maxNormalAngle: 0
 --- !u!1 &241816054
 GameObject:
   m_ObjectHideFlags: 0
@@ -1474,7 +1508,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.9245283, g: 0.5180847, b: 0.5180847, a: 1}
+  m_Color: {r: 1, g: 0.34852764, b: 0, a: 0.45882353}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -4797,7 +4831,7 @@ Transform:
   m_GameObject: {fileID: 2051995094}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.9732108, y: -1.5647514, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4879,14 +4913,11 @@ MonoBehaviour:
     useOutsideNormalAngle: 0
     layerMask:
       serializedVersion: 2
-      m_Bits: 640
+      m_Bits: 0
     minDepth: 0
     maxDepth: 0
     minNormalAngle: 0
     maxNormalAngle: 0
-  hitmask:
-    serializedVersion: 2
-    m_Bits: 512
   ps: {fileID: 2051995100}
   pc: {fileID: 2051995099}
 --- !u!50 &2051995098
@@ -4928,7 +4959,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 889215773dc0d3b41816f5d2104734a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stats: {fileID: 0}
+  ps: {fileID: 0}
   rb: {fileID: 0}
   layer: 0
   startPos: {x: 0, y: 0}
@@ -4946,6 +4977,7 @@ MonoBehaviour:
   HitCh: 0
   side: 
   test: 0
+  Projectile: {fileID: 2051995094}
 --- !u!114 &2051995100
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4961,6 +4993,8 @@ MonoBehaviour:
   Dam: 0
   Speed: 0
   Pen: 0
+  Seconds: 0
+  LifeTime: 0
   ProType: 
   ProHit: 
   startPos: {x: 0, y: 0}

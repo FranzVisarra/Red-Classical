@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,13 +18,43 @@ public class EnTnkStats : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        
+        AiStateMachine();
+        DetStateMachine();
     }
+
+    private void DetStateMachine()
+    {
+        throw new NotImplementedException();
+    }
+
+    private void AiStateMachine()
+    {
+        if (AiState == "Patrol")
+        {
+
+        }
+        else if (AiState == "Investigate")
+        {
+
+        }
+        else if (AiState == "Search")
+        {
+
+        }
+        else if (AiState == "Attack")
+        {
+
+        }
+    }
+
     public void soundHeard(Vector3 sSource)
     {
         TestNoiseDirection.x = sSource.x;
         TestNoiseDirection.y = sSource.y;
         DetState = "Sound Heard";
         AiState = "Investigate";
+    }
+    private void DetectionList()
+    {
     }
 }

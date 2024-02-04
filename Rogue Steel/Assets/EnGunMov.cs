@@ -13,6 +13,10 @@ public class EnGunMov : MonoBehaviour
     public float angle;
     public GameObject Enemy;
     public EnTnkStats EScript;
+    public CannonInfo info;
+
+    public List<RaycastHit2D> rc = new List<RaycastHit2D>();
+    public ContactFilter2D cf2d;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,9 +36,49 @@ public class EnGunMov : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        Sight();
         if (EScript.DetState=="Sound Heard")
         {
             targPos = EScript.TestNoiseDirection;
         }
+    }
+    private void Sight()
+    {
+        float totDist = info.detectionLength;
+        Physics2D.Raycast(this.transform.position, transform.TransformDirection(Vector2.left), cf2d, rc, info.detectionLength);
+        foreach(RaycastHit2D ray in rc)
+        {
+            if (ray.collider.gameObject.layer == LayerMask.NameToLayer("Obstruction"))
+            {
+                if (ray.collider.gameObject.tag=="Opaque")
+                {
+                    Debug.DrawRay(this.transform.position, transform.TransformDirection(Vector2.left)*ray.distance,Color.white);
+                    break;
+                }
+                else if (ray.collider.gameObject.tag == "Translucent")
+                {
+                    totDist=(totDist-ray.distance)/4+ray.distance;
+                    Debug.DrawRay(this.transform.position, transform.TransformDirection(Vector2.left) * totDist, Color.white);
+                }
+            }
+            else if (ray.collider.gameObject.layer == LayerMask.NameToLayer("Player")&&ray.distance<=totDist)
+            {
+                if (info.shootStatus == "Ready")
+                { info.shootStatus = "Shoot"; }
+                Debug.DrawRay(this.transform.position, transform.TransformDirection(Vector2.left) * ray.distance, Color.white);
+                break;
+            }
+        }
+        /*
+        for (int i=0; i < 90; i+=5)
+        {
+            //Physics2D.Raycast(this.transform.position, transform.TransformDirection(Vector2.left), cf2d, rc, info.detectionLength);
+            //Debug.DrawRay(this.transform.position, Quaternion.Euler(0,0,info.detectionAngle/2-i*info.rayAng)*this.gameObject.transform.right*-100, Color.magenta);
+            Debug.DrawRay(this.transform.position, Quaternion.Euler(0, 0, 45-i) * this.gameObject.transform.right * -100, Color.magenta);
+            Debug.Log("TEST "+ Mathf.Rad2Deg*1/100);
+        }
+        //Physics2D.Raycast(this.transform.position, transform.TransformDirection(Vector2.left), cf2d, rc, info.detectionLength);
+        //Debug.DrawRay(this.transform.position, transform.right * -info.detectionLength, Color.magenta);
+        */
     }
 }

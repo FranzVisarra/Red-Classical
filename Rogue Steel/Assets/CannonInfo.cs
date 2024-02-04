@@ -14,6 +14,10 @@ public class CannonInfo : MonoBehaviour
     public int shellVelocity;
     public int shellPen;
     public int shellSpeed;
+    public string shootStatus;
+    public float tSinceShot;
+    public float reloadTime;
+    public float detectionLength;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,5 +39,9 @@ public class CannonInfo : MonoBehaviour
         //set layer
         this.transform.gameObject.layer = ParLay;
         //establish layer of projectiles
+        shootStatus = "Ready";
+        reloadTime = 3;
+        tSinceShot = reloadTime;
+        detectionLength = 100;
     }
 }

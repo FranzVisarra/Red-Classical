@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -48,7 +46,7 @@ public class AllBodCom : MonoBehaviour
                 //get component
                 com(innards[i, n]);
                 component = Instantiate(componentTemp, this.transform);
-                component.GetComponent<ModuleInfo>().setValues(10, 0.1f);
+                component.GetComponent<ModuleInfo>().setValues(10, 0, 0);
                 //transform component
                 component.transform.Translate(0 - ((float)length / 2) + 0.5f + n, ((float)width / 2) - 0.5f - i, -2);
                 if (this.transform.gameObject.layer == LayerMask.NameToLayer("Player"))
@@ -130,7 +128,7 @@ public class AllBodCom : MonoBehaviour
             {
                 armor.layer = LayerMask.NameToLayer("EnemyCollision");
             }
-            armor.GetComponent<ModuleInfo>().setValues(50, 0.5f);
+            armor.GetComponent<ModuleInfo>().setValues(0, 5, 5);
             armor.transform.eulerAngles = new Vector3(0, 0, degrees);
             //armor.transform.Translate(0-(float)forward/2,0 - ((float)side / 2) + 0.5f + i, -1);
             armor.transform.Translate(0 - ((float)side / 2) + 0.5f + i, 0 - (float)forward / 2, -2);

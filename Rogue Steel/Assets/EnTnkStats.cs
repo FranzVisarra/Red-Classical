@@ -2,21 +2,35 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+public class DetectionList
+{
+    public string type;
+    public Vector2 pos;
+    // Start is called before the first frame update
+    public DetectionList(string type, Vector2 pos)
+    {
+        this.type = type;
+        this.pos = pos;
+    }
+}
 
 public class EnTnkStats : MonoBehaviour
 {
+    public List<DetectionList> dlist;
     public string AiState;//patrol, investigate, search, attack
     public string DetState;//nothing, known, heard, seen
     public Vector2 TestNoiseDirection;
+    
     // Start is called before the first frame update
     void Start()
     {
+        dlist = new List<DetectionList>();
         AiState = "Patrol";
         DetState = "None";
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         AiStateMachine();
         DetStateMachine();
@@ -24,24 +38,36 @@ public class EnTnkStats : MonoBehaviour
 
     private void DetStateMachine()
     {
-        throw new NotImplementedException();
+        //throw new NotImplementedException();
     }
 
     private void AiStateMachine()
     {
         if (AiState == "Patrol")
         {
-
+            if (dlist.Exists(DetectionList => DetectionList.type=="Sound"))
+            {
+                DetState = "Sound Heard";
+                AiState = "Investigate";
+            }
         }
         else if (AiState == "Investigate")
         {
-
-        }
-        else if (AiState == "Search")
-        {
-
+            if (dlist.Exists(DetectionList => DetectionList.type == "Sight"))
+            {
+                DetState = "Seen";
+                AiState = "Attack";
+            }
         }
         else if (AiState == "Attack")
+        {
+            if (!dlist.Exists(DetectionList => DetectionList.type == "Sight"))
+            {
+                DetState = "Known";
+                AiState = "Search";
+            }
+        }
+        else if (AiState == "Search")
         {
 
         }
@@ -51,10 +77,6 @@ public class EnTnkStats : MonoBehaviour
     {
         TestNoiseDirection.x = sSource.x;
         TestNoiseDirection.y = sSource.y;
-        DetState = "Sound Heard";
-        AiState = "Investigate";
-    }
-    private void DetectionList()
-    {
+        dlist.Add(new DetectionList("Sound",TestNoiseDirection));
     }
 }

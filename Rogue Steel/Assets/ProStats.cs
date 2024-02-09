@@ -1,12 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ProStats : MonoBehaviour
 {
-    public float Dam;
+    //damage to stuff
+    public int Dam;
+    public int Pen;
+    public float Ang;
+    //stats
     public float Speed;
-    public float Pen;
     public float Seconds;
     public float LifeTime;
     //type of round
@@ -18,20 +19,7 @@ public class ProStats : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Dam = 5f;
-        Speed = 50f;
-        pm.Speed = Speed;
-        Pen = 0.5f;
-        switch (ProType){
-            case "AP":
-                ProHit = "Armor";
-                break;
-            case "Spall":
-                ProHit = "Module,Armor";
-                break;
-        }
-        Debug.Log(ProType + " Round");
-        Seconds = 0;
+        //Debug.Log(ProType + " Round");
         //startPos = new Vector2(transform.position.x,transform.position.y);
     }
     void FixedUpdate()
@@ -44,6 +32,26 @@ public class ProStats : MonoBehaviour
         {
             Destroy(this.transform.gameObject);
         }
+    }
+    public void SetPro(string type, int dam, int pen, int ang, float speed, float life)
+    {
+        ProType = type;
+        switch (ProType)
+        {
+            case "Shell":
+                ProHit = "Module,Armor";
+                break;
+            case "Spall":
+                ProHit = "Module,Armor";
+                break;
+        }
+        Dam = dam;
+        Pen = pen;
+        Ang = ang;
+        Speed = speed;
+        pm.Speed = Speed;
+        LifeTime = life;
+        Seconds = 0;
     }
     /*
     public void setStartPos(Vector2 i)

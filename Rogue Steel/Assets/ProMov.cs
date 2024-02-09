@@ -1,8 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.Burst.CompilerServices;
-using UnityEditorInternal;
 using UnityEngine;
 //this class concerns movement and raycast
 public class ProMov : MonoBehaviour
@@ -17,7 +14,7 @@ public class ProMov : MonoBehaviour
     public ProColHan pc;
     void Start()
     {
-        Debug.Log("Setting layyer from pro "+LayerMask.LayerToName(this.gameObject.layer));
+        //Debug.Log("Setting layyer from pro "+LayerMask.LayerToName(this.gameObject.layer));
         cf2d.layerMask |= (1 << this.gameObject.layer);
     }
 

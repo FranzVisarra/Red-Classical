@@ -51,7 +51,7 @@ public class EnGunMov : MonoBehaviour
         Sight();
         if (EScript.DetState=="Sound Heard")
         {
-            targPos = EScript.TestNoiseDirection;
+            targPos = EScript.Direction;
         }
     }
     private void Sight()
@@ -60,7 +60,7 @@ public class EnGunMov : MonoBehaviour
         Physics2D.Raycast(this.transform.position, transform.TransformDirection(Vector2.left), cf2d, MuzzleRay, info.detectionLength);
         if (RayHit(MuzzleRay))
         {
-            if (info.shootStatus == "Ready")
+            if (EScript.AiState=="Attack" && info.shootStatus == "Ready")
             { info.shootStatus = "Shoot"; }
         }
         /*

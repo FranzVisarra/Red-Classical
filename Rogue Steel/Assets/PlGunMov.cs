@@ -4,6 +4,7 @@ using UnityEngine;
 public class PlGunMov : MonoBehaviour
 {
     public GameObject mcns;
+    public GameObject chassis;
     public CannonInfo info;
     public Projectile ptile;
     public float moveSpeed;
@@ -14,39 +15,38 @@ public class PlGunMov : MonoBehaviour
     public Vector2 curPos;
     public Quaternion targRot;
     public float angle;
+    public string rotate;
+
+    //public GameObject test;
+    //public GameObject testRef;
 
     public List<RaycastHit2D> rc = new List<RaycastHit2D>();
     public ContactFilter2D cf2d;
     // Start is called before the first frame update
     void Start()
     {
+        for (int i = 0; i < 5; i++)
+        {
+            chassis = this.transform.parent.gameObject;
+            if (chassis.name == "Chassis")
+            {
+                break;
+            }
+        }
+        
         mcns = GameObject.Find("Mechanics");
         cam = Camera.main;
         moveSpeed = 0.5f;
         rotateSpeed = 50f;
         //move cannon rotation point
         //transform.Translate(1, 0, 0);
+        //testRef = Instantiate(test);
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
         DetectTarget();
-        mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-        if (Input.GetKey(KeyCode.Mouse0))
-        {
-            if (Input.GetKey(KeyCode.LeftShift))
-            {
-                targPos.x = (mousePos.x - curPos.x) * 100 + curPos.x;
-                targPos.y = (mousePos.y - curPos.y) * 100 + curPos.y;
-            }
-            else
-            {
-                targPos = mousePos;
-            }
-        }
-        curPos.Set(transform.position.x, transform.position.y);
-        
     }
 
     private void DetectTarget()
@@ -66,8 +66,35 @@ public class PlGunMov : MonoBehaviour
     }
 
     void Update()
-    {   angle = Mathf.Atan2(transform.position.y - targPos.y, transform.position.x - targPos.x) * Mathf.Rad2Deg;
-        targRot = Quaternion.Euler(new Vector3(0, 0, angle));
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, targRot, rotateSpeed * Time.deltaTime);
+    {
+        mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                rotate = "Direction";
+                targPos.x = (curPos.x-mousePos.x);
+                targPos.y = (curPos.y-mousePos.y);
+            }
+            else
+            {
+                rotate = "Point";
+                targPos = mousePos;
+            }
+            //testRef.transform.position = targPos;
+        }
+        curPos.Set(transform.position.x, transform.position.y);
+        if (rotate == "Direction")
+        {
+            angle = Mathf.Atan2(targPos.y, targPos.x) * Mathf.Rad2Deg;
+            targRot = Quaternion.Euler(new Vector3(0, 0, angle));
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targRot, rotateSpeed * Time.deltaTime);
+        }
+        else if (rotate == "Point")
+        {
+            angle = Mathf.Atan2(transform.position.y - targPos.y, transform.position.x - targPos.x) * Mathf.Rad2Deg;
+            targRot = Quaternion.Euler(new Vector3(0, 0, angle));
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targRot, rotateSpeed * Time.deltaTime);
+        }
     }
 }

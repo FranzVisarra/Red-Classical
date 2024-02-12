@@ -13,6 +13,7 @@ public class EnGunMov : MonoBehaviour
     public EnTnkStats EScript;
     public CannonInfo info;
     public float time;
+    public GameObject Chassis;//this chassis
 
     public List<RaycastHit2D> MuzzleRay = new List<RaycastHit2D>();
     public List<RaycastHit2D> lRay = new List<RaycastHit2D>();
@@ -23,20 +24,35 @@ public class EnGunMov : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log("Enemy Gun Script Start");
         moveSpeed = 0.5f;
         rotateSpeed = 50f;
         targPos = new Vector2(0,0);
         Enemy = this.transform.parent.parent.parent.gameObject;
         EScript = Enemy.GetComponent<EnTnkStats>();
+        Chassis = this.transform.parent.parent.gameObject;
         time = 0;
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
+        Debug.Log("Enemy Gun Script Update");
         angle = Mathf.Atan2(transform.position.y - targPos.y, transform.position.x - targPos.x) * Mathf.Rad2Deg;
         targRot = Quaternion.Euler(new Vector3(0, 0, angle));
         transform.rotation = Quaternion.RotateTowards(transform.rotation, targRot, rotateSpeed * Time.deltaTime);
+        string AIState = EScript.AiState;
+        switch (AIState)
+        {
+            case "Patrol":
+                //targPos = patrol position;
+                break;
+            case "Investigate":
+            case "Attack":
+                targPos = EScript.dlist[0].pos;
+                break;
+        }
+        
     }
     private void FixedUpdate()
     {
@@ -60,35 +76,10 @@ public class EnGunMov : MonoBehaviour
         Physics2D.Raycast(this.transform.position, transform.TransformDirection(Vector2.left), cf2d, MuzzleRay, info.detectionLength);
         if (RayHit(MuzzleRay))
         {
+            EScript.enemySeen(targ.transform.position);
             if (EScript.AiState=="Attack" && info.shootStatus == "Ready")
             { info.shootStatus = "Shoot"; }
         }
-        /*
-        float totDist = info.detectionLength;
-        foreach (RaycastHit2D ray in MuzzleRay)
-        {
-            if (ray.collider.gameObject.layer == LayerMask.NameToLayer("Obstruction"))
-            {
-                if (ray.collider.gameObject.tag=="Opaque")
-                {
-                    Debug.DrawRay(this.transform.position, transform.TransformDirection(Vector2.left)*ray.distance,Color.white);
-                    break;
-                }
-                else if (ray.collider.gameObject.tag == "Translucent")
-                {
-                    totDist=(totDist-ray.distance)/4+ray.distance;
-                    Debug.DrawRay(this.transform.position, transform.TransformDirection(Vector2.left) * totDist, Color.white);
-                }
-            }
-            else if (ray.collider.gameObject.layer == LayerMask.NameToLayer("Player")&&ray.distance<=totDist)
-            {
-                if (info.shootStatus == "Ready")
-                { info.shootStatus = "Shoot"; }
-                Debug.DrawRay(this.transform.position, transform.TransformDirection(Vector2.left) * ray.distance, Color.white);
-                break;
-            }
-        }
-        */
     }
 
     bool RayHit(List<RaycastHit2D> Ray)
@@ -131,6 +122,7 @@ public class EnGunMov : MonoBehaviour
         Debug.DrawRay(this.transform.position, Quaternion.Euler(0, 0, time % 25 - 25) * this.gameObject.transform.right * -100, Color.blue);
         if (RayHit(lRay)||RayHit(rRay))
         {
+            EScript.enemySeen(targ.transform.position);
             targPos = targ.transform.position;
         }
     }

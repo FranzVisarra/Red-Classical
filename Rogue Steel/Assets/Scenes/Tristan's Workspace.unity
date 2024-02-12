@@ -565,6 +565,9 @@ MonoBehaviour:
   ptile: {fileID: 0}
   pro: {fileID: 2051995094}
   info: {fileID: 186013087}
+  Dam: 0
+  Pen: 0
+  Ang: 0
 --- !u!114 &186013089
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -586,6 +589,8 @@ MonoBehaviour:
   Enemy: {fileID: 0}
   EScript: {fileID: 0}
   info: {fileID: 186013087}
+  time: 0
+  Chassis: {fileID: 0}
   cf2d:
     useTriggers: 0
     useLayerMask: 0
@@ -600,6 +605,7 @@ MonoBehaviour:
     maxDepth: 0
     minNormalAngle: 0
     maxNormalAngle: 0
+  targ: {fileID: 0}
 --- !u!114 &186013090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -613,6 +619,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mcns: {fileID: 0}
+  chassis: {fileID: 0}
   info: {fileID: 186013087}
   ptile: {fileID: 0}
   moveSpeed: 0
@@ -622,6 +629,7 @@ MonoBehaviour:
   curPos: {x: 0, y: 0}
   targRot: {x: 0, y: 0, z: 0, w: 0}
   angle: 0
+  rotate: 
   cf2d:
     useTriggers: 1
     useLayerMask: 1
@@ -821,8 +829,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHp: 0
   CurHp: 0
-  MaxPenRes: 0
-  CurPenRes: 0
+  MaxArmor: 0
+  CurArmor: 0
+  Ang: 0
+  MaxDur: 0
+  CurDur: 0
   efficiency: 0
   dirDeg: 0
   testSquare: {fileID: 0}
@@ -1000,8 +1011,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHp: 0
   CurHp: 0
-  MaxPenRes: 0
-  CurPenRes: 0
+  MaxArmor: 0
+  CurArmor: 0
+  Ang: 0
+  MaxDur: 0
+  CurDur: 0
   efficiency: 0
   dirDeg: 0
   testSquare: {fileID: 0}
@@ -1179,8 +1193,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHp: 0
   CurHp: 0
-  MaxPenRes: 0
-  CurPenRes: 0
+  MaxArmor: 0
+  CurArmor: 0
+  Ang: 0
+  MaxDur: 0
+  CurDur: 0
   efficiency: 0
   dirDeg: 0
   testSquare: {fileID: 0}
@@ -1864,8 +1881,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHp: 0
   CurHp: 0
-  MaxPenRes: 0
-  CurPenRes: 0
+  MaxArmor: 0
+  CurArmor: 0
+  Ang: 0
+  MaxDur: 0
+  CurDur: 0
   efficiency: 0
   dirDeg: 0
   testSquare: {fileID: 0}
@@ -2127,8 +2147,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHp: 0
   CurHp: 0
-  MaxPenRes: 0
-  CurPenRes: 0
+  MaxArmor: 0
+  CurArmor: 0
+  Ang: 0
+  MaxDur: 0
+  CurDur: 0
   efficiency: 0
   dirDeg: 0
   testSquare: {fileID: 0}
@@ -2307,8 +2330,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHp: 0
   CurHp: 0
-  MaxPenRes: 0
-  CurPenRes: 0
+  MaxArmor: 0
+  CurArmor: 0
+  Ang: 0
+  MaxDur: 0
+  CurDur: 0
   efficiency: 0
   dirDeg: 0
   testSquare: {fileID: 0}
@@ -2677,8 +2703,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHp: 0
   CurHp: 0
-  MaxPenRes: 0
-  CurPenRes: 0
+  MaxArmor: 0
+  CurArmor: 0
+  Ang: 0
+  MaxDur: 0
+  CurDur: 0
   efficiency: 0
   dirDeg: 0
   testSquare: {fileID: 0}
@@ -2794,7 +2823,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -2}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1993793002}
@@ -3036,8 +3065,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHp: 0
   CurHp: 0
-  MaxPenRes: 0
-  CurPenRes: 0
+  MaxArmor: 0
+  CurArmor: 0
+  Ang: 0
+  MaxDur: 0
+  CurDur: 0
   efficiency: 0
   dirDeg: 0
   testSquare: {fileID: 0}
@@ -3820,7 +3852,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AiState: Patrol
   DetState: 
-  TestNoiseDirection: {x: 0, y: 0}
+  Direction: {x: 0, y: 0}
 --- !u!1 &1271707167
 GameObject:
   m_ObjectHideFlags: 0
@@ -3922,8 +3954,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHp: 0
   CurHp: 0
-  MaxPenRes: 0
-  CurPenRes: 0
+  MaxArmor: 0
+  CurArmor: 0
+  Ang: 0
+  MaxDur: 0
+  CurDur: 0
   efficiency: 0
   dirDeg: 0
   testSquare: {fileID: 0}
@@ -4488,8 +4523,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHp: 0
   CurHp: 0
-  MaxPenRes: 0
-  CurPenRes: 0
+  MaxArmor: 0
+  CurArmor: 0
+  Ang: 0
+  MaxDur: 0
+  CurDur: 0
   efficiency: 0
   dirDeg: 0
   testSquare: {fileID: 0}
@@ -4973,11 +5011,13 @@ MonoBehaviour:
   angPen: 0
   othInf: {fileID: 0}
   armDeg: 0
-  RicCh: 0
-  HitCh: 0
+  PenRoll: 0
+  BlockRoll: 0
+  Ang: 0
   side: 
   test: 0
   Projectile: {fileID: 2051995094}
+  pen: 0
 --- !u!114 &2051995100
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4991,8 +5031,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Dam: 0
-  Speed: 0
   Pen: 0
+  Ang: 0
+  Speed: 0
   Seconds: 0
   LifeTime: 0
   ProType: 

@@ -45,15 +45,18 @@ public class ModuleInfo : MonoBehaviour
         s.transform.position = new Vector2(i.x,i.y);
     }
     */
-    public void setValues(int MHP, int MA, int MD)
+    public void setCurrentValues(int CHP, int CA, int CD)
+    {
+        CurHp = CHP;
+        CurArmor = CA;
+        CurDur = CD;
+        CalcAng();
+    }
+    public void setMaxValues(int MHP, int MA, int MD)
     {
         MaxHp = MHP;
-        CurHp = MaxHp;
         MaxArmor = MA;
-        CurArmor = MaxArmor;
         MaxDur = MD;
-        CurDur = MaxDur;
-        CalcAng();
     }
 
     public void DamDur(int dam)

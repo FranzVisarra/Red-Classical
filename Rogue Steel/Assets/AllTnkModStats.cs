@@ -5,23 +5,19 @@ using UnityEngine;
 public class TnkModList{
     public string type;
     public Vector2 position;
+    public int rotation;
     public string variant;
-    public int MHP;
     public int CHP;
-    public int MA;
     public int CA;
-    public int MD;
     public int CD;
-    TnkModList(string type, Vector2 position, string variant, int MHP, int MA, int MD, int CHP, int CA, int CD)
+    public TnkModList(string type, Vector2 position, int rotation, string variant, int CHP, int CA, int CD)
     {
         this.type = type;
         this.position = position;
+        this.rotation = rotation;
         this.variant = variant;
-        this.MHP = MHP;
         this.CHP = CHP;
-        this.MA = MA;
         this.CA = CA;
-        this.MD = MD;
         this.CD = CD;
     }
 }

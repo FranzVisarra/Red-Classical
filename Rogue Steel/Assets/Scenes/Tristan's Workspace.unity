@@ -338,7 +338,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &79355949
 Transform:
   m_ObjectHideFlags: 0
@@ -547,6 +547,7 @@ MonoBehaviour:
   tSinceShot: 0
   reloadTime: 0
   detectionLength: 0
+  caliber: 
 --- !u!114 &186013088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3497,7 +3498,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8164eb36cf961154ba202f60d93286c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  armorTemp: {fileID: 830172277}
   TRight: {fileID: 1001039826}
   TLeft: {fileID: 1340858615}
   Ammunition: {fileID: 254780745}
@@ -3509,6 +3509,9 @@ MonoBehaviour:
   Driver: {fileID: 546711264}
   Gunner: {fileID: 964105682}
   Loader: {fileID: 1972263845}
+  Armor: {fileID: 830172277}
+  Mechanics: {fileID: 1766946739}
+  items: {fileID: 0}
 --- !u!1 &1001039826
 GameObject:
   m_ObjectHideFlags: 0
@@ -4386,6 +4389,8 @@ GameObject:
   - component: {fileID: 1766946740}
   - component: {fileID: 1766946743}
   - component: {fileID: 1766946745}
+  - component: {fileID: 1766946747}
+  - component: {fileID: 1766946746}
   m_Layer: 0
   m_Name: Mechanics
   m_TagString: Untagged
@@ -4433,6 +4438,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 711599159}
+--- !u!114 &1766946746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1766946739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c8735810c5d68047a45742f8fc36660, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1766946747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1766946739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40a39a0e55aadda49851f8730b19f6d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1972263845
 GameObject:
   m_ObjectHideFlags: 0
@@ -4630,7 +4659,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1993793002
 Transform:
   m_ObjectHideFlags: 0
@@ -4823,7 +4852,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8164eb36cf961154ba202f60d93286c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  armorTemp: {fileID: 830172277}
   TRight: {fileID: 442050501}
   TLeft: {fileID: 807467208}
   Ammunition: {fileID: 254780745}
@@ -4835,6 +4863,9 @@ MonoBehaviour:
   Driver: {fileID: 546711264}
   Gunner: {fileID: 964105682}
   Loader: {fileID: 1972263845}
+  Armor: {fileID: 830172277}
+  Mechanics: {fileID: 1766946739}
+  items: {fileID: 0}
 --- !u!114 &2032789642
 MonoBehaviour:
   m_ObjectHideFlags: 0

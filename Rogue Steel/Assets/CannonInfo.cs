@@ -18,6 +18,7 @@ public class CannonInfo : MonoBehaviour
     public float tSinceShot;
     public float reloadTime;
     public float detectionLength;
+    public string caliber;
 
     private void Awake()
     {
@@ -46,9 +47,13 @@ public class CannonInfo : MonoBehaviour
         //set layer
         this.transform.gameObject.layer = ParLay;
         //establish layer of projectiles
-        shootStatus = "Ready";
-        reloadTime = 3;
-        tSinceShot = reloadTime;
+        shootStatus = "Reload";
+        tSinceShot = 0;
         detectionLength = 100;
+    }
+    public void setStats(float reloadTime, string caliber)
+    {
+        this.reloadTime = reloadTime;
+        this.caliber = caliber;
     }
 }

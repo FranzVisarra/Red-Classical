@@ -1,17 +1,18 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 
 public class AllBodCom : MonoBehaviour
 {
     // Start is called before the first frame update
-    private int length = 3;//<->
-    private int width = 6;
+    private int length = 2;//<->
+    private int width = 4;
     //public GameObject cannonTemp;
     //public GameObject cannon;
-    public GameObject armorTemp;
-    private GameObject armor;
+    //public GameObject armorTemp;
+    //private GameObject armor;
     //public GameObject mechanics;
-    private GameObject componentTemp;
+    //private GameObject componentTemp;
     private GameObject component;
     public GameObject TRight;
     public GameObject TLeft;
@@ -25,11 +26,131 @@ public class AllBodCom : MonoBehaviour
     public GameObject Driver;
     public GameObject Gunner;
     public GameObject Loader;
+    public GameObject Armor;
+
+    public GameObject Mechanics;
+    public ItemTable items;
     //
     //public Rigidbody2D rb;
-    public string[,] innards;
+    //public string[,] innards;
+
+    public List<TnkModList> components;
     void Start()
     {
+        items = Mechanics.GetComponent<ItemTable>();
+        width = 2;
+        length = 4;
+        this.GetComponent<BoxCollider2D>().size = new Vector2(width, length);
+        TRight.GetComponent<BoxCollider2D>().size = new Vector2(1, length);
+        TRight.GetComponent<BoxCollider2D>().offset = new Vector2(((float)width / 2) - 0.5f, 0);
+        TLeft.GetComponent<BoxCollider2D>().size = new Vector2(1, length);
+        TLeft.GetComponent<BoxCollider2D>().offset = new Vector2(0.5f - ((float)width / 2), 0);
+        foreach (var comp in components)
+        {
+            switch (comp.type)
+            {
+                case "am":
+                    component = Instantiate(Ammunition, this.transform);
+                    component.GetComponent<ModuleInfo>().setCurrentValues(comp.CHP, comp.CA, comp.CD);
+                    component.transform.Translate(comp.position);
+                    component.transform.eulerAngles = new Vector3(0, 0, comp.rotation);
+                    setLayer(component);
+                    break;
+                case "en":
+                    component = Instantiate(Engine, this.transform);
+                    component.GetComponent<ModuleInfo>().setCurrentValues(comp.CHP, comp.CA, comp.CD);
+                    component.transform.Translate(comp.position);
+                    component.transform.eulerAngles = new Vector3(0, 0, comp.rotation);
+                    setLayer(component);
+                    foreach (var thing in items.eng)
+                    {
+                        if (comp.variant == thing.name)
+                        {
+                            component.GetComponent<ModuleInfo>().setMaxValues(thing.maxHP,thing.maxArmor,thing.maxDurability);
+                            break;
+                        }
+                    }
+                    break;
+                case "fu":
+                    component = Instantiate(Fuel, this.transform);
+                    component.GetComponent<ModuleInfo>().setCurrentValues(comp.CHP, comp.CA, comp.CD);
+                    component.transform.Translate(comp.position);
+                    component.transform.eulerAngles = new Vector3(0, 0, comp.rotation);
+                    setLayer(component);
+                    foreach (var thing in items.fuel)
+                    {
+                        if (comp.variant == thing.name)
+                        {
+                            component.GetComponent<ModuleInfo>().setMaxValues(thing.maxHP, thing.maxArmor, thing.maxDurability);
+                            break;
+                        }
+                    }
+                    break;
+                case "hd":
+                    component = Instantiate(HorizontalDrive, this.transform);
+                    component.GetComponent<ModuleInfo>().setCurrentValues(comp.CHP, comp.CA, comp.CD);
+                    component.transform.Translate(comp.position);
+                    component.transform.eulerAngles = new Vector3(0, 0, comp.rotation);
+                    setLayer(component);
+                    foreach (var thing in items.hd)
+                    {
+                        if (comp.variant.Contains(thing.name))
+                        {
+                            component.GetComponent<ModuleInfo>().setMaxValues(thing.maxHP, thing.maxArmor, thing.maxDurability);
+                            break;
+                        }
+                    }
+                    foreach (var thing in items.can)
+                    {
+                        component = component.gameObject.transform.GetChild(0).gameObject;
+                        if (comp.variant.Contains(thing.name))
+                        {
+                            component.GetComponent<CannonInfo>().setStats(thing.reloadSpeed, thing.caliber);
+                            break;
+                        }
+                    }
+                    //component = instantiate
+                    break;
+                case "ra"://might remove
+                    component = Instantiate(Radiator, this.transform);
+                    component.GetComponent<ModuleInfo>().setCurrentValues(comp.CHP, comp.CA, comp.CD);
+                    component.transform.Translate(comp.position);
+                    component.transform.eulerAngles = new Vector3(0, 0, comp.rotation);
+                    setLayer(component);
+                    break;
+                case "cd":
+                    component = Instantiate(Driver, this.transform);
+                    component.GetComponent<ModuleInfo>().setCurrentValues(comp.CHP, comp.CA, comp.CD);
+                    component.transform.Translate(comp.position);
+                    component.transform.eulerAngles = new Vector3(0, 0, comp.rotation);
+                    setLayer(component);
+                    break;
+                case "cg":
+                    component = Instantiate(Gunner, this.transform);
+                    component.GetComponent<ModuleInfo>().setCurrentValues(comp.CHP, comp.CA, comp.CD);
+                    component.transform.Translate(comp.position);
+                    component.transform.eulerAngles = new Vector3(0, 0, comp.rotation);
+                    setLayer(component);
+                    break;
+                case "cl":
+                    component = Instantiate(Loader, this.transform);
+                    component.GetComponent<ModuleInfo>().setCurrentValues(comp.CHP, comp.CA, comp.CD);
+                    component.transform.Translate(comp.position);
+                    component.transform.eulerAngles = new Vector3(0, 0, comp.rotation);
+                    setLayer(component);
+                    break;
+                case "ar":
+                    component = Instantiate(Armor, this.transform);
+                    component.GetComponent<ModuleInfo>().setCurrentValues(comp.CHP, comp.CA, comp.CD);
+                    component.transform.Translate(comp.position);
+                    component.transform.eulerAngles = new Vector3(0, 0, comp.rotation);
+                    setLayer(component);
+                    break;
+                default:
+                    break;
+            }
+        }
+        /*
         //setup
         //--------------------  Tank Components --------------------//
         //mechanics = GameObject.Find("Mechanics");
@@ -76,8 +197,20 @@ public class AllBodCom : MonoBehaviour
         TLeft.GetComponent<BoxCollider2D>().size = new Vector2(1, width);
         TLeft.GetComponent<BoxCollider2D>().offset = new Vector2(0.5f - ((float)length / 2), 0);
         //--------------------      Treads      --------------------//
+        */
     }
-
+    public void setLayer(GameObject temp)
+    {
+        if (this.transform.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            temp.layer = LayerMask.NameToLayer("PlayerCollision");
+        }
+        else if (this.transform.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        {
+            temp.layer = LayerMask.NameToLayer("EnemyCollision");
+        }
+    }
+    /*
     public void com(string inp)
     {
         switch (inp)
@@ -128,10 +261,11 @@ public class AllBodCom : MonoBehaviour
             {
                 armor.layer = LayerMask.NameToLayer("EnemyCollision");
             }
-            armor.GetComponent<ModuleInfo>().setValues(0, 5, 5);
+            armor.GetComponent<ModuleInfo>().setCurrentValues(0, 5, 5);
             armor.transform.eulerAngles = new Vector3(0, 0, degrees);
             //armor.transform.Translate(0-(float)forward/2,0 - ((float)side / 2) + 0.5f + i, -1);
             armor.transform.Translate(0 - ((float)side / 2) + 0.5f + i, 0 - (float)forward / 2, -2);
         }
     }
+    */
 }

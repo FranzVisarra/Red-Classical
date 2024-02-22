@@ -9,7 +9,7 @@ public class TestSpawnEnemy : MonoBehaviour
     void Start()
     {
         InstEnemy = Instantiate(Enemy);
-        InstEnemy.GetComponentInChildren<AllBodCom>().innards = Rcvd;
+        //InstEnemy.GetComponentInChildren<AllBodCom>().innards = Rcvd;
     }
 
     // Update is called once per frame

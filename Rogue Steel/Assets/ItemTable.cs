@@ -107,10 +107,4 @@ public class ItemTable : MonoBehaviour
         can.Add(new Cannon("Svarsky 30mm", "30mm", 3));
         pro.Add(new Projectile("30mm AP", "30mm", "Shell", 10, 10, 0, 50, 3));
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

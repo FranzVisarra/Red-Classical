@@ -562,7 +562,6 @@ MonoBehaviour:
   mcns: {fileID: 1766946739}
   sound: {fileID: 392310260}
   bangScript: {fileID: 0}
-  ptile: {fileID: 0}
   pro: {fileID: 2051995094}
   info: {fileID: 186013087}
   Dam: 0
@@ -621,7 +620,6 @@ MonoBehaviour:
   mcns: {fileID: 0}
   chassis: {fileID: 0}
   info: {fileID: 186013087}
-  ptile: {fileID: 0}
   moveSpeed: 0
   rotateSpeed: 0
   cam: {fileID: 0}
@@ -2420,6 +2418,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 711599160}
+  - component: {fileID: 711599161}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -2445,6 +2444,18 @@ Transform:
   - {fileID: 1340858616}
   m_Father: {fileID: 783591945}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &711599161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 711599159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c8735810c5d68047a45742f8fc36660, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &783591944
 GameObject:
   m_ObjectHideFlags: 0
@@ -4838,6 +4849,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TLeft: {fileID: 807467208}
   TRight: {fileID: 442050501}
+  Enemy: {fileID: 0}
+  EScript: {fileID: 0}
+  targPos: {x: 0, y: 0}
+  forPos: {x: 0, y: 0}
+  curPos: {x: 0, y: 0}
+  Dis: 0
+  angle: 0
+  moveMode: 
+  dirDeg: 0
 --- !u!1 &2051995094
 GameObject:
   m_ObjectHideFlags: 0

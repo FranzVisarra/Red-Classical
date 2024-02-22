@@ -10,7 +10,6 @@ public class AllGunShoot : MonoBehaviour
     public GameObject sound;
     public AllSndHan bangScript;
     private GameObject soundClone;
-    public Projectile ptile;
     public GameObject pro;
     private GameObject proClone;
     public CannonInfo info;
@@ -25,9 +24,6 @@ public class AllGunShoot : MonoBehaviour
         Pen = 5;
         Ang = 0;
         //mcns = GameObject.Find("Mechanics");
-        //Debug.Log("Geting Projectile");
-        ptile = mcns.GetComponent<Projectile>();
-        //Debug.Log("Got");
         //sound = GameObject.Find("Sound Cue");
     }
 

@@ -19,6 +19,7 @@ public class CannonInfo : MonoBehaviour
     public float reloadTime;
     public float detectionLength;
     public string caliber;
+    public bool loaded;
 
     private void Awake()
     {

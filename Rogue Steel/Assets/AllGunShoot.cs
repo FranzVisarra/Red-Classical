@@ -26,9 +26,11 @@ public class AllGunShoot : MonoBehaviour
         //mcns = GameObject.Find("Mechanics");
         //sound = GameObject.Find("Sound Cue");
     }
-
-    // Update is called once per frame
     void FixedUpdate()
+    {
+        reload();
+    }
+    private void Update()
     {
         if (info.shootStatus == "Shoot")
         {
@@ -36,7 +38,6 @@ public class AllGunShoot : MonoBehaviour
             info.tSinceShot = 0;
             info.shootStatus = "Reload";
         }
-        reload();
         //fire test
         if (Input.GetKeyDown(KeyCode.Space) && this.transform.gameObject.layer == LayerMask.NameToLayer("Player"))
         {

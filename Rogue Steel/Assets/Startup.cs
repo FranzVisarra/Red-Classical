@@ -13,6 +13,7 @@ public class Startup : MonoBehaviour
     void Start()
     {
         tnk = new List<TnkModList>();
+        storage = new List<StoredAmmo>();
         //inner components
         tnk.Add(new TnkModList("cd", new Vector2((float)0.5, (float)1.5), 0, "", 10, 1, 10));
         tnk.Add(new TnkModList("en", new Vector2(-(float)0.5, (float)1.5), 0, "Basic", 10, 1, 10));

@@ -20,16 +20,20 @@ public class AmmoInfo : MonoBehaviour
         Par = this.transform.parent.gameObject;
         stats = Par.GetComponent<AllTnkStats>();
     }
-    public void destroyed()
+    public void Destroyed()
     {
         //decrease tank ammo in stats
         stats.stats[caliber]-=maxAmount;
         //decrease equal amounts in all ammo
-        if(stats.stats[caliber] < stats.CalculateAmmoVolume())
+        if(stats.stats[caliber] < stats.CalculateAmmoVolume(caliber))
         {
             stats.removeExcessAmmo(caliber);
         }
         //TODO explode and create spall
+    }
+    public void Repaired()
+    {
+        stats.stats[caliber] += maxAmount;
     }
     /*
     public void AddAmmo(string name, string caliber, int amount, float volume)

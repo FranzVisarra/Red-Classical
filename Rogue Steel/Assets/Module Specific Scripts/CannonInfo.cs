@@ -24,6 +24,7 @@ public class CannonInfo : MonoBehaviour
     private void Awake()
     {
         Debug.Log("Cannon Info Awake");
+        loaded = false;
     }
     // Start is called before the first frame update
     void Start()

@@ -67,7 +67,7 @@ public class AllBodCom : MonoBehaviour
                             }
                             else
                             {
-                                stats.stats.Add(thing.caliber, thing.maxAmount);
+                                stats.stats.Add(thing.caliber, thing.maxAmount);//reminder that this dict is max amount of caliber rather than current amount
                             }
                             break;
                         }

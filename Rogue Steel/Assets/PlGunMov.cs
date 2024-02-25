@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//handles player gun movement and player hun detection
 public class PlGunMov : MonoBehaviour
 {
     public GameObject mcns;
@@ -58,6 +59,7 @@ public class PlGunMov : MonoBehaviour
             if (ray.collider.transform.gameObject.layer==LayerMask.NameToLayer("Enemy"))
             {
                 Debug.DrawRay(this.transform.position, transform.right * -ray.distance, Color.cyan);
+                Debug.Log("Enemy in Sights");
                 if(info.shootStatus=="Ready")
                 { info.shootStatus = "Shoot"; }
                 break;

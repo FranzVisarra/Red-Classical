@@ -17,7 +17,7 @@ public class ProStats : MonoBehaviour
     public Vector2 startPos;
     public ProMov pm;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         //Debug.Log(ProType + " Round");
         //startPos = new Vector2(transform.position.x,transform.position.y);
@@ -33,7 +33,7 @@ public class ProStats : MonoBehaviour
             Destroy(this.transform.gameObject);
         }
     }
-    public void SetPro(string type, int dam, int pen, int ang, float speed, float life)
+    public void SetPro(string type, int dam, int pen, float ang, float speed, float life)
     {
         ProType = type;
         switch (ProType)

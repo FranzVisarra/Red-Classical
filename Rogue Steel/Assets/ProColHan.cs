@@ -44,6 +44,7 @@ public class ProColHan : MonoBehaviour
         ps = this.transform.gameObject.GetComponent<ProStats>();
         layer = this.transform.gameObject.layer;
         rb=this.transform.gameObject.GetComponent<Rigidbody2D>();
+        this.transform.rotation = Quaternion.Euler(new Vector3(0, 0,rb.rotation + 90));
     }
     public void RayCastHit(RaycastHit2D ray)
     {

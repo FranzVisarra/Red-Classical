@@ -6,11 +6,10 @@ public class Startup : MonoBehaviour
 {
     public GameObject Player;
     private GameObject InstPlay;
-    public string[,] Rcvd = new string[,] { { "cd", "ar" }, { "cg", "cl" }, { "am", "hd" }, { "en", "fu" } };
     public List<TnkModList> tnk;
     public List<StoredAmmo> storage;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         tnk = new List<TnkModList>();
         storage = new List<StoredAmmo>();

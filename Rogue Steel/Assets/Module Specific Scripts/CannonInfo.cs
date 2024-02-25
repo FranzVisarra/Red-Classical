@@ -6,7 +6,7 @@ using UnityEngine;
 public class CannonInfo : MonoBehaviour
 {
     public int ParLay = 0;
-    private GameObject Par;
+    private GameObject GranPar;
     public int ColLay;
     public PlGunMov pl;
     public EnGunMov en;
@@ -19,28 +19,23 @@ public class CannonInfo : MonoBehaviour
     public float reloadTime;
     public float detectionLength;
     public string caliber;
-    public bool loaded;
+    public bool hasRound;
 
     private void Awake()
     {
         Debug.Log("Cannon Info Awake");
-        loaded = false;
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        Debug.Log("Cannon Info Start");
+        GranPar = this.transform.parent.parent.gameObject;
+        hasRound = false;
         //establish layer
-        Par = this.transform.parent.gameObject;
         //check parent layer which is horizontal drive
-        if (Par.layer == LayerMask.NameToLayer("PlayerCollision"))
+        if (GranPar.layer == LayerMask.NameToLayer("Player"))
         {
             ParLay = LayerMask.NameToLayer("Player");
             ColLay = LayerMask.NameToLayer("EnemyCollision");
             Destroy(en);
-            Debug.Log("Destroyed Enemy Gun Script");
+            //Debug.Log("Destroyed Enemy Gun Script");
         }
-        else if (Par.layer == LayerMask.NameToLayer("EnemyCollision"))
+        else if (GranPar.layer == LayerMask.NameToLayer("Enemy"))
         {
             ParLay = LayerMask.NameToLayer("Enemy");
             ColLay = LayerMask.NameToLayer("PlayerCollision");
@@ -48,6 +43,11 @@ public class CannonInfo : MonoBehaviour
         }
         //set layer
         this.transform.gameObject.layer = ParLay;
+    }
+    // Start is called before the first frame update
+    void Start()
+    {
+        //Debug.Log("Cannon Info Start");
         //establish layer of projectiles
         shootStatus = "Reload";
         tSinceShot = 0;

@@ -3518,7 +3518,7 @@ MonoBehaviour:
   Armor: {fileID: 830172277}
   Mechanics: {fileID: 1766946739}
   items: {fileID: 0}
-  stats: {fileID: 0}
+  stats: {fileID: 985868291}
 --- !u!114 &985868291
 MonoBehaviour:
   m_ObjectHideFlags: 0

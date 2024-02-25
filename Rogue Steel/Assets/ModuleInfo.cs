@@ -16,6 +16,20 @@ public class ModuleInfo : MonoBehaviour
     public float dirDeg;
     public GameObject testSquare;
     public GameObject testSquareF;
+    public GameObject Par;
+
+    public void Awake()
+    {
+        Par = this.transform.parent.parent.gameObject;
+        if (Par.layer == LayerMask.NameToLayer("Player"))
+        {
+            this.transform.gameObject.layer = LayerMask.NameToLayer("PlayerCollision");
+        }
+        else if (Par.layer == LayerMask.NameToLayer("Enemy"))
+        {
+            this.transform.gameObject.layer = LayerMask.NameToLayer("EnemyCollision");
+        }
+    }
     public void Start()
     {
         testSquare = GameObject.Find("SquareForTest");

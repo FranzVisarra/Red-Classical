@@ -186,6 +186,7 @@ public class AllBodCom : MonoBehaviour
         //--------------------      Treads      --------------------//
         */
     }
+    /*
     public void setLayer(GameObject temp)
     {
         if (this.transform.gameObject.layer == LayerMask.NameToLayer("Player"))
@@ -197,13 +198,14 @@ public class AllBodCom : MonoBehaviour
             temp.layer = LayerMask.NameToLayer("EnemyCollision");
         }
     }
+    */
     public void InstantiateComponent(TnkModList comp, GameObject obj)
     {
         component = Instantiate(obj, this.transform);
         component.GetComponent<ModuleInfo>().setCurrentValues(comp.CHP, comp.CA, comp.CD);
         component.transform.Translate(comp.position);
         component.transform.eulerAngles = new Vector3(0, 0, comp.rotation);
-        setLayer(component);
+        //setLayer(component);
     }
     /*
     public void com(string inp)

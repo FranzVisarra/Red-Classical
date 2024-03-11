@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy
+  - Armor
+  - Module
   layers:
   - Default
   - TransparentFX
@@ -11,12 +14,12 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - PlayerCollision
+  - Enemy
+  - EnemyCollision
+  - Obstruction
+  - Sound
   - 
   - 
   - 

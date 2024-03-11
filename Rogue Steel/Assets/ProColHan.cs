@@ -144,7 +144,7 @@ private GameObject otherPos;
         //shortest angle is closest to perpendicular
         if (Mathf.Abs(outPenAng) < Mathf.Abs(inPenAng))
         {
-            //Debug.Log("Front");
+            Debug.Log("Front");
             //Debug.Log("Start = "+ stats.startPos +" Hit = "+hitPos+" Front Pen = "+OutPen +" armor Pos = "+ armPos);
             //testPen.Set(returnx(-1, 1, armPos), returny(-1, 1, armPos));
             //testPenAng = Vector2.Angle(stats.startPos - hitPos, testPen - armPos);

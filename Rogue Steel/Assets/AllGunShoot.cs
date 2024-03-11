@@ -15,7 +15,8 @@ public class AllGunShoot : MonoBehaviour
     public GameObject pro;
     private GameObject proClone;
     public CannonInfo info;
-    //damage for projectiles
+    //projectile stats
+    public string type;
     public int dam;
     public int pen;
     public float ang;
@@ -131,7 +132,7 @@ public class AllGunShoot : MonoBehaviour
         //proClone.GetComponent<Rigidbody2D>().rotation += 90;
         //Debug.Log("shoting pro");
         proClone.layer = info.ColLay;
-        proClone.GetComponent<ProStats>().SetPro("Shell",dam,pen,ang,50,3);
+        proClone.GetComponent<ProStats>().SetPro(type,dam,pen,ang,speed,lifeTime);
         var ProPos = proClone.transform.position;
         proClone.transform.position = new Vector3(ProPos.x, ProPos.y, -3);
 
@@ -171,6 +172,7 @@ public class AllGunShoot : MonoBehaviour
         {
             if (round == pro.name)
             {
+                type = pro.type;
                 dam = pro.Dam;
                 pen = pro.Pen;
                 ang = pro.Ang;

@@ -28,6 +28,10 @@ public class AllTnkStats : MonoBehaviour
         stats.Add("Speed", 0);
         stats.Add("Fuel", 0);
     }
+    private void Start()
+    {
+
+    }
     public int CalculateAmmoVolume(string caliber)
     {
         curAmount = 0;
@@ -58,7 +62,7 @@ public class AllTnkStats : MonoBehaviour
     //invoked when ammo picked up or returned
     public void AddAmmo(string name, string caliber, int amount)
     {
-        if (amount + CalculateAmmoVolume(caliber) > stats[caliber])
+        if (amount + CalculateAmmoVolume(caliber) <= stats[caliber])
         {
             switch (CheckAmmoInStorageByName(name))
             {

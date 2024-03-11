@@ -31,8 +31,8 @@ public class Startup : MonoBehaviour
         tnk.Add(new TnkModList("ar", new Vector2((float)0.5, -(float)2.1), 180, "Basic", 0, 5, 10));
         //side
         //ammo
-        storage.Add(new StoredAmmo("30mm AP", "30mm", 120));
-        storage.Add(new StoredAmmo("30mm APC", "30mm", 80));
+        storage.Add(new StoredAmmo("30mm AP", "30mm", 50));
+        storage.Add(new StoredAmmo("30mm APC", "30mm", 30));
         //load player
         InstPlay = Instantiate(Player);
         InstPlay.GetComponentInChildren<AllBodCom>().components = tnk;

@@ -132,6 +132,15 @@ public class AllBodCom : MonoBehaviour
                     break;
                 case "ar":
                     InstantiateComponent(comp, Armor);
+                    foreach (var thing in items.arm)
+                    {
+                        if (comp.variant == thing.name)
+                        {
+                            component.GetComponent<ModuleInfo>().setMaxValues(thing.maxHP, thing.maxArmor, thing.maxDurability);
+                            //TODO set fuel
+                            break;
+                        }
+                    }
                     break;
                 default:
                     break;

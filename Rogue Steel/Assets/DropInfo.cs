@@ -34,6 +34,7 @@ public class DropInfo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log(this.GetType().ToString() + " Update End");
         if (playerInRadius)
         {
             if (timer >= 3)
@@ -49,6 +50,7 @@ public class DropInfo : MonoBehaviour
             }
             timer += Time.deltaTime;
         }
+        //Debug.Log(this.GetType().ToString() + " Update End");
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

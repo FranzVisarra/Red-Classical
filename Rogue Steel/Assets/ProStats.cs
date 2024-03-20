@@ -24,6 +24,7 @@ public class ProStats : MonoBehaviour
     }
     void FixedUpdate()
     {
+        //Debug.Log(this.GetType().ToString() + " FixedUpdate Start");
         if (Seconds < LifeTime)
         {
             Seconds +=  Time.deltaTime;
@@ -32,6 +33,7 @@ public class ProStats : MonoBehaviour
         {
             Destroy(this.transform.gameObject);
         }
+        //Debug.Log(this.GetType().ToString() + " FixedUpdate End");
     }
     public void SetPro(string type, int dam, int pen, float ang, float speed, float life)
     {

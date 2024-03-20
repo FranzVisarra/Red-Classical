@@ -31,7 +31,7 @@ public class AllGunShoot : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("AllGunShoot Start");
+        //Debug.Log("AllGunShoot Start");
         Par = this.transform.parent.parent.gameObject;
         stats = Par.GetComponent<AllTnkStats>();
 
@@ -58,6 +58,7 @@ public class AllGunShoot : MonoBehaviour
     }
     private void Update()
     {
+        //Debug.Log(this.GetType().ToString() + " Update Start");
         //TODO make default rounds appear because enemy tank also requires tempering
         
         //cycle through ammo types for caliber
@@ -123,6 +124,7 @@ public class AllGunShoot : MonoBehaviour
         }
         */
         Reloading();
+        //Debug.Log(this.GetType().ToString() + " Update End");
     }
     private void fire()
     {

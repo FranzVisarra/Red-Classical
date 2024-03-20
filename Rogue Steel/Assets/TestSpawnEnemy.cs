@@ -37,10 +37,4 @@ public class TestSpawnEnemy : MonoBehaviour
         InstEnemy.GetComponentInChildren<AllTnkStats>().storage = storage;
         //InstEnemy.GetComponentInChildren<AllBodCom>().innards = Rcvd;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

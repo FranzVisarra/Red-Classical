@@ -47,7 +47,9 @@ public class PlGunMov : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        //Debug.Log(this.GetType().ToString() + " FixedUpdate Start");
         DetectTarget();
+        //Debug.Log(this.GetType().ToString() + " FixedUpdate End");
     }
 
     private void DetectTarget()
@@ -69,6 +71,7 @@ public class PlGunMov : MonoBehaviour
 
     void Update()
     {
+        //Debug.Log(this.GetType().ToString() + " Update Start");
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
@@ -98,5 +101,6 @@ public class PlGunMov : MonoBehaviour
             targRot = Quaternion.Euler(new Vector3(0, 0, angle));
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targRot, rotateSpeed * Time.deltaTime);
         }
+        //Debug.Log(this.GetType().ToString() + " Update End");
     }
 }

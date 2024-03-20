@@ -27,6 +27,7 @@ public class EnBodMov : MonoBehaviour
     }
     private void Update()
     {
+        //Debug.Log(this.GetType().ToString() + " Update Start");
         string AIState = EScript.AiState;
         switch (AIState)
         {
@@ -38,12 +39,13 @@ public class EnBodMov : MonoBehaviour
                 targPos = EScript.dlist[0].pos;
                 break;
         }
-
+        //Debug.Log(this.GetType().ToString() + " Update End");
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        //Debug.Log(this.GetType().ToString() + " FixedUpdate Start");
         curPos.Set(transform.position.x, transform.position.y);
         dirDeg = this.transform.eulerAngles.z;
         //make point forward
@@ -91,6 +93,7 @@ public class EnBodMov : MonoBehaviour
                 shortRef("Back");
             }
         }
+        //Debug.Log(this.GetType().ToString() + " FixedUpdate End");
     }
     public void shortRef(string TrackMov)
     {

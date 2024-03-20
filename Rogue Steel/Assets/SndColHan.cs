@@ -7,6 +7,7 @@ public class SndColHan : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D other)
     {
+        //Debug.Log(this.GetType().ToString() + " OnTriggerEnter2D Start");
         //Debug.Log(other.transform.gameObject.layer+" "+other.gameObject.name);
         if (other.transform.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
@@ -17,15 +18,10 @@ public class SndColHan : MonoBehaviour
                 other.transform.parent.parent.GetComponent<EnTnkStats>().soundHeard(transform.position);
             }
         }
+        //Debug.Log(this.GetType().ToString() + " OnTriggerEnter2D End");
     }
     // Start is called before the first frame update
     void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
     {
         
     }

@@ -37,11 +37,15 @@ public class EnTnkStats : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        //Debug.Log(this.GetType().ToString() + " FixedUpdate Start");
         DetListHand();
+        //Debug.Log(this.GetType().ToString() + " FixedUpdate End");
     }
     private void Update()
     {
+        //Debug.Log(this.GetType().ToString() + " Update Start");
         AiStateMachine();
+        //Debug.Log(this.GetType().ToString() + " Update End");
     }
 
     private void DetListHand()

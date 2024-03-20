@@ -75,7 +75,12 @@ public class ModuleInfo : MonoBehaviour
 
     public void DamDur(int dam)
     {
+        //Debug.Log("ModuleInfo DamDur Start");
         CurDur -= dam;
+        if (MaxDur <=0)
+        {
+            Debug.LogError("Max Dur is 0. That is bad. "+ gameObject.name+" is supposed to have a max duration");
+        }
         for(int i = CurDur; i < 0; i += MaxDur)
         {
             CurArmor--;
@@ -91,6 +96,7 @@ public class ModuleInfo : MonoBehaviour
             this.gameObject.SetActive(false);
         }
         CalcAng();
+        //Debug.Log("ModuleInfo DamDur End");
     }
     public void DamHp(int dam)
     {

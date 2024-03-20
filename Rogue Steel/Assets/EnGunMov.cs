@@ -24,7 +24,7 @@ public class EnGunMov : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Enemy Gun Script Start");
+        //Debug.Log("Enemy Gun Script Start");
         moveSpeed = 0.5f;
         rotateSpeed = 50f;
         targPos = new Vector2(0,0);
@@ -37,7 +37,8 @@ public class EnGunMov : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        Debug.Log("Enemy Gun Script Update");
+        //Debug.Log(this.GetType().ToString() + " LateUpdate Start");
+        //Debug.Log("Enemy Gun Script Update");
         angle = Mathf.Atan2(transform.position.y - targPos.y, transform.position.x - targPos.x) * Mathf.Rad2Deg;
         targRot = Quaternion.Euler(new Vector3(0, 0, angle));
         transform.rotation = Quaternion.RotateTowards(transform.rotation, targRot, rotateSpeed * Time.deltaTime);
@@ -52,11 +53,12 @@ public class EnGunMov : MonoBehaviour
                 targPos = EScript.dlist[0].pos;
                 break;
         }
-        
+        //Debug.Log(this.GetType().ToString() + " LateUpdate End");
     }
     private void FixedUpdate()
     {
-        if(time >= 50)
+        //Debug.Log(this.GetType().ToString() + " FixedUpdate Start");
+        if (time >= 50)
         {
             time = 0;
         }
@@ -69,6 +71,7 @@ public class EnGunMov : MonoBehaviour
         {
             targPos = EScript.Direction;
         }
+        //Debug.Log(this.GetType().ToString() + " FixedUpdate End");
     }
     private void Sight()
     {

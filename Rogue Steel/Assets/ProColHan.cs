@@ -48,6 +48,7 @@ public class ProColHan : MonoBehaviour
     }
     public void RayCastHit(RaycastHit2D ray)
     {
+        //Debug.Log("ProColHan RayCastHit Start");
         other = ray.collider.transform.gameObject;
         //Debug.Log("Collided");
         //Debug.Log("Hit Intended");
@@ -72,16 +73,18 @@ public class ProColHan : MonoBehaviour
                         Debug.Log("Hit with a " + Ang + "* compared to " + othInf.Ang + "*");
                         if (PenRoll > BlockRoll)
                         {
+                            Debug.Log("Penetrate");
                             penetrate(ray);
                         }
                         else
                         {
+                            Debug.Log("No Penetrate");
                             noPenHit();
                         }
                     }
                     else
                     {
-                        //Debug.Log("Ricochet with a "+HitCh*100+"% out of "+RicCh*100+"%");
+                        Debug.Log("Miss with a " + Ang + "* compared to " + othInf.Ang + "*");
                         ricochet();
                     }
                     break;
@@ -105,13 +108,16 @@ public class ProColHan : MonoBehaviour
                     break;
             }
         }
+        //Debug.Log("ProColHan RayCastHit End");
     }
 
     private void CalcHit()
     {
+        //Debug.Log("ProColHan CalcHit Start");
         PenRoll = Random.Range(0, ps.Pen);
         BlockRoll = Random.Range(0, othInf.CurArmor);
         Ang = Mathf.Abs(angPen)-ps.Ang;
+        //Debug.Log("ProColHan CalcHit End");
     }
 
     /*
@@ -180,6 +186,7 @@ private GameObject otherPos;
     }
     public void noPenHit()
     {
+        //Debug.Log("ProColHan noPenHit Start");
         //damage durability with damage and penetration
         othInf.DamDur(ps.Dam+PenRoll-BlockRoll);
         Destroy(this.transform.gameObject);

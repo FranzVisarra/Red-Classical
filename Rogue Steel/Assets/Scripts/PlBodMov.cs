@@ -41,6 +41,7 @@ public class PlBodMov : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log(this.GetType().ToString() + " Update Start");
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
         curPos.Set(transform.position.x, transform.position.y);
         if (Input.GetKey(KeyCode.Mouse1))
@@ -58,10 +59,13 @@ public class PlBodMov : MonoBehaviour
                 moveMode = "Quick Move";
             }
         }
+        //Debug.Log(this.GetType().ToString() + " Update End");
     }
 
     void FixedUpdate()
     {
+        //Debug.Log(this.GetType().ToString() + " FixedUpdate Start");
+
         dirDeg = this.transform.eulerAngles.z;
         //make point forward
         Dis = Vector2.Distance(curPos, targPos);
@@ -110,6 +114,7 @@ public class PlBodMov : MonoBehaviour
         //TLeft.GetComponent<TrdL>().Movement(movRot, movDir);
         //TRight.GetComponent<TrdR>().Movement(movRot, movDir);
         //angle = Mathf.Atan2(transform.position.y - targPos.y, transform.position.x - targPos.x) * Mathf.Rad2Deg;
+        //Debug.Log(this.GetType().ToString() + " FixedUpdate End");
     }
     public void shortRef(string TrackMov)
     {

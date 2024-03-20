@@ -24,6 +24,7 @@ public class AllSndHan : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        //Debug.Log(this.GetType().ToString() + " FixedUpdate Start");
         if (type == "Stagnant")
         {
             cc.radius = curSize;
@@ -38,5 +39,6 @@ public class AllSndHan : MonoBehaviour
             curSize += growSize*Time.fixedDeltaTime;
         }
         this.gameObject.transform.localScale= new Vector3(curSize, curSize, 0);
+        //Debug.Log(this.GetType().ToString() + " FixedUpdate End");
     }
 }

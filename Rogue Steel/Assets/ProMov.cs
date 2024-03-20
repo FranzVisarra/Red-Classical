@@ -21,6 +21,7 @@ public class ProMov : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        //Debug.Log(this.GetType().ToString() + " FixedUpdate Start");
         //Physics2D.Raycast(rb.position, transform.TransformDirection(Vector2.up * 100f * Time.deltaTime), cf2d, rc, 1000f/*Vector2.Distance(rb.position,nextPos)*/);
         Physics2D.Raycast(this.transform.position, transform.TransformDirection(Vector2.up * Speed * Time.deltaTime), cf2d, rc, Speed*Time.deltaTime);
         if (rc.Any())//if ray hits
@@ -67,6 +68,7 @@ public class ProMov : MonoBehaviour
             Debug.DrawRay(rb.transform.position, transform.up * Speed * Time.deltaTime, Color.gray, 1);
             this.transform.Translate(Vector2.up * Speed * Time.deltaTime);
         }
+        //Debug.Log(this.GetType().ToString() + " FixedUpdate End");
     }
     
 }

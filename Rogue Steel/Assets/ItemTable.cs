@@ -105,6 +105,24 @@ public class AmmoStorage
         this.maxDurability = maxDurability;
     }
 }
+
+public class Armor
+{
+    public string name;
+    public string caliber;
+    public int maxAmount;
+    public int maxHP;
+    public int maxArmor;
+    public int maxDurability;
+
+    public Armor(string name, int maxHP, int maxArmor, int maxDurability)
+    {
+        this.name = name;
+        this.maxHP = maxHP;
+        this.maxArmor = maxArmor;
+        this.maxDurability = maxDurability;
+    }
+}
 public class ItemTable : MonoBehaviour
 {
     public List<Fuel> fuel;
@@ -113,6 +131,7 @@ public class ItemTable : MonoBehaviour
     public List<Cannon> can;
     public List<Projectile> pro;
     public List<AmmoStorage> ammo;
+    public List<Armor> arm;
     // Start is called before the first frame update
     void Awake()
     {
@@ -122,6 +141,7 @@ public class ItemTable : MonoBehaviour
         can = new List<Cannon>();
         pro = new List<Projectile>();
         ammo = new List<AmmoStorage>();
+        arm = new List<Armor>();
         fuel.Add(new Fuel("Small", 50, 10, 1, 10));
         hd.Add(new HorizontalDrive("Basic", 1, 10, 1, 10));
         eng.Add(new Engine("Basic", 50, 10, 1, 10));
@@ -129,5 +149,6 @@ public class ItemTable : MonoBehaviour
         pro.Add(new Projectile("30mm AP", "30mm", "Shell", 10, 10, 0, 50, 3));
         pro.Add(new Projectile("30mm APC", "30mm", "Shell", 5, 10, 15, 50, 3));
         ammo.Add(new AmmoStorage("Basic 30mm", "30mm", 200, 10, 1, 10));
+        arm.Add(new Armor("Basic",0,5,10));
     }
 }

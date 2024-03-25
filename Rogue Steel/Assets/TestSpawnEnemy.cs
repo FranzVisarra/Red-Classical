@@ -8,8 +8,10 @@ public class TestSpawnEnemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        /*
         InstEnemy = Instantiate(Enemy);
         InstEnemy.GetComponentInChildren<AllBodCom>().innards = Rcvd;
+        */
     }
 
     // Update is called once per frame

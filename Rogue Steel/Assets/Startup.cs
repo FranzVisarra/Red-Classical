@@ -38,7 +38,7 @@ public class Startup : MonoBehaviour
         InstPlay.GetComponentInChildren<AllBodCom>().components = tnk;
 
         InstPlay.GetComponentInChildren<AllTnkStats>().storage = storage;
-        //InstPlay.GetComponentInChildren<AllBodCom>().innards = Rcvd;
+        InstPlay.GetComponentInChildren<AllTnkStats>().tnkName = "Player";
         //load map
 
     }

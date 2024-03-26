@@ -1,10 +1,10 @@
 using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
 public class EnGunMov : MonoBehaviour
 {
     public float moveSpeed;
-    public float rotateSpeed;
     public Vector2 targPos;
     public Vector2 curPos;
     public Quaternion targRot;
@@ -14,6 +14,8 @@ public class EnGunMov : MonoBehaviour
     public CannonInfo info;
     public float time;
     public GameObject Chassis;//this chassis
+    public GameObject HDrive;
+    public HDInfo hdInfo;
 
     public List<RaycastHit2D> MuzzleRay = new List<RaycastHit2D>();
     public List<RaycastHit2D> lRay = new List<RaycastHit2D>();
@@ -21,16 +23,20 @@ public class EnGunMov : MonoBehaviour
     public ContactFilter2D cf2d;
 
     public GameObject targ;
+
+    public AllTnkStats stats;
     // Start is called before the first frame update
     void Start()
     {
         //Debug.Log("Enemy Gun Script Start");
         moveSpeed = 0.5f;
-        rotateSpeed = 50f;
         targPos = new Vector2(0,0);
         Enemy = this.transform.parent.parent.parent.gameObject;
         EScript = Enemy.GetComponent<EnTnkStats>();
         Chassis = this.transform.parent.parent.gameObject;
+        HDrive = this.transform.parent.gameObject;
+        hdInfo = HDrive.GetComponent<HDInfo>();
+        stats = transform.parent.parent.GetComponent<AllTnkStats>();
         time = 0;
     }
 
@@ -39,9 +45,12 @@ public class EnGunMov : MonoBehaviour
     {
         //Debug.Log(this.GetType().ToString() + " LateUpdate Start");
         //Debug.Log("Enemy Gun Script Update");
-        angle = Mathf.Atan2(transform.position.y - targPos.y, transform.position.x - targPos.x) * Mathf.Rad2Deg;
-        targRot = Quaternion.Euler(new Vector3(0, 0, angle));
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, targRot, rotateSpeed * Time.deltaTime);
+        if (stats.gunnerStatus)
+        {
+            angle = Mathf.Atan2(transform.position.y - targPos.y, transform.position.x - targPos.x) * Mathf.Rad2Deg;
+            targRot = Quaternion.Euler(new Vector3(0, 0, angle));
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targRot, hdInfo.curRotSp * Time.deltaTime);
+        }
         string AIState = EScript.AiState;
         switch (AIState)
         {

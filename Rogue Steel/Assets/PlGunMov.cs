@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
 //handles player gun movement and player hun detection
@@ -6,10 +8,10 @@ public class PlGunMov : MonoBehaviour
 {
     public GameObject mcns;
     public GameObject chassis;
+    public AllTnkStats stats;
     public CannonInfo info;
     public Projectile ptile;
     public float moveSpeed;
-    public float rotateSpeed;
     public Camera cam;
     Vector2 mousePos;
     public Vector2 targPos;
@@ -17,6 +19,8 @@ public class PlGunMov : MonoBehaviour
     public Quaternion targRot;
     public float angle;
     public string rotate;
+    public GameObject HDrive;
+    public HDInfo hdInfo;
 
     //public GameObject test;
     //public GameObject testRef;
@@ -38,7 +42,9 @@ public class PlGunMov : MonoBehaviour
         mcns = GameObject.Find("Mechanics");
         cam = Camera.main;
         moveSpeed = 0.5f;
-        rotateSpeed = 50f;
+        HDrive = this.transform.parent.gameObject;
+        hdInfo = HDrive.GetComponent<HDInfo>();
+        stats = transform.parent.parent.GetComponent<AllTnkStats>();
         //move cannon rotation point
         //transform.Translate(1, 0, 0);
         //testRef = Instantiate(test);
@@ -89,17 +95,17 @@ public class PlGunMov : MonoBehaviour
             //testRef.transform.position = targPos;
         }
         curPos.Set(transform.position.x, transform.position.y);
-        if (rotate == "Direction")
+        if (rotate == "Direction"&&stats.gunnerStatus)
         {
             angle = Mathf.Atan2(targPos.y, targPos.x) * Mathf.Rad2Deg;
             targRot = Quaternion.Euler(new Vector3(0, 0, angle));
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, targRot, rotateSpeed * Time.deltaTime);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targRot,hdInfo.curRotSp * Time.deltaTime);
         }
-        else if (rotate == "Point")
+        else if (rotate == "Point"&&stats.gunnerStatus)
         {
             angle = Mathf.Atan2(transform.position.y - targPos.y, transform.position.x - targPos.x) * Mathf.Rad2Deg;
             targRot = Quaternion.Euler(new Vector3(0, 0, angle));
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, targRot, rotateSpeed * Time.deltaTime);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targRot, hdInfo.curRotSp * Time.deltaTime);
         }
         //Debug.Log(this.GetType().ToString() + " Update End");
     }

@@ -143,7 +143,7 @@ public class ItemTable : MonoBehaviour
         ammo = new List<AmmoStorage>();
         arm = new List<Armor>();
         fuel.Add(new Fuel("Small", 50, 10, 1, 10));
-        hd.Add(new HorizontalDrive("Basic", 1, 10, 1, 10));
+        hd.Add(new HorizontalDrive("Basic", 100, 10, 1, 10));
         eng.Add(new Engine("Basic", 50, 10, 1, 10));
         can.Add(new Cannon("Svarsky 30mm", "30mm", 3));
         pro.Add(new Projectile("30mm AP", "30mm", "Shell", 10, 10, 0, 50, 3));

@@ -105,7 +105,7 @@ public class AllGunShoot : MonoBehaviour
             }
         }
 
-        if (info.shootStatus == "Shoot")
+        if (info.shootStatus == "Shoot" && stats.gunnerStatus)
         {
             fire();
             info.tSinceShot = 0;
@@ -152,7 +152,7 @@ public class AllGunShoot : MonoBehaviour
         switch (info.hasRound)
         {
             case true:
-                if (info.tSinceShot < info.reloadTime)
+                if (info.tSinceShot < info.reloadTime && stats.loaderStatus)
                 {
                     info.tSinceShot += Time.deltaTime;
                     //Debug.Log(info.reloadTime - info.tSinceShot + " seconds left");

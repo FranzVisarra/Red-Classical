@@ -24,9 +24,7 @@ public class AllBodCom : MonoBehaviour
     public GameObject Fuel;
     public GameObject HorizontalDrive;
     public GameObject Radiator;
-    public GameObject Driver;
-    public GameObject Gunner;
-    public GameObject Loader;
+    public GameObject Crew;
     public GameObject Armor;
 
     public GameObject Mechanics;
@@ -104,6 +102,7 @@ public class AllBodCom : MonoBehaviour
                         if (comp.variant.Contains(thing.name))
                         {
                             component.GetComponent<ModuleInfo>().setMaxValues(thing.maxHP, thing.maxArmor, thing.maxDurability);
+                            component.GetComponent<HDInfo>().rotateSpeed = thing.rotationSpeed;
                             break;
                         }
                     }
@@ -122,13 +121,16 @@ public class AllBodCom : MonoBehaviour
                     InstantiateComponent(comp, Radiator);
                     break;
                 case "cd":
-                    InstantiateComponent(comp, Driver);
+                    InstantiateComponent(comp, Crew);
+                    component.GetComponent<CrewInfo>().CrewType = "Driver";
                     break;
                 case "cg":
-                    InstantiateComponent(comp, Gunner);
+                    InstantiateComponent(comp, Crew);
+                    component.GetComponent<CrewInfo>().CrewType = "Gunner";
                     break;
                 case "cl":
-                    InstantiateComponent(comp, Loader);
+                    InstantiateComponent(comp, Crew);
+                    component.GetComponent<CrewInfo>().CrewType = "Loader";
                     break;
                 case "ar":
                     InstantiateComponent(comp, Armor);

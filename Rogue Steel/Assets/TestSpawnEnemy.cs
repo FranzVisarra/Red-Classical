@@ -10,6 +10,10 @@ public class TestSpawnEnemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        LightTank();
+    }
+    public void LightTank()
+    {
         tnk = new List<TnkModList>();
         storage = new List<StoredAmmo>();
         //inner components
@@ -32,9 +36,9 @@ public class TestSpawnEnemy : MonoBehaviour
         //ammo
         storage.Add(new StoredAmmo("30mm AP", "30mm", 50));
         storage.Add(new StoredAmmo("30mm APC", "30mm", 30));
-        InstEnemy = Instantiate(Enemy, new Vector3(10,10,0),new Quaternion());
+        InstEnemy = Instantiate(Enemy, new Vector3(10, 10, 0), new Quaternion());
         InstEnemy.GetComponentInChildren<AllBodCom>().components = tnk;
+        InstEnemy.GetComponentInChildren<AllTnkStats>().tnkName = "Light Tank";
         InstEnemy.GetComponentInChildren<AllTnkStats>().storage = storage;
-        //InstEnemy.GetComponentInChildren<AllBodCom>().innards = Rcvd;
     }
 }

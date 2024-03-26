@@ -73,43 +73,45 @@ public class PlBodMov : MonoBehaviour
         forPos.Set(returnx(0), returny(0));
         angle = Vector2.SignedAngle(forPos-curPos, targPos-curPos);
 
-        if (moveMode == "Rotate Only")
+        switch (moveMode)
         {
-            if (angle < 0)
-            {
-                shortRef("Rotate Right");
-            }
-            else if (angle>0)
-            {
-                //Debug.Log("Left");
-                shortRef("Rotate Left");
-            }
-        }
-        else if (moveMode == "Quick Move")
-        {
-            if (angle >= -170 && angle < -90)
-            {
-                shortRef("Back Right");
-            }else if (angle >= -90 && angle <-1)
-            {
-                shortRef("Forward Right");
-            }
-            else if (angle >= -1 && angle <= 1)
-            {
-                shortRef("Forward");
-            }
-            else if (angle > 1 && angle <= 90)
-            {
-                shortRef("Forward Left");
-            }
-            else if (angle >90 && angle <= 170)
-            {
-                shortRef("Back Left");
-            }
-            else
-            {
-                shortRef("Back");
-            }
+            case "Rotate Only":
+                if (angle < 0)
+                {
+                    shortRef("Rotate Right");
+                }
+                else if (angle > 0)
+                {
+                    //Debug.Log("Left");
+                    shortRef("Rotate Left");
+                }
+                break;
+            case "Quick Move":
+                if (angle >= -170 && angle < -90)
+                {
+                    shortRef("Back Right");
+                }
+                else if (angle >= -90 && angle < -1)
+                {
+                    shortRef("Forward Right");
+                }
+                else if (angle >= -1 && angle <= 1)
+                {
+                    shortRef("Forward");
+                }
+                else if (angle > 1 && angle <= 90)
+                {
+                    shortRef("Forward Left");
+                }
+                else if (angle > 90 && angle <= 170)
+                {
+                    shortRef("Back Left");
+                }
+                else
+                {
+                    shortRef("Back");
+                }
+                break;
         }
         //TLeft.GetComponent<TrdL>().Movement(movRot, movDir);
         //TRight.GetComponent<TrdR>().Movement(movRot, movDir);

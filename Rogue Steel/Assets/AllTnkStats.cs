@@ -20,6 +20,11 @@ public class AllTnkStats : MonoBehaviour
     public Dictionary<string, float> stats;
     public List<StoredAmmo> storage;
     public int curAmount;
+    public string tnkName;
+
+    public bool driverStatus;
+    public bool gunnerStatus;
+    public bool loaderStatus;
     // Start is called before the first frame update
     void Awake()
     {
@@ -159,5 +164,4 @@ public class AllTnkStats : MonoBehaviour
         }
         return count;
     }
-
 }

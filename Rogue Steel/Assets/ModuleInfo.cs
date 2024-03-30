@@ -16,6 +16,10 @@ public class ModuleInfo : MonoBehaviour
     public float dirDeg;
     public GameObject testSquare;
     public GameObject testSquareF;
+
+    public string Type;
+    public int Model;
+
     public void Start()
     {
         testSquare = GameObject.Find("SquareForTest");

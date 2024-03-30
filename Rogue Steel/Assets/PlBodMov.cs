@@ -65,7 +65,6 @@ moveMode = "";
             moveMode = "Quick Move";
                
             }
-        FuelBar.GetComponent<Fuel>().MoveChange(moveMode);
         }
 }
 

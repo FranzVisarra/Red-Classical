@@ -7,7 +7,7 @@ public class Fuel : MonoBehaviour
     [SerializeField]
     RectTransform FuelFill;
 
-    public float maxFuel = 100f;
+    public float maxFuel;
     public float FuelAmount;
     public float FuelBurnRate = 0.3f;
 
@@ -53,11 +53,4 @@ public class Fuel : MonoBehaviour
         FuelAmount += refuelAmount;
         FuelAmount = Mathf.Min(FuelAmount, maxFuel);
     }
-    public void MoveChange(string moveMode) // Change the rate based on the mode of movement
-    {
-        if (moveMode == "Rotate Only") FuelBurnRate = 0.5f;
-        if (moveMode == "Quick Move") FuelBurnRate = 0.7f;
-    }
-
-
 }

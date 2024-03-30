@@ -355,11 +355,6 @@ Transform:
   - {fileID: 131885223}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!224 &95896544 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 9205616137173965152, guid: 27ecf64185ba0504da3b6e5430e2389d, type: 3}
-  m_PrefabInstance: {fileID: 1167187975}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &131885222
 GameObject:
   m_ObjectHideFlags: 0
@@ -843,6 +838,8 @@ MonoBehaviour:
   dirDeg: 0
   testSquare: {fileID: 0}
   testSquareF: {fileID: 0}
+  Type: 
+  Model: 2
 --- !u!61 &242743551
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1025,6 +1022,8 @@ MonoBehaviour:
   dirDeg: 0
   testSquare: {fileID: 0}
   testSquareF: {fileID: 0}
+  Type: 
+  Model: 2
 --- !u!61 &254780749
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1207,6 +1206,8 @@ MonoBehaviour:
   dirDeg: 0
   testSquare: {fileID: 0}
   testSquareF: {fileID: 0}
+  Type: 
+  Model: 2
 --- !u!61 &320781810
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1895,6 +1896,8 @@ MonoBehaviour:
   dirDeg: 0
   testSquare: {fileID: 0}
   testSquareF: {fileID: 0}
+  Type: 
+  Model: 2
 --- !u!61 &533163767
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2161,6 +2164,8 @@ MonoBehaviour:
   dirDeg: 0
   testSquare: {fileID: 0}
   testSquareF: {fileID: 0}
+  Type: 
+  Model: 2
 --- !u!61 &546711268
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2344,6 +2349,8 @@ MonoBehaviour:
   dirDeg: 0
   testSquare: {fileID: 0}
   testSquareF: {fileID: 0}
+  Type: 
+  Model: 2
 --- !u!61 &586402918
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2718,6 +2725,8 @@ MonoBehaviour:
   dirDeg: 0
   testSquare: {fileID: 0}
   testSquareF: {fileID: 0}
+  Type: 
+  Model: 0
 --- !u!61 &830172280
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3080,6 +3089,8 @@ MonoBehaviour:
   dirDeg: 0
   testSquare: {fileID: 0}
   testSquareF: {fileID: 0}
+  Type: 
+  Model: 2
 --- !u!61 &964105686
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3161,6 +3172,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 968574915}
+  - component: {fileID: 968574916}
   m_Layer: 0
   m_Name: Modules
   m_TagString: Module
@@ -3190,6 +3202,25 @@ Transform:
   - {fileID: 150705281}
   m_Father: {fileID: 1993793002}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &968574916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 968574914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a9c3149f4c939945a64dc33a1c224d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxHp: 15
+  MaxArmo: 3
+  MaxDur: 10
+  efficiency: 0.05
+  Type: 
+  Model: 0
+  target: {fileID: 0}
 --- !u!1 &969898296
 GameObject:
   m_ObjectHideFlags: 0
@@ -3289,7 +3320,6 @@ GameObject:
   - component: {fileID: 985868290}
   - component: {fileID: 985868284}
   - component: {fileID: 985868289}
-  - component: {fileID: 985868291}
   m_Layer: 6
   m_Name: Chassis
   m_TagString: Untagged
@@ -3497,6 +3527,7 @@ MonoBehaviour:
   armorTemp: {fileID: 830172277}
   TRight: {fileID: 1001039826}
   TLeft: {fileID: 1340858615}
+  FuelTank: {fileID: 0}
   Ammunition: {fileID: 254780745}
   ArmorBlock: {fileID: 320781806}
   Engine: {fileID: 1271707167}
@@ -3506,23 +3537,7 @@ MonoBehaviour:
   Driver: {fileID: 546711264}
   Gunner: {fileID: 964105682}
   Loader: {fileID: 1972263845}
---- !u!114 &985868291
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 985868280}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3140b604df180c4a84c9494a97fabb4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FuelFill: {fileID: 95896544}
-  maxFuel: 100
-  FuelAmount: 1
-  FuelBurnRate: 0.01
-  refuelAmount: 50
+  modulesData: {fileID: 0}
 --- !u!1 &1001039826
 GameObject:
   m_ObjectHideFlags: 0
@@ -4094,6 +4109,8 @@ MonoBehaviour:
   dirDeg: 0
   testSquare: {fileID: 0}
   testSquareF: {fileID: 0}
+  Type: 
+  Model: 2
 --- !u!61 &1271707171
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4731,6 +4748,8 @@ MonoBehaviour:
   dirDeg: 0
   testSquare: {fileID: 0}
   testSquareF: {fileID: 0}
+  Type: 
+  Model: 2
 --- !u!61 &1972263849
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5014,6 +5033,7 @@ MonoBehaviour:
   armorTemp: {fileID: 830172277}
   TRight: {fileID: 442050501}
   TLeft: {fileID: 807467208}
+  FuelTank: {fileID: 0}
   Ammunition: {fileID: 254780745}
   ArmorBlock: {fileID: 320781806}
   Engine: {fileID: 1271707167}
@@ -5023,6 +5043,7 @@ MonoBehaviour:
   Driver: {fileID: 546711264}
   Gunner: {fileID: 964105682}
   Loader: {fileID: 1972263845}
+  modulesData: {fileID: 0}
 --- !u!114 &2032789642
 MonoBehaviour:
   m_ObjectHideFlags: 0

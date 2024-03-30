@@ -123,14 +123,22 @@ public class AllBodCom : MonoBehaviour
                 case "cd":
                     InstantiateComponent(comp, Crew);
                     component.GetComponent<CrewInfo>().CrewType = "Driver";
+                    component.GetComponent<CrewInfo>().inModule = 0;
                     break;
                 case "cg":
                     InstantiateComponent(comp, Crew);
                     component.GetComponent<CrewInfo>().CrewType = "Gunner";
+                    component.GetComponent<CrewInfo>().inModule = 0;
                     break;
                 case "cl":
                     InstantiateComponent(comp, Crew);
                     component.GetComponent<CrewInfo>().CrewType = "Loader";
+                    component.GetComponent<CrewInfo>().inModule = 0;
+                    break;
+                case "cr":
+                    InstantiateComponent(comp, Crew);
+                    component.GetComponent<CrewInfo>().CrewType = "Reserve";
+                    component.GetComponent<CrewInfo>().inModule = 5;
                     break;
                 case "ar":
                     InstantiateComponent(comp, Armor);

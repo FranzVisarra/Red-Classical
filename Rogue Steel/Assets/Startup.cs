@@ -40,6 +40,5 @@ public class Startup : MonoBehaviour
         InstPlay.GetComponentInChildren<AllTnkStats>().storage = storage;
         InstPlay.GetComponentInChildren<AllTnkStats>().tnkName = "Player";
         //load map
-
     }
 }

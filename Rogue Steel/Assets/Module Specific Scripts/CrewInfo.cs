@@ -9,8 +9,10 @@ public class CrewInfo : MonoBehaviour
     public GameObject Cannon;
     public AllTnkStats stats;
     public string CrewType;
-    public bool manned;//whether or not this component has a user
+    public int inModule;
+    public float timer;
     
+    //TODO make a module that keeps extra crew and make it replenish
     void Start()
     {
         Par = this.transform.parent.gameObject;
@@ -27,6 +29,9 @@ public class CrewInfo : MonoBehaviour
             case "Loader":
                 stats.loaderStatus = true;
                 break;
+            case "Reserve":
+                stats.stats["Reserve"] += inModule;
+                break;
         }
     }
     public void Destroyed()
@@ -34,13 +39,49 @@ public class CrewInfo : MonoBehaviour
         switch(CrewType)
         {
             case "Driver":
-                stats.driverStatus = false;
+                if (stats.stats["Reserve"] <= 0)
+                {
+                    stats.driverStatus = false;
+                }
+                else
+                {
+                    stats.stats["Reserve"]--;
+                }
+                if (stats.gunnerStatus && stats.loaderStatus && stats.stats["Reserve"]<=0)
+                {
+                    //trigger death
+                }
                 break;
             case "Gunner":
-                stats.gunnerStatus = false;
+                if (stats.stats["Reserve"] <= 0)
+                {
+                    stats.gunnerStatus = false;
+                }
+                else
+                {
+                    stats.stats["Reserve"]--;
+                }
+                if (stats.driverStatus && stats.loaderStatus && stats.stats["Reserve"] <= 0)
+                {
+                    //trigger death
+                }
                 break;
             case "Loader":
-                stats.loaderStatus = false;
+                if (stats.stats["Reserve"] <= 0)
+                {
+                    stats.loaderStatus = false;
+                }
+                else
+                {
+                    stats.stats["Reserve"]--;
+                }
+                if (stats.gunnerStatus && stats.driverStatus && stats.stats["Reserve"] <= 0)
+                {
+                    //trigger death
+                }
+                break;
+            case "Reserve":
+                stats.stats["Reserve"] -= inModule;
                 break;
         }
     }

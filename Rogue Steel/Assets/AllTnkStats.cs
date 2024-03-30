@@ -22,20 +22,22 @@ public class AllTnkStats : MonoBehaviour
     public int curAmount;
     public string tnkName;
 
+    public GameObject mcns;
+    public UIHandling UIH;
+    public GameObject ItemDrop;
+
     public bool driverStatus;
     public bool gunnerStatus;
     public bool loaderStatus;
     // Start is called before the first frame update
     void Awake()
     {
+        UIH = mcns.GetComponent<UIHandling>();
         stats = new Dictionary<string, float>();
         storage = new List<StoredAmmo>();
         stats.Add("Speed", 0);
         stats.Add("Fuel", 0);
-    }
-    private void Start()
-    {
-
+        stats.Add("Reserve", 0);
     }
     public int CalculateAmmoVolume(string caliber)
     {
@@ -163,5 +165,22 @@ public class AllTnkStats : MonoBehaviour
             }
         }
         return count;
+    }
+
+    //invoked when tank is out of crew
+    public void Destroyed()
+    {
+        switch (tnkName)
+        {
+            case "Player":
+                //TODO gameOver
+                break;
+            case "Light Tank":
+                UIH.credits += 100;
+                Instantiate(ItemDrop,this.transform.position,this.transform.rotation);
+                //TODO do loot pool thing
+                Destroy(this.transform.parent.gameObject);
+                break;
+        }
     }
 }

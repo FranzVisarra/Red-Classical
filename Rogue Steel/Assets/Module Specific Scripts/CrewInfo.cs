@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CrewInfo : MonoBehaviour
+public class CrewInfo : MonoBehaviour, ModSpecInfo
 {
     public GameObject Par;
     public GameObject Engine;
@@ -34,6 +34,11 @@ public class CrewInfo : MonoBehaviour
                 break;
         }
     }
+    public void Test()
+    {
+        Debug.Log(this.GetType().ToString());
+    }
+
     public void Destroyed()
     {
         switch(CrewType)

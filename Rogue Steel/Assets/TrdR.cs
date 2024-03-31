@@ -15,7 +15,7 @@ public class TrdR : MonoBehaviour
     }
     public void Movement(string movType)
     {
-        if (stats.driverStatus)
+        if (stats.driverStatus && stats.stats["Fuel"] >= 0)
         {
             switch (movType)
             {
@@ -47,6 +47,7 @@ public class TrdR : MonoBehaviour
                     // Code
                     break;
             }
+            stats.BurnFuel();
         }
         /*
         if (movType == "Forward")

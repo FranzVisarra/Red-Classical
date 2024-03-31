@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 //will handle max amount and destruction of ammo
-public class AmmoInfo : MonoBehaviour
+public class AmmoInfo : MonoBehaviour, ModSpecInfo
 {
     public int maxAmount;
     public string caliber;
@@ -15,7 +15,7 @@ public class AmmoInfo : MonoBehaviour
         this.maxAmount = maxAmount;
         this.caliber = caliber;
     }
-    public void Start()
+    public void Awake()
     {
         Par = this.transform.parent.gameObject;
         stats = Par.GetComponent<AllTnkStats>();
@@ -30,6 +30,10 @@ public class AmmoInfo : MonoBehaviour
             stats.removeExcessAmmo(caliber);
         }
         //TODO explode and create spall
+    }
+    public void Test()
+    {
+        Debug.Log(this.GetType().ToString());
     }
     public void Repaired()
     {

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 using UnityEngine;
 
 public class TnkModList{
@@ -32,4 +33,10 @@ public class ModStats
 public class AllTnkModStats : MonoBehaviour
 {
 
+}
+
+public interface ModSpecInfo
+{
+    void Destroyed();
+    void Test();
 }

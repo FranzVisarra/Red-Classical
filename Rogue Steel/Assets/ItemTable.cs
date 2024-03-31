@@ -41,10 +41,12 @@ public class Engine
     public int maxArmor;
     public int maxDurability;
     public float fuelEfficiency;
-    public Engine(string name, float fuelEfficiency, int maxHP, int maxArmor, int maxDurability)
+    public float speed;
+    public Engine(string name, float fuelEfficiency,float speed, int maxHP, int maxArmor, int maxDurability)
     {
         this.name = name;
         this.fuelEfficiency = fuelEfficiency;
+        this.speed = speed;
         this.maxHP = maxHP;
         this.maxArmor = maxArmor;
         this.maxDurability = maxDurability;
@@ -144,7 +146,7 @@ public class ItemTable : MonoBehaviour
         arm = new List<Armor>();
         fuel.Add(new Fuel("Small", 50, 10, 1, 10));
         hd.Add(new HorizontalDrive("Basic", 100, 10, 1, 10));
-        eng.Add(new Engine("Basic", 50, 10, 1, 10));
+        eng.Add(new Engine("Basic", 1f, 1f, 10, 1, 10));
         can.Add(new Cannon("Svarsky 30mm", "30mm", 3));
         pro.Add(new Projectile("30mm AP", "30mm", "Shell", 10, 10, 0, 50, 3));
         pro.Add(new Projectile("30mm APC", "30mm", "Shell", 5, 10, 15, 50, 3));

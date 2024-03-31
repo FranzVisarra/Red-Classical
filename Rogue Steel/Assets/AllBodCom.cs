@@ -36,6 +36,12 @@ public class AllBodCom : MonoBehaviour
     //public string[,] innards;
 
     public List<TnkModList> components;
+    private void Awake()
+    {
+        Mechanics = GameObject.Find("Mechanics");
+        items = Mechanics.GetComponent<ItemTable>();
+        stats=transform.GetComponent<AllTnkStats>();
+    }
     void Start()
     {
         items = Mechanics.GetComponent<ItemTable>();
@@ -78,7 +84,9 @@ public class AllBodCom : MonoBehaviour
                         if (comp.variant == thing.name)
                         {
                             component.GetComponent<ModuleInfo>().setMaxValues(thing.maxHP,thing.maxArmor,thing.maxDurability);
-                            //TODO set speed
+                            component.GetComponent<EngineInfo>().speed = thing.speed;
+                            component.GetComponent<EngineInfo>().fuelEfficiency = thing.fuelEfficiency;
+                            component.GetComponent<EngineInfo>().AddStats();
                             break;
                         }
                     }
@@ -90,7 +98,8 @@ public class AllBodCom : MonoBehaviour
                         if (comp.variant == thing.name)
                         {
                             component.GetComponent<ModuleInfo>().setMaxValues(thing.maxHP, thing.maxArmor, thing.maxDurability);
-                            //TODO set fuel
+                            component.GetComponent<FuelInfo>().maxFuel = thing.maxFuel;
+                            component.GetComponent<FuelInfo>().AddMaxFuelFull();
                             break;
                         }
                     }

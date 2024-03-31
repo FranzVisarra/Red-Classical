@@ -720,6 +720,7 @@ GameObject:
   - component: {fileID: 242743552}
   - component: {fileID: 242743551}
   - component: {fileID: 242743550}
+  - component: {fileID: 242743553}
   m_Layer: 0
   m_Name: Fuel
   m_TagString: Module
@@ -818,6 +819,7 @@ MonoBehaviour:
   testSquare: {fileID: 0}
   testSquareF: {fileID: 0}
   Par: {fileID: 0}
+  alive: 0
 --- !u!61 &242743551
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -890,6 +892,23 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &242743553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 242743547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cac94933d0428434b878a4899373abee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxFuel: 0
+  fuelAmount: 0
+  Par: {fileID: 0}
+  stats: {fileID: 0}
+  Module: {fileID: 0}
 --- !u!1 &254780745
 GameObject:
   m_ObjectHideFlags: 0
@@ -1002,6 +1021,7 @@ MonoBehaviour:
   testSquare: {fileID: 0}
   testSquareF: {fileID: 0}
   Par: {fileID: 0}
+  alive: 0
 --- !u!61 &254780749
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1201,6 +1221,7 @@ MonoBehaviour:
   testSquare: {fileID: 0}
   testSquareF: {fileID: 0}
   Par: {fileID: 0}
+  alive: 0
 --- !u!61 &320781810
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1891,6 +1912,7 @@ MonoBehaviour:
   testSquare: {fileID: 0}
   testSquareF: {fileID: 0}
   Par: {fileID: 0}
+  alive: 0
 --- !u!61 &533163767
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2233,6 +2255,7 @@ MonoBehaviour:
   testSquare: {fileID: 0}
   testSquareF: {fileID: 0}
   Par: {fileID: 0}
+  alive: 0
 --- !u!61 &546711268
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2437,6 +2460,7 @@ MonoBehaviour:
   testSquare: {fileID: 0}
   testSquareF: {fileID: 0}
   Par: {fileID: 0}
+  alive: 0
 --- !u!61 &586402918
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2990,6 +3014,7 @@ MonoBehaviour:
   testSquare: {fileID: 0}
   testSquareF: {fileID: 0}
   Par: {fileID: 0}
+  alive: 0
 --- !u!61 &830172280
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4040,6 +4065,7 @@ GameObject:
   - component: {fileID: 1271707172}
   - component: {fileID: 1271707171}
   - component: {fileID: 1271707170}
+  - component: {fileID: 1271707173}
   m_Layer: 0
   m_Name: Engine
   m_TagString: Module
@@ -4138,6 +4164,7 @@ MonoBehaviour:
   testSquare: {fileID: 0}
   testSquareF: {fileID: 0}
   Par: {fileID: 0}
+  alive: 0
 --- !u!61 &1271707171
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4210,6 +4237,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1271707173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1271707167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9881306f5ce41c4496d316dda6293ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0
+  fuelEfficiency: 0
+  Par: {fileID: 0}
+  stats: {fileID: 0}
 --- !u!1 &1340858615
 GameObject:
   m_ObjectHideFlags: 0

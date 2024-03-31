@@ -117,6 +117,7 @@ public class PlBodMov : MonoBehaviour
         //TRight.GetComponent<TrdR>().Movement(movRot, movDir);
         //angle = Mathf.Atan2(transform.position.y - targPos.y, transform.position.x - targPos.x) * Mathf.Rad2Deg;
         //Debug.Log(this.GetType().ToString() + " FixedUpdate End");
+
     }
     public void shortRef(string TrackMov)
     {

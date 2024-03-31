@@ -18,6 +18,11 @@ public class ModuleInfo : MonoBehaviour
     public GameObject testSquareF;
     public GameObject Par;
 
+    public ModSpecInfo infoInterface;
+    //public MonoBehaviour info;
+
+    public bool alive;
+
     public void Awake()
     {
         Par = this.transform.parent.parent.gameObject;
@@ -29,6 +34,10 @@ public class ModuleInfo : MonoBehaviour
         {
             this.transform.gameObject.layer = LayerMask.NameToLayer("EnemyCollision");
         }
+        alive = true;
+        Debug.Log(this.GetType().ToString()+" calling ");
+        infoInterface = this.transform.GetComponent<ModSpecInfo>();
+        infoInterface.Test();
     }
     public void Start()
     {
@@ -92,8 +101,9 @@ public class ModuleInfo : MonoBehaviour
         }
         else if (CurArmor == 0)
         {
-
-            this.gameObject.SetActive(false);
+            alive = false;
+            //info.Destroyed();
+            //this.gameObject.SetActive(false);
         }
         CalcAng();
         //Debug.Log("ModuleInfo DamDur End");
@@ -107,11 +117,14 @@ public class ModuleInfo : MonoBehaviour
         }
         else if (CurHp == 0)
         {
-            this.gameObject.SetActive(false);
+            alive = false;
+            //info.Destroyed();
+            //this.gameObject.SetActive(false);
         }
     }
     void CalcAng()
     {
         Ang = 90 / (CurArmor + 1);
     }
+    //TODO healing
 }

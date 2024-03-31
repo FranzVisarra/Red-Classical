@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 public class StoredAmmo
 {
@@ -36,6 +37,8 @@ public class AllTnkStats : MonoBehaviour
         stats = new Dictionary<string, float>();
         storage = new List<StoredAmmo>();
         stats.Add("Speed", 0);
+        stats.Add("FuelBurn", 0);
+        stats.Add("MaxFuel", 0);
         stats.Add("Fuel", 0);
         stats.Add("Reserve", 0);
     }
@@ -166,7 +169,47 @@ public class AllTnkStats : MonoBehaviour
         }
         return count;
     }
+    public void SetMaxFuel(float fuel)
+    {
+        stats["MaxFuel"] = fuel;
+        UIH.setMaxFuel(stats["MaxFuel"]);
 
+    }
+    //invoked when refueling
+    public void AddFuel(float fuel)
+    {
+        if (stats["Fuel"]+fuel <= stats["MaxFuel"])
+        {
+            stats["Fuel"] += fuel;
+        }
+        else
+        {
+            stats["Fuel"] = stats["MaxFuel"];
+        }
+        UIH.setFuel(stats["Fuel"]);
+    }
+    //invoked when moving
+    public void BurnFuel()
+    {
+        stats["Fuel"] -= stats["FuelBurn"]*Time.deltaTime;
+        if(tnkName == "Player")
+        {
+            UIH.setFuel(stats["Fuel"]);
+        }
+    }
+    //invoked when fuel tank destroyed
+    public void RemoveFuel(float fuel)
+    {
+        if (stats["Fuel"] >= 0)
+        {
+            stats["Fuel"] -= fuel;
+        }
+        if (tnkName == "Player")
+        {
+            UIH.setFuel(stats["Fuel"]);
+            UIH.setMaxFuel(stats["MaxFuel"]);
+        }
+    }
     //invoked when tank is out of crew
     public void Destroyed()
     {

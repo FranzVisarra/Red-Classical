@@ -8,6 +8,8 @@ public class FuelInfo : MonoBehaviour, ModSpecInfo
     public GameObject Par;
     public AllTnkStats stats;
     public ModuleInfo Module;
+    public Vector3 thisPosition;
+    public Vector3 nextPosition;
     void Awake()
     {
         maxFuel = 0;

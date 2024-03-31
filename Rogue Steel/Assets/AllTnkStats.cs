@@ -189,9 +189,9 @@ public class AllTnkStats : MonoBehaviour
         UIH.setFuel(stats["Fuel"]);
     }
     //invoked when moving
-    public void BurnFuel()
+    public void BurnFuel(float dist)
     {
-        stats["Fuel"] -= stats["FuelBurn"]*Time.deltaTime;
+        stats["Fuel"] -= stats["FuelBurn"]*Time.deltaTime*dist;
         if(tnkName == "Player")
         {
             UIH.setFuel(stats["Fuel"]);

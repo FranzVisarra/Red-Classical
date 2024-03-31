@@ -7,6 +7,9 @@ public class TrdR : MonoBehaviour
     public float movsp;
     public Rigidbody2D rb;
     public AllTnkStats stats;
+    public Vector3 thisPos;
+    public Vector3 nextPos;
+    public float dist;
     void Start()
     {
         rb = this.GetComponent<Rigidbody2D>();
@@ -15,6 +18,7 @@ public class TrdR : MonoBehaviour
     }
     public void Movement(string movType)
     {
+        nextPos = this.transform.position;
         if (stats.driverStatus && stats.stats["Fuel"] >= 0)
         {
             switch (movType)
@@ -47,8 +51,10 @@ public class TrdR : MonoBehaviour
                     // Code
                     break;
             }
-            stats.BurnFuel();
+            dist = Mathf.Sqrt(Mathf.Pow(thisPos.x - nextPos.x, 2) + Mathf.Pow(thisPos.y - nextPos.y, 2));
+            stats.BurnFuel(dist);
         }
+        thisPos = this.transform.position;
         /*
         if (movType == "Forward")
         {

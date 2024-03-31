@@ -905,10 +905,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxFuel: 0
-  fuelAmount: 0
   Par: {fileID: 0}
   stats: {fileID: 0}
   Module: {fileID: 0}
+  thisPosition: {x: 0, y: 0, z: 0}
+  nextPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &254780745
 GameObject:
   m_ObjectHideFlags: 0
@@ -1695,6 +1696,9 @@ MonoBehaviour:
   movsp: 0
   rb: {fileID: 442050505}
   stats: {fileID: 0}
+  thisPos: {x: 0, y: 0, z: 0}
+  nextPos: {x: 0, y: 0, z: 0}
+  dist: 0
 --- !u!255 &442050503
 FixedJoint2D:
   m_ObjectHideFlags: 0
@@ -1772,8 +1776,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0
+  m_LinearDrag: 1
+  m_AngularDrag: 1
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -2830,6 +2834,9 @@ MonoBehaviour:
   movsp: 0
   rb: {fileID: 807467213}
   stats: {fileID: 0}
+  thisPos: {x: 0, y: 0, z: 0}
+  nextPos: {x: 0, y: 0, z: 0}
+  dist: 0
 --- !u!255 &807467211
 FixedJoint2D:
   m_ObjectHideFlags: 0
@@ -2907,8 +2914,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0
+  m_LinearDrag: 1
+  m_AngularDrag: 1
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -3746,6 +3753,9 @@ MonoBehaviour:
   movsp: 0
   rb: {fileID: 1001039830}
   stats: {fileID: 0}
+  thisPos: {x: 0, y: 0, z: 0}
+  nextPos: {x: 0, y: 0, z: 0}
+  dist: 0
 --- !u!61 &1001039829
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3804,8 +3814,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0
+  m_LinearDrag: 1
+  m_AngularDrag: 1
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -4303,6 +4313,9 @@ MonoBehaviour:
   movsp: 0
   rb: {fileID: 1340858619}
   stats: {fileID: 0}
+  thisPos: {x: 0, y: 0, z: 0}
+  nextPos: {x: 0, y: 0, z: 0}
+  dist: 0
 --- !u!61 &1340858618
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4361,8 +4374,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0
+  m_LinearDrag: 1
+  m_AngularDrag: 1
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:

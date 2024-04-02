@@ -4723,6 +4723,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1425a1fe4f9477941a8520a2c2e6e72b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cam: {fileID: 2064928826}
+  camMov: {fileID: 0}
+  pl: {fileID: 0}
+  clicked: {fileID: 0}
+  cf2d:
+    useTriggers: 1
+    useLayerMask: 0
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 0
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 0
+    maxNormalAngle: 0
 --- !u!114 &1766946745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5375,6 +5393,7 @@ GameObject:
   - component: {fileID: 2064928826}
   - component: {fileID: 2064928825}
   - component: {fileID: 2064928828}
+  - component: {fileID: 2064928829}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -5500,6 +5519,20 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!114 &2064928829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2064928824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aade374cd6eb6d44d8bbaaec658671ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camPos: {x: 0, y: 0, z: 0}
+  pl: {fileID: 0}
 --- !u!1 &2089767308
 GameObject:
   m_ObjectHideFlags: 0

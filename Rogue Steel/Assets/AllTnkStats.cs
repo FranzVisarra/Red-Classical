@@ -80,7 +80,14 @@ public class AllTnkStats : MonoBehaviour
                     IncrementAmmoByName(name, amount);
                     break;
                 case false:
-                    storage.Add(new StoredAmmo(name, caliber, amount));
+                    if (stats.ContainsKey(caliber))
+                    {
+                        storage.Add(new StoredAmmo(name, caliber, amount));
+                    }
+                    else
+                    {
+                        //TODO shunt to inventory
+                    }
                     break;
             }
         }
@@ -90,7 +97,7 @@ public class AllTnkStats : MonoBehaviour
             switch (CheckAmmoInStorageByName(name))
             {
                 case true:
-                    IncrementAmmoByName(name, amount-excess);
+                    IncrementAmmoByName(name, amount - excess);
                     break;
                 case false:
                     storage.Add(new StoredAmmo(name, caliber, amount - excess));
@@ -126,6 +133,10 @@ public class AllTnkStats : MonoBehaviour
             }
         }
         return ammoNameExists;
+    }
+    public bool CheckAmmoInStorageByCaliber()
+    {
+        return false;
     }
 
     public bool CheckAmmoExistsInStorageByName(string name)
@@ -220,6 +231,7 @@ public class AllTnkStats : MonoBehaviour
                 break;
             case "Light Tank":
                 UIH.setCredits(100);
+                UIH.UpdateObjectivesDisplay("kill light");
                 Instantiate(ItemDrop,this.transform.position,this.transform.rotation);
                 //TODO do loot pool thing
                 Destroy(this.transform.parent.gameObject);

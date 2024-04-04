@@ -12,7 +12,7 @@ public class DropInfo : MonoBehaviour
     string caliber;
     int amount;
     //----------item specific stats----------//
-    float timer;
+    float time;
     bool playerInRadius;
     // Start is called before the first frame update
     void Start()
@@ -27,45 +27,45 @@ public class DropInfo : MonoBehaviour
         caliber = "30mm";
         amount = 200;
         //----------item specific stats----------//
-        timer = 0;
+        time = 0;
         playerInRadius = false;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        //Debug.Log(this.GetType().ToString() + " Update End");
-        if (playerInRadius)
-        {
-            if (timer >= 3)
-            {
-                //TODO add item to inventory
-                switch (type)
-                {
-                    case "Pro":
-                        playerstatsref.AddAmmo(variant,caliber,amount);
-                        Destroy(this.transform.gameObject);
-                        break;
-                }
-            }
-            timer += Time.deltaTime;
-        }
-        //Debug.Log(this.GetType().ToString() + " Update End");
-    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
             Debug.Log("Collider Entered with " + collision.gameObject.name);
             playerInRadius = true;
+            time = 0;
         }
     }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            if (time >= 3)
+            {
+                //TODO add item to inventory
+                switch (type)
+                {
+                    case "Pro":
+                        playerstatsref.AddAmmo(variant, caliber, amount);
+                        Destroy(this.transform.gameObject);
+                        break;
+                }
+            }
+            time += Time.deltaTime;
+        }
+    }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
             Debug.Log("Collider Exited with " + collision.gameObject.name);
-            timer = 0;
+            time = 0;
             playerInRadius = false;
         }
     }

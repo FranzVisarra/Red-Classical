@@ -9,14 +9,23 @@ public class UIHandling : MonoBehaviour
     public float fuel;
     public float maxFuel;
     public GameObject ResourcesDisplay;
+
+    public GameObject ObjectivesDisplay;
+    public Startup str;
     public Text RDT;
+    public Text OBJ;
     public Image FuelBar;
     void Awake()
     {
         RDT = ResourcesDisplay.GetComponent<Text>();
+        OBJ = ObjectivesDisplay.GetComponent<Text>();
         credits = 0;
         fuel = 0;
         //setResourcesDisplay();
+    }
+    private void Start()
+    {
+        SetObjectivesDisplay();
     }
     //setting the ui elements
     public void setResourcesDisplay()
@@ -46,5 +55,32 @@ public class UIHandling : MonoBehaviour
     {
         this.maxFuel = maxFuel;
         setResourcesDisplay();
+    }
+    public void SetObjectivesDisplay()
+    {
+        OBJ.text = "";
+        foreach (var objective in str.obj)
+        {
+            OBJ.text += objective.shortText + objective.progress + "/" + objective.amount+"\n";
+        }
+    }
+    public void UpdateObjectivesDisplay(string keyword)
+    {
+        OBJ.text = "";
+        foreach (var objective in str.obj)
+        {
+            if (objective.keyword == keyword)
+            {
+                objective.progress++;
+                if (objective.CheckCompletion())
+                {
+                    OBJ.text += objective.shortText + "X" + "\n";
+                }
+                else
+                {
+                    OBJ.text += objective.shortText + objective.progress + "/" + objective.amount+"\n";
+                }
+            }
+        }
     }
 }

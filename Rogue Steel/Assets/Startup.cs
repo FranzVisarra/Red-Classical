@@ -2,17 +2,50 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public class Objectives
+{
+    public string text;
+    public string shortText;
+    public int amount;
+    public int progress;
+    public int reward;
+    public string keyword;
+
+    public Objectives(string text, string shortText, int amount, int progress, int reward, string keyword)
+    {
+        this.text = text;
+        this.shortText = shortText;
+        this.amount = amount;
+        this.progress = progress;
+        this.reward = reward;
+        this.keyword = keyword;
+    }
+    public bool CheckCompletion()
+    {
+        if (progress >= amount)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+}
 public class Startup : MonoBehaviour
 {
     public GameObject Player;
     private GameObject InstPlay;
     public List<TnkModList> tnk;
     public List<StoredAmmo> storage;
+    public List<Objectives> obj;
+
     // Start is called before the first frame update
     void Awake()
     {
         tnk = new List<TnkModList>();
         storage = new List<StoredAmmo>();
+        obj = new List<Objectives>();
         //inner components
         tnk.Add(new TnkModList("cd", new Vector2((float)0.5, (float)1.5), 0, "", 10, 1, 10));
         tnk.Add(new TnkModList("en", new Vector2(-(float)0.5, (float)1.5), 0, "Basic", 10, 1, 10));
@@ -39,6 +72,17 @@ public class Startup : MonoBehaviour
 
         InstPlay.GetComponentInChildren<AllTnkStats>().storage = storage;
         InstPlay.GetComponentInChildren<AllTnkStats>().tnkName = "Player";
+
+        //load objectives
+        obj.Add(new Objectives("Kill light tanks", "Light tanks:",0,5,500,"kill light"));
+        obj.Add(new Objectives("Capture crates", "Crates:",0,2,1000, "cap crate"));
+
         //load map
+        MapGen();
+
+    }
+    public void MapGen()
+    {
+        //TODO do map generation
     }
 }

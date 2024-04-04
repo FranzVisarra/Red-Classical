@@ -24,12 +24,13 @@ public class EnTnkStats : MonoBehaviour
     public string AiState;//patrol, investigate, search, attack
     public string DetState;//nothing, known, heard, seen
     public Vector2 Direction;
+    public GameObject En;
     
     // Start is called before the first frame update
     void Start()
     {
         dlist = new List<DetectionList>();
-        dlist.Add(new DetectionList("Player", new Vector2(0, 0)));//index 0 is players last known position
+        dlist.Add(new DetectionList("Player", new Vector2(En.transform.position.x, En.transform.position.y)));//index 0 is players last known position
         AiState = "Patrol";
         DetState = "None";
     }

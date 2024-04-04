@@ -219,7 +219,7 @@ public class AllTnkStats : MonoBehaviour
                 //TODO gameOver
                 break;
             case "Light Tank":
-                UIH.credits += 100;
+                UIH.setCredits(100);
                 Instantiate(ItemDrop,this.transform.position,this.transform.rotation);
                 //TODO do loot pool thing
                 Destroy(this.transform.parent.gameObject);

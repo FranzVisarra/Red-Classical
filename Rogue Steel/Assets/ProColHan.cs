@@ -56,7 +56,8 @@ public class ProColHan : MonoBehaviour
         {
             //Debug.Log(ray.point);
             othInf = other.GetComponent<ModuleInfo>();
-            switch (ps.ProType) {
+            switch (ps.ProType)
+            {
                 case "Shell":
                     angPen = angle(ray);
                     //Debug.Log("angle = " + angPen);
@@ -108,7 +109,13 @@ public class ProColHan : MonoBehaviour
                     break;
             }
         }
+        /*
+        else if (other.tag == "Opaque")
+        {
+            Destroy(other.transform.gameObject);
+        }
         //Debug.Log("ProColHan RayCastHit End");
+        */
     }
 
     private void CalcHit()

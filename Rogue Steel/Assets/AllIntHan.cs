@@ -13,6 +13,7 @@ public class AllIntHan : MonoBehaviour
     public float time;
     public float limit;
     public float amount;
+    public Collider2D cd;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))

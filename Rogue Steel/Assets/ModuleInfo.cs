@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ModuleInfo : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class ModuleInfo : MonoBehaviour
     public GameObject testSquare;
     public GameObject testSquareF;
     public GameObject Par;
+    public GameObject UI;
 
     public ModSpecInfo infoInterface;
     //public MonoBehaviour info;
@@ -35,7 +37,7 @@ public class ModuleInfo : MonoBehaviour
             this.transform.gameObject.layer = LayerMask.NameToLayer("EnemyCollision");
         }
         alive = true;
-        Debug.Log(this.GetType().ToString()+" calling ");
+        //Debug.Log(this.GetType().ToString()+" calling ");
         infoInterface = this.transform.GetComponent<ModSpecInfo>();
         infoInterface.Test();
     }
@@ -104,6 +106,7 @@ public class ModuleInfo : MonoBehaviour
             alive = false;
             //info.Destroyed();
             //this.gameObject.SetActive(false);
+            infoInterface.Destroyed();
         }
         CalcAng();
         //Debug.Log("ModuleInfo DamDur End");
@@ -118,8 +121,13 @@ public class ModuleInfo : MonoBehaviour
         else if (CurHp == 0)
         {
             alive = false;
+            infoInterface.Destroyed();
             //info.Destroyed();
             //this.gameObject.SetActive(false);
+        }
+        if (UI != null)
+        {
+            UI.GetComponent<Image>().color = new Vector4(1,1/(1-(MaxHp-CurHp)), 1 / (1 - (MaxHp - CurHp)), 1);
         }
     }
     void CalcAng()

@@ -31,6 +31,10 @@ public class AllBodCom : MonoBehaviour
     public ItemTable items;
 
     public AllTnkStats stats;
+    //TODO make this part player specific
+    public GameObject UI;
+    public GameObject UIH;
+
     //
     //public Rigidbody2D rb;
     //public string[,] innards;
@@ -131,21 +135,25 @@ public class AllBodCom : MonoBehaviour
                     break;
                 case "cd":
                     InstantiateComponent(comp, Crew);
+                    component.GetComponent<ModuleInfo>().setMaxValues(5,5,1);
                     component.GetComponent<CrewInfo>().CrewType = "Driver";
                     component.GetComponent<CrewInfo>().inModule = 0;
                     break;
                 case "cg":
                     InstantiateComponent(comp, Crew);
+                    component.GetComponent<ModuleInfo>().setMaxValues(5, 5, 1);
                     component.GetComponent<CrewInfo>().CrewType = "Gunner";
                     component.GetComponent<CrewInfo>().inModule = 0;
                     break;
                 case "cl":
                     InstantiateComponent(comp, Crew);
+                    component.GetComponent<ModuleInfo>().setMaxValues(5, 5, 1);
                     component.GetComponent<CrewInfo>().CrewType = "Loader";
                     component.GetComponent<CrewInfo>().inModule = 0;
                     break;
                 case "cr":
                     InstantiateComponent(comp, Crew);
+                    component.GetComponent<ModuleInfo>().setMaxValues(5, 5, 1);
                     component.GetComponent<CrewInfo>().CrewType = "Reserve";
                     component.GetComponent<CrewInfo>().inModule = 5;
                     break;
@@ -231,8 +239,23 @@ public class AllBodCom : MonoBehaviour
     {
         component = Instantiate(obj, this.transform);
         component.GetComponent<ModuleInfo>().setCurrentValues(comp.CHP, comp.CA, comp.CD);
-        component.transform.Translate(comp.position);
+        component.transform.Translate(new Vector3 (comp.position.x, comp.position.y,-1));
         component.transform.eulerAngles = new Vector3(0, 0, comp.rotation);
+        //TODO make player specific
+        if (transform.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            if (obj == Armor)
+            {
+
+            }
+            else
+            {
+                GameObject temp = Instantiate(UIH, UI.transform);
+                component.GetComponent<ModuleInfo>().UI = temp.transform.GetChild(0).gameObject;
+                temp.transform.Translate(new Vector3(comp.position.x * 20, comp.position.y * 20, 0));
+
+            }
+        }
         //setLayer(component);
     }
     /*

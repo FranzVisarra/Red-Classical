@@ -99,7 +99,14 @@ public class EnGunMov : MonoBehaviour
         float totDist = info.detectionLength;
         foreach (RaycastHit2D ray in Ray)
         {
-            if (ray.collider.gameObject.layer == LayerMask.NameToLayer("Obstruction"))
+            
+            if (ray.collider.gameObject.layer == LayerMask.NameToLayer("Player") && ray.distance <= totDist)
+            {
+                targ = ray.collider.gameObject;
+                Debug.DrawRay(this.transform.position, transform.TransformDirection(Vector2.left) * ray.distance, Color.white);
+                return true;
+            }
+            else if (ray.collider.gameObject.layer == LayerMask.NameToLayer("Obstruction"))
             {
                 if (ray.collider.gameObject.tag == "Opaque")
                 {
@@ -111,12 +118,6 @@ public class EnGunMov : MonoBehaviour
                     totDist = (totDist - ray.distance) / 4 + ray.distance;
                     Debug.DrawRay(this.transform.position, transform.TransformDirection(Vector2.left) * totDist, Color.white);
                 }
-            }
-            else if (ray.collider.gameObject.layer == LayerMask.NameToLayer("Player") && ray.distance <= totDist)
-            {
-                targ = ray.collider.gameObject;
-                Debug.DrawRay(this.transform.position, transform.TransformDirection(Vector2.left) * ray.distance, Color.white);
-                return true;
             }
         }
         return false;

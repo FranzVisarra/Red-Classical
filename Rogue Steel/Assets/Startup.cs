@@ -77,6 +77,7 @@ public class Startup : MonoBehaviour
 
         InstPlay.GetComponentInChildren<AllTnkStats>().storage = storage;
         InstPlay.GetComponentInChildren<AllTnkStats>().tnkName = "Player";
+        //InstPlay.transform.Find("Chassis").Find("Tank Image").GetComponent<RectTransform>().
 
         //load objectives
         obj.Add(new Objectives("Kill light tanks", "Light tanks:",0,5,500,"kill light"));

@@ -9,6 +9,7 @@ public class ButtKey : MonoBehaviour
     public CamMov camMov;
     public GameObject pl;
     public GameObject clicked;
+    public GameObject OverImg;
     public List<RaycastHit2D> rc = new List<RaycastHit2D>();
 
     public ContactFilter2D cf2d;
@@ -20,6 +21,8 @@ public class ButtKey : MonoBehaviour
     void Start()
     {
         pl = GameObject.Find("Player(Clone)").gameObject.transform.Find("Chassis").gameObject;
+        OverImg = pl.transform.Find("Overlay").gameObject;
+        
     }
     // Update is called once per frame
     void Update()
@@ -28,6 +31,10 @@ public class ButtKey : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F))
         {
             //TODO hold fire
+        }
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            OverImg.SetActive(!OverImg.activeSelf);
         }
         if (Input.GetKey(KeyCode.LeftShift))
         {

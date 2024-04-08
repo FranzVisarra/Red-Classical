@@ -34,6 +34,10 @@ public class EquipmentSlot : MonoBehaviour, IPointerClickHandler
     private void Start()
     {
         inventoryManager = GameObject.Find("InventoryCanvas").GetComponent<InventoryManager>();
+        //New Part
+        ParInt = this.transform.parent.gameObject;
+        ParIntScript = ParInt.GetComponent<ItemSelected>();
+        selected = false;
     }
     public int AddItem(string itemName, int quantity, Sprite itemSprite, string itemDescription, ItemType itemType)
     {
@@ -61,7 +65,8 @@ public class EquipmentSlot : MonoBehaviour, IPointerClickHandler
         }
         if (eventData.button == PointerEventData.InputButton.Right)
         {
-            //OnRightClick();
+            //New Part
+            OnRightClick();
         }
     }
     public void OnLeftClick()
@@ -102,5 +107,18 @@ public class EquipmentSlot : MonoBehaviour, IPointerClickHandler
         if (itemType == ItemType.lightAmmo)
             lightAmmoSlot.EquipGear(itemSprite, itemName, itemDescription);
         EmptySlot();
+    }
+
+    //New Stuff
+    public bool selected;
+    //Parent interface
+    public GameObject ParInt;
+    public ItemSelected ParIntScript;
+    public void OnRightClick()
+    {
+        //bool toggle
+        selected = !selected;
+        ParIntScript.selected = true;
+        ParIntScript.selectedGameObject = transform.gameObject;
     }
 }

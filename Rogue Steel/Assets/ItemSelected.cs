@@ -13,4 +13,12 @@ public class ItemSelected : MonoBehaviour
     {
         selected = false;
     }
+    //invoke before setting selected gameobject
+    public void UnSelectPrevious()
+    {
+        if (selected)//don't wanna call a component from a null
+        {
+            selectedGameObject.GetComponent<SelectItem>().selected = false;
+        }
+    }
 }

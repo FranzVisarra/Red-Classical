@@ -25,12 +25,12 @@ public class TankSize : MonoBehaviour, IPointerClickHandler
             }
             tnkSize.constraint = GridLayoutGroup.Constraint.FixedColumnCount;
             tnkSize.constraintCount = (int)size.x;
-            for (int x = 0; x < size.x; x++)
+            for (int y = 0; y < size.y; y++)
             {
-                for (int y = 0; y < size.y; y++)
+                for (int x = 0; x < size.x; x++)
                 {
                     GameObject temp = Instantiate(cell, tnkpnl.transform);
-                    temp.AddComponent<TankCellSlot>().pos = new Vector2(x,y);
+                    temp.AddComponent<TankCellSlot>().pos = new Vector2(x-(size.x/2)+0.5f,y - (size.y / 2) + 0.5f);
                 }
             }
         }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class SelectItem : MonoBehaviour
+public class SelectItem : MonoBehaviour, IPointerClickHandler
 {
     public bool selected;
     //Parent interface
@@ -41,6 +41,7 @@ public class SelectItem : MonoBehaviour
                 ParIntScript.selectedGameObject = null;
                 break;
             case true:
+                ParIntScript.UnSelectPrevious();
                 ParIntScript.selected = true;
                 ParIntScript.selectedGameObject = transform.gameObject;
                 break;
@@ -50,6 +51,7 @@ public class SelectItem : MonoBehaviour
     public void OnRightClick()
     {
         selected = false;
+        ParIntScript.selected = false;
         ParIntScript.selectedGameObject = null;
     }
 }

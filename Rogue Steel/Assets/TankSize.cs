@@ -8,11 +8,14 @@ public class TankSize : MonoBehaviour, IPointerClickHandler
 {
     public Vector2 size;
     public GameObject tnkpnl;
+    public ItemSelected tnksel;
     public GridLayoutGroup tnkSize;
     public GameObject cell;
+    public GameObject Inventory;
     private void Start()
     {
         tnkpnl = GameObject.Find("Tank Panel");
+        tnksel = tnkpnl.GetComponent<ItemSelected>();
         tnkSize = tnkpnl.GetComponent<GridLayoutGroup>();
     }
     public void OnPointerClick(PointerEventData eventData)
@@ -30,7 +33,10 @@ public class TankSize : MonoBehaviour, IPointerClickHandler
                 for (int x = 0; x < size.x; x++)
                 {
                     GameObject temp = Instantiate(cell, tnkpnl.transform);
-                    temp.AddComponent<TankCellSlot>().pos = new Vector2(x-(size.x/2)+0.5f,y - (size.y / 2) + 0.5f);
+                    TankCellSlot temptemp = temp.AddComponent<TankCellSlot>();
+                    temptemp.pos =new Vector2(x - (size.x / 2) + 0.5f, y - (size.y / 2) + 0.5f);
+                    temp.GetComponent<SelectItem>().tank = temptemp;
+                    temp.GetComponent<SelectItem>().Inventory = Inventory;
                 }
             }
         }
@@ -43,5 +49,7 @@ public class TankSize : MonoBehaviour, IPointerClickHandler
                 tnkSize.constraint = GridLayoutGroup.Constraint.Flexible;
             }
         }
+        //clear boolean to undo selection when slots destroyed.
+        tnksel.SetSelected(false, null);
     }
 }

@@ -6,10 +6,14 @@ using UnityEngine.EventSystems;
 public class SelectItem : MonoBehaviour, IPointerClickHandler
 {
     public bool selected;
+    public bool filled;
     //Parent interface
     public GameObject ParInt;
     public ItemSelected ParIntScript;
     public string type;
+    public InventoryCellSlot inv;
+    public TankCellSlot tank;
+    public GameObject Inventory;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,9 +21,11 @@ public class SelectItem : MonoBehaviour, IPointerClickHandler
         ParIntScript = ParInt.GetComponent<ItemSelected>();
         type = ParIntScript.type;
         selected = false;
+        filled = false;
     }
     public void OnPointerClick(PointerEventData eventData)
     {
+        //Debug.Log("Generic Cell Script");
         if (eventData.button == PointerEventData.InputButton.Left)
         {
             OnLeftClick();
@@ -37,13 +43,14 @@ public class SelectItem : MonoBehaviour, IPointerClickHandler
         switch (selected)
         {
             case false:
-                ParIntScript.selected = false;
-                ParIntScript.selectedGameObject = null;
+                ParIntScript.SetSelected(false,null);
+                //ParIntScript.selected = false;
+                //ParIntScript.selectedGameObject = null;
                 break;
             case true:
-                ParIntScript.UnSelectPrevious();
-                ParIntScript.selected = true;
-                ParIntScript.selectedGameObject = transform.gameObject;
+                ParIntScript.SetSelected(true, transform.gameObject);
+                //ParIntScript.selected = true;
+                //ParIntScript.selectedGameObject = transform.gameObject;
                 break;
         }
     }
@@ -51,7 +58,20 @@ public class SelectItem : MonoBehaviour, IPointerClickHandler
     public void OnRightClick()
     {
         selected = false;
-        ParIntScript.selected = false;
-        ParIntScript.selectedGameObject = null;
+        ParIntScript.SetSelected(false, null);
+        if (tank && filled)
+        {
+            Inventory.GetComponent<InventoryHandling>().AddToInventory(tank.moniker,tank.type);
+        }
+        //ParIntScript.selected = false;
+        //ParIntScript.selectedGameObject = null;
+    }
+    //refund item
+    private void OnDestroy()
+    {
+        if (tank && filled)
+        {
+            Inventory.GetComponent<InventoryHandling>().AddToInventory(tank.moniker, tank.type);
+        }
     }
 }

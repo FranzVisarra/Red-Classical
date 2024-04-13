@@ -70,7 +70,13 @@ public class EquippedSlot : MonoBehaviour, IPointerClickHandler
             itemSprite = inventoryManager.selectedItemSprite;
             itemName = inventoryManager.selectedItemName;
             itemDescription = inventoryManager.selectedItemDescription;
+
+            inventoryManager.selectedItemSprite = null;
+            inventoryManager.selectedItemName = null;
+            inventoryManager.selectedItemDescription = null;
+
             EquipGear(itemSprite, itemName, itemDescription);
+            inventoryManager.ClearSlot();
         }
         else
         {

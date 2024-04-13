@@ -147,7 +147,22 @@ public class InventoryManager : MonoBehaviour
         }
 
     }
+    public void ClearSlot()
+    {
+        for (int i = 0; i < equipmentSlot.Length; i++)
+        {
+            if (equipmentSlot[i].thisItemSelected == true)
+            {
+                equipmentSlot[i].itemImage.sprite = equipmentSlot[i].emptySprite;
+                equipmentSlot[i].isFull = false;
+                equipmentSlot[i].itemName = null;
+                equipmentSlot[i].quantity = 0;
+            }
+        }
+    }
 }
+
+
 
 public enum ItemType
 {

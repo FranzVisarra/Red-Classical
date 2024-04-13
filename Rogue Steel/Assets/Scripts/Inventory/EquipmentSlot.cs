@@ -20,7 +20,7 @@ public class EquipmentSlot : MonoBehaviour, IPointerClickHandler
     //============ ITEM SLOT ==========//
 
     [SerializeField]
-    private Image itemImage;
+    public Image itemImage;
 
     //=========== EQUIPPED SLOT =======//
 
@@ -72,14 +72,6 @@ public class EquipmentSlot : MonoBehaviour, IPointerClickHandler
         inventoryManager.DeselectAllSlots();
         selectedShader.SetActive(true);
         thisItemSelected = true;
-    }
-    private void EmptySlot()
-    {
-        itemImage.sprite = emptySprite;
-        isFull = false;
-        itemName = null;
-        quantity = 0;
-
     }
 
     // private void EquipGear()

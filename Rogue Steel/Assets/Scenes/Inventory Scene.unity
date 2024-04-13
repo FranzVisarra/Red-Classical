@@ -2689,6 +2689,7 @@ MonoBehaviour:
   playerDisplayImage: {fileID: 0}
   playerDisplayImage2: {fileID: 0}
   itemType: 10
+  slotInUse: 0
   selectedShader: {fileID: 2079708273}
   thisItemSelected: 0
   emptySprite: {fileID: 21300000, guid: 730c911464148054487bb3efd7ef0d07, type: 3}
@@ -6322,6 +6323,7 @@ MonoBehaviour:
   playerDisplayImage: {fileID: 0}
   playerDisplayImage2: {fileID: 0}
   itemType: 6
+  slotInUse: 0
   selectedShader: {fileID: 1121292232}
   thisItemSelected: 0
   emptySprite: {fileID: 21300000, guid: 730c911464148054487bb3efd7ef0d07, type: 3}
@@ -6921,6 +6923,7 @@ MonoBehaviour:
   playerDisplayImage: {fileID: 192918825}
   playerDisplayImage2: {fileID: 0}
   itemType: 3
+  slotInUse: 0
   selectedShader: {fileID: 572903802}
   thisItemSelected: 0
   emptySprite: {fileID: 21300000, guid: 730c911464148054487bb3efd7ef0d07, type: 3}
@@ -7513,7 +7516,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 899413124}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.9999939
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -8321,6 +8324,7 @@ MonoBehaviour:
   playerDisplayImage: {fileID: 0}
   playerDisplayImage2: {fileID: 0}
   itemType: 4
+  slotInUse: 0
   selectedShader: {fileID: 998664599}
   thisItemSelected: 0
   emptySprite: {fileID: 21300000, guid: 730c911464148054487bb3efd7ef0d07, type: 3}
@@ -8420,6 +8424,7 @@ MonoBehaviour:
   playerDisplayImage: {fileID: 0}
   playerDisplayImage2: {fileID: 0}
   itemType: 8
+  slotInUse: 0
   selectedShader: {fileID: 1081392788}
   thisItemSelected: 0
   emptySprite: {fileID: 21300000, guid: 730c911464148054487bb3efd7ef0d07, type: 3}
@@ -9974,6 +9979,7 @@ MonoBehaviour:
   playerDisplayImage: {fileID: 1924199036}
   playerDisplayImage2: {fileID: 1128489293}
   itemType: 7
+  slotInUse: 0
   selectedShader: {fileID: 1557877770}
   thisItemSelected: 0
   emptySprite: {fileID: 21300000, guid: 730c911464148054487bb3efd7ef0d07, type: 3}
@@ -12990,6 +12996,7 @@ MonoBehaviour:
   playerDisplayImage: {fileID: 1903394551}
   playerDisplayImage2: {fileID: 0}
   itemType: 5
+  slotInUse: 0
   selectedShader: {fileID: 1235533907}
   thisItemSelected: 0
   emptySprite: {fileID: 21300000, guid: 730c911464148054487bb3efd7ef0d07, type: 3}
@@ -15252,7 +15259,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 215, y: -375}
+  m_AnchoredPosition: {x: 215, y: -374.99933}
   m_SizeDelta: {x: 450, y: 750}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1902423990
@@ -16790,6 +16797,7 @@ MonoBehaviour:
   playerDisplayImage: {fileID: 0}
   playerDisplayImage2: {fileID: 0}
   itemType: 9
+  slotInUse: 0
   selectedShader: {fileID: 1676999123}
   thisItemSelected: 0
   emptySprite: {fileID: 21300000, guid: 730c911464148054487bb3efd7ef0d07, type: 3}
@@ -17428,7 +17436,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 2, y: 194}
+  m_AnchoredPosition: {x: 2, y: 371}
   m_SizeDelta: {x: 0, y: 371}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &2077675877

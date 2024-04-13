@@ -28,6 +28,7 @@ public class EquippedSlot : MonoBehaviour, IPointerClickHandler
     private InventoryManager inventoryManager;
     private EquipmentSOLibrary equipmentSOLibrary;
 
+
     private void Start()
     {
         inventoryManager = GameObject.Find("InventoryCanvas").GetComponent<InventoryManager>();
@@ -35,7 +36,7 @@ public class EquippedSlot : MonoBehaviour, IPointerClickHandler
     }
 
     //OTHER VARIABLES//
-    private bool slotInUse;
+    public bool slotInUse;
 
     [SerializeField]
     public GameObject selectedShader;
@@ -82,7 +83,7 @@ public class EquippedSlot : MonoBehaviour, IPointerClickHandler
             UnEquipGear();
         }
         //Update Image
-        playerDisplayImage.enabled = true;
+        //playerDisplayImage.enabled = true;
         slotImage.enabled = true;
         this.itemSprite = itemSprite;
         slotImage.sprite = this.itemSprite;
@@ -93,7 +94,7 @@ public class EquippedSlot : MonoBehaviour, IPointerClickHandler
         this.itemDescription = itemDescription;
 
         //Update Display Image
-        playerDisplayImage.sprite = itemSprite;
+        //playerDisplayImage.sprite = itemSprite;
         //playerDisplayImage2.sprite = itemSprite;
 
         //Update Player Stats
@@ -117,14 +118,15 @@ public class EquippedSlot : MonoBehaviour, IPointerClickHandler
         this.itemSprite = emptySprite;
         slotImage.enabled = false;
         slotName.enabled = true;
+        slotInUse = false;
 
-        playerDisplayImage.enabled = false;
+        //playerDisplayImage.enabled = false;
         //playerDisplayImage2.sprite = emptySprite;
 
         //Update Player Stats
         for (int i = 0; i < equipmentSOLibrary.equipmentSO.Length; i++)
         {
-            if (equipmentSOLibrary.equipmentSO[i].itemName == this.itemName)
+            if (equipmentSOLibrary.equipmentSO[i].itemName == itemName)
             {
                 equipmentSOLibrary.equipmentSO[i].UnEquipItem();
             }

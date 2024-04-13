@@ -24,7 +24,7 @@ public class EquipmentSlot : MonoBehaviour, IPointerClickHandler
 
     //=========== EQUIPPED SLOT =======//
     [SerializeField]
-    private EquippedSlot hullSlot, baseSlot, heavyWeaponSlot, lightWeaponSlot, tracksSlot, crewSlot, lightAmmoSlot, heavyAmmoSlot;
+    //private EquippedSlot hullSlot, baseSlot, heavyWeaponSlot, lightWeaponSlot, tracksSlot, crewSlot, lightAmmoSlot, heavyAmmoSlot;
 
 
     public GameObject selectedShader;
@@ -90,23 +90,27 @@ public class EquipmentSlot : MonoBehaviour, IPointerClickHandler
 
     private void EquipGear()
     {
-        if (itemType == ItemType.hull)
-            hullSlot.EquipGear(itemSprite, itemName, itemDescription);
-        if (itemType == ItemType.tankBase)
-            baseSlot.EquipGear(itemSprite, itemName, itemDescription);
-        if (itemType == ItemType.heavyWeapon)
-            heavyWeaponSlot.EquipGear(itemSprite, itemName, itemDescription);
-        if (itemType == ItemType.lightWeapon)
-            lightWeaponSlot.EquipGear(itemSprite, itemName, itemDescription);
-        if (itemType == ItemType.tracks)
-            tracksSlot.EquipGear(itemSprite, itemName, itemDescription);
-        if (itemType == ItemType.crew)
-            crewSlot.EquipGear(itemSprite, itemName, itemDescription);
-        if (itemType == ItemType.heavyAmmo)
-            heavyAmmoSlot.EquipGear(itemSprite, itemName, itemDescription);
-        if (itemType == ItemType.lightAmmo)
-            lightAmmoSlot.EquipGear(itemSprite, itemName, itemDescription);
-        EmptySlot();
+        // Find an available equipped slot
+        List<GameObject> equippedSlots = inventoryManager.EquippedSlots;
+        foreach (var equippedSlotGameObject in equippedSlots)
+        {
+            // Get the EquippedSlot component from the GameObject
+            EquippedSlot equippedSlot = equippedSlotGameObject.GetComponent<EquippedSlot>();
+
+            // Check if the slot is empty
+            if (!equippedSlot.slotInUse)
+            {
+                // Equip the item to the slot
+                equippedSlot.EquipGear(itemSprite, itemName, itemDescription);
+                // Clear the equipment slot
+                EmptySlot();
+                return; // Exit the loop after equipping the item
+            }
+        }
+
+
+        // If no available slot was found, handle this case (e.g., show a message).
+        Debug.Log("No available equipped slots found.");
     }
 
     //New Stuff

@@ -10,7 +10,7 @@ public class InventoryManager : MonoBehaviour
     private bool menuActivated;
     public ItemSlot[] itemSlot;
     public EquipmentSlot[] equipmentSlot;
-    public EquippedSlot[] equippedSlot;
+    public List<GameObject> EquippedSlots = new List<GameObject>();
     void Start()
     {
 
@@ -28,6 +28,14 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
+    public void AddEquippedSlot(GameObject slot)
+    {
+        EquippedSlots.Add(slot);
+    }
+    public void ClearEquippedSlots()
+    {
+        EquippedSlots.Clear();
+    }
 
     void Inventory()
     {
@@ -107,11 +115,6 @@ public class InventoryManager : MonoBehaviour
         {
             equipmentSlot[i].selectedShader.SetActive(false);
             equipmentSlot[i].thisItemSelected = false;
-        }
-        for (int i = 0; i < equippedSlot.Length; i++)
-        {
-            equippedSlot[i].selectedShader.SetActive(false);
-            equippedSlot[i].thisItemSelected = false;
         }
     }
 }

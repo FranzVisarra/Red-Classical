@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -11,6 +12,11 @@ public class InventoryManager : MonoBehaviour
     public ItemSlot[] itemSlot;
     public EquipmentSlot[] equipmentSlot;
     public List<GameObject> EquippedSlots = new List<GameObject>();
+
+    public Sprite selectedItemSprite;
+    public string selectedItemName;
+    public string selectedItemDescription;
+
     void Start()
     {
 
@@ -67,6 +73,20 @@ public class InventoryManager : MonoBehaviour
             //Time.timeScale = 0;
         }
     }
+    public void ReceiveEquipmentSlotInfo(Sprite itemSprite, string itemName, string itemDescription)
+    {
+        selectedItemSprite = itemSprite;
+        selectedItemName = itemName;
+        selectedItemDescription = itemDescription;
+        Debug.Log("Inventory recieved " + selectedItemName);
+    }
+
+    public string SendEquipmentSlotInfo()
+    {
+        return selectedItemName;
+
+    }
+
 
 
     public int AddItem(string itemName, int quantity, Sprite itemSprite, string itemDescription, ItemType itemType)

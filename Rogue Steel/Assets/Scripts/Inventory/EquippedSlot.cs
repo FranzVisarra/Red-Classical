@@ -27,6 +27,7 @@ public class EquippedSlot : MonoBehaviour, IPointerClickHandler
     private string itemDescription;
     private InventoryManager inventoryManager;
     private EquipmentSOLibrary equipmentSOLibrary;
+    private bool equipmentSelected;
 
 
     private void Start()
@@ -63,6 +64,14 @@ public class EquippedSlot : MonoBehaviour, IPointerClickHandler
         if (thisItemSelected && slotInUse)
             UnEquipGear();
 
+        else if (inventoryManager.SendEquipmentSlotInfo() != null)
+        {
+            Debug.Log("Equipped recieved");
+            itemSprite = inventoryManager.selectedItemSprite;
+            itemName = inventoryManager.selectedItemName;
+            itemDescription = inventoryManager.selectedItemDescription;
+            EquipGear(itemSprite, itemName, itemDescription);
+        }
         else
         {
             inventoryManager.DeselectAllSlots();
@@ -72,8 +81,12 @@ public class EquippedSlot : MonoBehaviour, IPointerClickHandler
     }
     void OnRightClick()
     {
-        UnEquipGear();
+        if (slotInUse)
+        {
+            UnEquipGear();
+        }
     }
+
 
 
     public void EquipGear(Sprite itemSprite, string itemName, string itemDescription)
@@ -83,7 +96,6 @@ public class EquippedSlot : MonoBehaviour, IPointerClickHandler
             UnEquipGear();
         }
         //Update Image
-        //playerDisplayImage.enabled = true;
         slotImage.enabled = true;
         this.itemSprite = itemSprite;
         slotImage.sprite = this.itemSprite;
@@ -92,10 +104,6 @@ public class EquippedSlot : MonoBehaviour, IPointerClickHandler
         //Update Data
         this.itemName = itemName;
         this.itemDescription = itemDescription;
-
-        //Update Display Image
-        //playerDisplayImage.sprite = itemSprite;
-        //playerDisplayImage2.sprite = itemSprite;
 
         //Update Player Stats
         for (int i = 0; i < equipmentSOLibrary.equipmentSO.Length; i++)
@@ -119,9 +127,6 @@ public class EquippedSlot : MonoBehaviour, IPointerClickHandler
         slotImage.enabled = false;
         slotName.enabled = true;
         slotInUse = false;
-
-        //playerDisplayImage.enabled = false;
-        //playerDisplayImage2.sprite = emptySprite;
 
         //Update Player Stats
         for (int i = 0; i < equipmentSOLibrary.equipmentSO.Length; i++)

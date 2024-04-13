@@ -116,6 +116,16 @@ public class InventoryManager : MonoBehaviour
             equipmentSlot[i].selectedShader.SetActive(false);
             equipmentSlot[i].thisItemSelected = false;
         }
+        foreach (GameObject equippedSlotGameObject in EquippedSlots)
+        {
+            EquippedSlot equippedSlot = equippedSlotGameObject.GetComponent<EquippedSlot>();
+            if (equippedSlot != null)
+            {
+                equippedSlot.selectedShader.SetActive(false);
+                equippedSlot.thisItemSelected = false;
+            }
+        }
+
     }
 }
 

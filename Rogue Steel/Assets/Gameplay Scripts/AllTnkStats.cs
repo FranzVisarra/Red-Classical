@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 public class StoredAmmo
 {
     public string name;
@@ -26,6 +27,7 @@ public class AllTnkStats : MonoBehaviour
     public GameObject mcns;
     public UIHandling UIH;
     public GameObject ItemDrop;
+
 
     public bool driverStatus;
     public bool gunnerStatus;
@@ -228,6 +230,10 @@ public class AllTnkStats : MonoBehaviour
         {
             case "Player":
                 //TODO gameOver
+                GameData.score = UIH.credits;
+                GameData.InventorySceneStartType = "load";
+                mcns.GetComponent<Startup>().Lose();
+                SceneManager.LoadScene("Inventory Scene");
                 break;
             case "Light Tank":
                 UIH.setCredits(100);

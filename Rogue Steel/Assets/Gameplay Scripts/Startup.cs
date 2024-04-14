@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Objectives
 {
@@ -43,6 +44,9 @@ public class Startup : MonoBehaviour
     public List<Objectives> obj;
     public int mapSize;
     public GameObject tree;
+    public UIHandling UIH;
+    public List<inventory> inv;
+    public GameObject encounter;
 
     // Start is called before the first frame update
     void Awake()
@@ -51,6 +55,7 @@ public class Startup : MonoBehaviour
         tnk = new List<TnkModList>();
         storage = new List<StoredAmmo>();
         obj = new List<Objectives>();
+        inv = new List<inventory>();
         //inner components
         tnk.Add(new TnkModList("cd", new Vector2((float)0.5, (float)1.5), 0, "", 10, 1, 10));
         tnk.Add(new TnkModList("en", new Vector2(-(float)0.5, (float)1.5), 0, "Basic", 10, 1, 10));
@@ -91,6 +96,7 @@ public class Startup : MonoBehaviour
     {
         //TODO do map generation
         string[,] nbn = new string[,] { { "forest", "forest", "forest" }, { "forest", "", "forest" }, { "forest", "forest", "forest" } };
+        int tileCount = 9;//3x3 tiles
         for (int yp = 0; yp < nbn.GetLength(0); yp++)
         {
             for (int xp = 0; xp < nbn.GetLength(1); xp++)
@@ -107,6 +113,19 @@ public class Startup : MonoBehaviour
                             break;
                     }
                 }
+                //get chance for thing to spawn
+                float xpos = mapSize * (xp - (nbn.GetLength(0) / 2));
+                float ypos = mapSize * (yp - (nbn.GetLength(1) / 2));
+                foreach (var obj in obj)
+                {
+                    if ((int)Random.Range(1, tileCount) == 1 || tileCount == 1)
+                    {
+                        GameObject tempObj = Instantiate(encounter);
+                        tempObj.transform.Translate(new Vector3(xpos, ypos, 0));
+                        encounter.GetComponent<TestSpawnEnemy>().spawnThing.Add(obj.shortText,obj.amount);
+                    }
+                }
+                //tileCount--;
             }
         }
     }
@@ -270,5 +289,12 @@ public class Startup : MonoBehaviour
                 break;
         }
         return tile;
+    }
+    public void Lose()
+    {
+        GameData.score = UIH.credits;
+        GameData.tnk = tnk;
+        //inventory?
+        FileInteraction.SetFile();
     }
 }

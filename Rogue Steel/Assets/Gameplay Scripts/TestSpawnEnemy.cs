@@ -8,11 +8,33 @@ public class TestSpawnEnemy : MonoBehaviour
     public List<TnkModList> tnk;
     public List<StoredAmmo> storage;
     // Start is called before the first frame update
+    public Dictionary<string, int> spawnThing;
+    void Awake()
+    {
+        spawnThing = new Dictionary<string, int>();
+    }
     void Start()
     {
-        LightTank();
+        foreach (var thing in spawnThing)
+        {
+            switch(thing.Key)
+            {
+                case "Light Tank:":
+                    for (int i = 0; i < thing.Value; i++)
+                    {
+                        LightTank(new Vector2(Random.Range(-5,5),Random.Range(-5,5)));
+                    }
+                        break;
+                case "Crates:":
+                    for (int i = 0; i < thing.Value; i++)
+                    {
+
+                    }
+                    break;
+            }
+        }
     }
-    public void LightTank()
+    public void LightTank(Vector2 pos)
     {
         tnk = new List<TnkModList>();
         storage = new List<StoredAmmo>();
@@ -36,7 +58,7 @@ public class TestSpawnEnemy : MonoBehaviour
         //ammo
         storage.Add(new StoredAmmo("30mm AP", "30mm", 50));
         storage.Add(new StoredAmmo("30mm APC", "30mm", 30));
-        InstEnemy = Instantiate(Enemy, new Vector3(10, 10, 0), new Quaternion());
+        InstEnemy = Instantiate(Enemy, new Vector3(pos.x, pos.y, 0), new Quaternion());
         InstEnemy.GetComponentInChildren<AllBodCom>().components = tnk;
         InstEnemy.GetComponentInChildren<AllTnkStats>().tnkName = "Light Tank";
         InstEnemy.GetComponentInChildren<AllTnkStats>().storage = storage;

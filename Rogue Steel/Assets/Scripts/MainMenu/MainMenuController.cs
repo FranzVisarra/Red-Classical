@@ -11,9 +11,12 @@ public class NewBehaviourScript : MonoBehaviour
     private string levelToLoad;
     [SerializeField] private GameObject noSavedGameDialog = null;
 
+    public GameData gamedata;
+
     public void NewGameDialogYes()
     {
         SceneManager.LoadScene(_newGameLevel);
+        GameData.InventorySceneStartType = "New";
     }
 
     public void LoadGameDialogyes()
@@ -22,6 +25,7 @@ public class NewBehaviourScript : MonoBehaviour
         {
             levelToLoad = PlayerPrefs.GetString("SavedLevel");
             SceneManager.LoadScene(levelToLoad);
+            GameData.InventorySceneStartType = "Load";
         }
         else
         {

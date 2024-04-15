@@ -885,7 +885,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1284c5bdb6435b641a5e7d635a3faa24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _newGameLevel: Tristan's Workspace
+  _newGameLevel: Inventory Scene
   noSavedGameDialog: {fileID: 1158645528}
 --- !u!4 &639346296
 Transform:

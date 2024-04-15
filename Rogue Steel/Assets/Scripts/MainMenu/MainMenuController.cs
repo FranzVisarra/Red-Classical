@@ -8,6 +8,8 @@ public class NewBehaviourScript : MonoBehaviour
 {
     [Header("Levels To Load")]
     public string _newGameLevel;
+    public string _mainMenu;
+    public string _startGame;
     private string levelToLoad;
     [SerializeField] private GameObject noSavedGameDialog = null;
 
@@ -16,6 +18,16 @@ public class NewBehaviourScript : MonoBehaviour
     public void NewGameDialogYes()
     {
         SceneManager.LoadScene(_newGameLevel);
+        GameData.InventorySceneStartType = "New";
+    }
+    public void StartGame()
+    {
+        SceneManager.LoadScene(_startGame);
+        GameData.InventorySceneStartType = "New";
+    }
+    public void GoBack()
+    {
+        SceneManager.LoadScene(_mainMenu);
         GameData.InventorySceneStartType = "New";
     }
 

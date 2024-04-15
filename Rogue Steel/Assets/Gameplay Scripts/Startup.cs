@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -13,7 +14,7 @@ public class Objectives
     public int reward;
     public string keyword;
 
-    public Objectives(string text, string shortText, int amount, int progress, int reward, string keyword)
+    public Objectives(string text, string shortText, int progress, int amount, int reward, string keyword)
     {
         this.text = text;
         this.shortText = shortText;
@@ -47,6 +48,10 @@ public class Startup : MonoBehaviour
     public UIHandling UIH;
     public List<inventory> inv;
     public GameObject encounter;
+    public Dictionary<int,string> encounterName = new Dictionary<int, string>();
+    public Dictionary<int, int> encounterAmount = new Dictionary<int, int>();
+
+    public bool extract = false;
 
     // Start is called before the first frame update
     void Awake()
@@ -85,8 +90,9 @@ public class Startup : MonoBehaviour
         //InstPlay.transform.Find("Chassis").Find("Tank Image").GetComponent<RectTransform>().
 
         //load objectives
-        obj.Add(new Objectives("Kill light tanks", "Light tanks:",0,5,500,"kill light"));
+        obj.Add(new Objectives("Kill light tanks", "Light Tanks:",0,5,500,"kill light"));
         obj.Add(new Objectives("Capture crates", "Crates:",0,2,1000, "cap crate"));
+        
 
         //load map
         MapGen();
@@ -94,9 +100,38 @@ public class Startup : MonoBehaviour
     }
     public void MapGen()
     {
+        string[] enCounterTiles = new string[9];
+        int tileCount = 8;
+        enCounterTiles[4] = "Spawn";
+        encounterName.Add(4,"Spawn");
+        encounterAmount.Add(4, 1);
+        //Debug.Log("Length: "+enCounterTiles.Length);
+        foreach (var obj in obj)
+        {
+            int randomTile = Random.Range(0, tileCount);
+            int iterated = 0;
+            for (int i = 0; i < enCounterTiles.Length; i++)
+            {
+                //Debug.Log("i: " + i);
+                if (enCounterTiles[i] == null)
+                {
+                    if (iterated == randomTile)
+                    {
+                        enCounterTiles[i] = obj.shortText;
+                        encounterName.Add(i, obj.shortText);
+                        encounterAmount.Add(i, obj.amount);
+                        tileCount--;
+                        break;
+                    }
+                    iterated++;
+                }
+            }
+                
+        }
         //TODO do map generation
         string[,] nbn = new string[,] { { "forest", "forest", "forest" }, { "forest", "", "forest" }, { "forest", "forest", "forest" } };
-        int tileCount = 9;//3x3 tiles
+        tileCount = 0;//3x3 tiles
+
         for (int yp = 0; yp < nbn.GetLength(0); yp++)
         {
             for (int xp = 0; xp < nbn.GetLength(1); xp++)
@@ -116,16 +151,14 @@ public class Startup : MonoBehaviour
                 //get chance for thing to spawn
                 float xpos = mapSize * (xp - (nbn.GetLength(0) / 2));
                 float ypos = mapSize * (yp - (nbn.GetLength(1) / 2));
-                foreach (var obj in obj)
+                if (encounterName.ContainsKey(tileCount))
                 {
-                    if ((int)Random.Range(1, tileCount) == 1 || tileCount == 1)
-                    {
-                        GameObject tempObj = Instantiate(encounter);
-                        tempObj.transform.Translate(new Vector3(xpos, ypos, 0));
-                        encounter.GetComponent<TestSpawnEnemy>().spawnThing.Add(obj.shortText,obj.amount);
-                    }
+                    GameObject tempObj = Instantiate(encounter);
+                    tempObj.transform.Translate(new Vector3(xpos, ypos, 0));
+                    Debug.Log("encounter spawned");
+                    tempObj.transform.GetComponent<TestSpawnEnemy>().setEncounter(encounterName[tileCount], encounterAmount[tileCount]);
                 }
-                //tileCount--;
+                tileCount++;
             }
         }
     }
@@ -296,5 +329,18 @@ public class Startup : MonoBehaviour
         GameData.tnk = tnk;
         //inventory?
         FileInteraction.SetFile();
+        SceneManager.LoadScene("Inventory Scene");
+    }
+    public void Win()
+    {
+        GameData.score = UIH.credits;
+        GameData.tnk = tnk;
+        //inventory?
+        FileInteraction.SetFile();
+        SceneManager.LoadScene("Inventory Scene");
+    }
+    public void ToggleWin()
+    {
+        extract = true;
     }
 }

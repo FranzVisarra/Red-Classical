@@ -15,7 +15,10 @@ public class AllObsHan : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            Instantiate(sound,new Vector3(this.transform.position.x, this.transform.position.y,-1),new Quaternion());
+            GameObject temp = Instantiate(sound,new Vector3(this.transform.position.x, this.transform.position.y,-1),new Quaternion());
+            temp.transform.GetComponent<AllSndHan>().maxSize = 10;
+            temp.transform.GetComponent<AllSndHan>().growSize = 5;
+
             Destroy(this.transform.gameObject);
         }
         else if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))

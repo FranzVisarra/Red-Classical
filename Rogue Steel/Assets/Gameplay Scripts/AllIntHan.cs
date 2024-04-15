@@ -14,6 +14,7 @@ public class AllIntHan : MonoBehaviour
     public float limit;
     public float amount;
     public Collider2D cd;
+    public Startup str;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
@@ -41,6 +42,12 @@ public class AllIntHan : MonoBehaviour
                         uih.UpdateObjectivesDisplay("cap crate");
                         Destroy(this.transform.gameObject);
                         break;
+                    case "Spawn":
+                        if (str.extract)
+                        {
+                            str.Win();
+                        }
+                        break;
                 }
             }
             else
@@ -62,6 +69,7 @@ public class AllIntHan : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        str = mcns.transform.GetComponent<Startup>();
         player = GameObject.Find("Player(Clone)");
         player = player.transform.Find("Chassis").gameObject;
         stats = player.GetComponent<AllTnkStats>();

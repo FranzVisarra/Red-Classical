@@ -138,7 +138,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &48366305
 Transform:
   m_ObjectHideFlags: 0
@@ -369,6 +369,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Enemy: {fileID: 1039626126}
+  interact: {fileID: 743999010}
 --- !u!1 &88445494
 GameObject:
   m_ObjectHideFlags: 0
@@ -492,7 +493,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cd: {fileID: 106362135}
-  sound: {fileID: 0}
+  sound: {fileID: 392310260}
 --- !u!58 &106362135
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1709,7 +1710,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cd: {fileID: 0}
-  sound: {fileID: 0}
+  sound: {fileID: 392310260}
 --- !u!58 &384847154
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -3091,7 +3092,8 @@ MonoBehaviour:
   time: 0
   limit: 0
   amount: 0
-  cd: {fileID: 0}
+  cd: {fileID: 743999013}
+  str: {fileID: 0}
 --- !u!58 &743999013
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -5666,6 +5668,7 @@ MonoBehaviour:
   tree: {fileID: 106362132}
   UIH: {fileID: 1766946748}
   encounter: {fileID: 79355947}
+  extract: 0
 --- !u!114 &1766946746
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6442,7 +6445,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 50
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

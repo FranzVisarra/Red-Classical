@@ -21,10 +21,12 @@ public class FileInteraction
         StreamWriter writer = new StreamWriter(path, false);
         writer.WriteLine("Score:" + GameData.score);
         writer.WriteLine("Modules{");
+        /*
         foreach(inventory inv in GameData.inventory)
         {
             writer.WriteLine(inv.name+"|"+inv.type+"|"+inv.amount);
         }
+        */
         writer.WriteLine("}");
         writer.WriteLine("Inventory{");
         foreach (TnkModList mod in GameData.tnk)

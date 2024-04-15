@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -67,8 +68,10 @@ public class UIHandling : MonoBehaviour
     public void UpdateObjectivesDisplay(string keyword)
     {
         OBJ.text = "";
+        bool allcomplete = true;
         foreach (var objective in str.obj)
         {
+
             if (objective.keyword == keyword)
             {
                 objective.progress++;
@@ -79,8 +82,16 @@ public class UIHandling : MonoBehaviour
                 else
                 {
                     OBJ.text += objective.shortText + objective.progress + "/" + objective.amount+"\n";
+                    if (allcomplete)//if true, turn false
+                    {
+                        allcomplete = false;
+                    }
                 }
             }
+        }
+        if (allcomplete)
+        {
+            str.ToggleWin();
         }
     }
 }

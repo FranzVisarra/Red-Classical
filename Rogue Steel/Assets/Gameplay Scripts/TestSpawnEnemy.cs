@@ -9,17 +9,27 @@ public class TestSpawnEnemy : MonoBehaviour
     public List<StoredAmmo> storage;
     // Start is called before the first frame update
     public Dictionary<string, int> spawnThing;
+    public GameObject interact;
     void Awake()
     {
+        Debug.Log("TestSpawnEnemyAwake");
         spawnThing = new Dictionary<string, int>();
     }
     void Start()
     {
+        Debug.Log("TestSpawnEnemyStart");
+        foreach(var thing in spawnThing)
+        {
+
+            Debug.Log(thing.Key);
+            Debug.Log(thing.Value);
+        }
+        createMap();
         foreach (var thing in spawnThing)
         {
             switch(thing.Key)
             {
-                case "Light Tank:":
+                case "Light Tanks:":
                     for (int i = 0; i < thing.Value; i++)
                     {
                         LightTank(new Vector2(Random.Range(-5,5),Random.Range(-5,5)));
@@ -28,11 +38,23 @@ public class TestSpawnEnemy : MonoBehaviour
                 case "Crates:":
                     for (int i = 0; i < thing.Value; i++)
                     {
-
+                        GameObject temp = Instantiate(interact);
+                        temp.transform.Translate(new Vector2(Random.Range(-10, 10), Random.Range(-10, 10)));
+                        temp.GetComponent<AllIntHan>().type = "Crate";
                     }
+                    break;
+                case "Spawn":
                     break;
             }
         }
+    }
+    public void setEncounter(string name, int amount)
+    {
+        spawnThing.Add(name, amount);
+    }
+    public void createMap()
+    {
+
     }
     public void LightTank(Vector2 pos)
     {

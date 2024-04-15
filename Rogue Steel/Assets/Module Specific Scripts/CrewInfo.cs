@@ -36,7 +36,7 @@ public class CrewInfo : MonoBehaviour, ModSpecInfo
     }
     public void Test()
     {
-        Debug.Log(this.GetType().ToString());
+        //Debug.Log(this.GetType().ToString());
     }
 
     public void Destroyed()
@@ -54,7 +54,7 @@ public class CrewInfo : MonoBehaviour, ModSpecInfo
                 }
                 if (stats.gunnerStatus && stats.loaderStatus && stats.stats["Reserve"]<=0)
                 {
-                    //trigger death
+                    stats.Destroyed();
                 }
                 break;
             case "Gunner":
@@ -68,7 +68,7 @@ public class CrewInfo : MonoBehaviour, ModSpecInfo
                 }
                 if (stats.driverStatus && stats.loaderStatus && stats.stats["Reserve"] <= 0)
                 {
-                    //trigger death
+                    stats.Destroyed();
                 }
                 break;
             case "Loader":
@@ -82,7 +82,7 @@ public class CrewInfo : MonoBehaviour, ModSpecInfo
                 }
                 if (stats.gunnerStatus && stats.driverStatus && stats.stats["Reserve"] <= 0)
                 {
-                    //trigger death
+                    stats.Destroyed();
                 }
                 break;
             case "Reserve":

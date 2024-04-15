@@ -115,4 +115,13 @@ public class EquipmentSlot : MonoBehaviour, IPointerClickHandler
     //     ParIntScript.selected = true;
     //     ParIntScript.selectedGameObject = transform.gameObject;
     // }
+    public void OnHoverEnter()
+    {
+        selectedShader.SetActive(true);
+    }
+
+    public void OnHoverExit()
+    {
+        selectedShader.SetActive(false);
+    }
 }

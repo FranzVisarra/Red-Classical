@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
 
-public class EquippedSlot : MonoBehaviour, IPointerClickHandler
+public class EquippedSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 
 {
     //SLOT APPEARANCE//
@@ -142,6 +142,16 @@ public class EquippedSlot : MonoBehaviour, IPointerClickHandler
                 equipmentSOLibrary.equipmentSO[i].UnEquipItem();
             }
         }
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        selectedShader.SetActive(true);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        selectedShader.SetActive(false);
     }
 
 }

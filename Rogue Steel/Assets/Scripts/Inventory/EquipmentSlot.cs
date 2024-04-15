@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System;
 
-public class EquipmentSlot : MonoBehaviour, IPointerClickHandler
+public class EquipmentSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     //============ ITEM DATA ===========//
     public string itemName;
@@ -115,12 +115,12 @@ public class EquipmentSlot : MonoBehaviour, IPointerClickHandler
     //     ParIntScript.selected = true;
     //     ParIntScript.selectedGameObject = transform.gameObject;
     // }
-    public void OnHoverEnter()
+    public void OnPointerEnter(PointerEventData eventData)
     {
         selectedShader.SetActive(true);
     }
 
-    public void OnHoverExit()
+    public void OnPointerExit(PointerEventData eventData)
     {
         selectedShader.SetActive(false);
     }

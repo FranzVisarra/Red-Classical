@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System;
 
-public class EquipmentSlot : MonoBehaviour, IPointerClickHandler
+public class EquipmentSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     //============ ITEM DATA ===========//
     public string itemName;
@@ -32,9 +32,9 @@ public class EquipmentSlot : MonoBehaviour, IPointerClickHandler
     {
         inventoryManager = GameObject.Find("InventoryCanvas").GetComponent<InventoryManager>();
         //New Part
-        ParInt = this.transform.parent.gameObject;
-        ParIntScript = ParInt.GetComponent<ItemSelected>();
-        selected = false;
+        // ParInt = this.transform.parent.gameObject;
+        // ParIntScript = ParInt.GetComponent<ItemSelected>();
+        // selected = false;
     }
     public int AddItem(string itemName, int quantity, Sprite itemSprite, string itemDescription, ItemType itemType)
     {
@@ -60,11 +60,11 @@ public class EquipmentSlot : MonoBehaviour, IPointerClickHandler
         {
             OnLeftClick();
         }
-        if (eventData.button == PointerEventData.InputButton.Right)
-        {
-            //New Part
-            OnRightClick();
-        }
+        // if (eventData.button == PointerEventData.InputButton.Right)
+        // {
+        //     //New Part
+        //     OnRightClick();
+        // }
     }
     public void OnLeftClick()
     {
@@ -103,16 +103,25 @@ public class EquipmentSlot : MonoBehaviour, IPointerClickHandler
         inventoryManager.ReceiveEquipmentSlotInfo(itemSprite, itemName, itemDescription);
     }
 
-    //New Stuff
-    public bool selected;
-    //Parent interface
-    public GameObject ParInt;
-    public ItemSelected ParIntScript;
-    public void OnRightClick()
+    // //New Stuff
+    // public bool selected;
+    // //Parent interface
+    // public GameObject ParInt;
+    // public ItemSelected ParIntScript;
+    // public void OnRightClick()
+    // {
+    //     //bool toggle
+    //     selected = !selected;
+    //     ParIntScript.selected = true;
+    //     ParIntScript.selectedGameObject = transform.gameObject;
+    // }
+    public void OnPointerEnter(PointerEventData eventData)
     {
-        //bool toggle
-        selected = !selected;
-        ParIntScript.selected = true;
-        ParIntScript.selectedGameObject = transform.gameObject;
+        selectedShader.SetActive(true);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        selectedShader.SetActive(false);
     }
 }

@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 11017ad575962c349afc0a2d0024b795
   - enabled: 1
+    path: Assets/Scenes/Inventory Scene.unity
+    guid: 91d95d5332c6b6840a98d7d042c6fc33
+  - enabled: 1
     path: Assets/Scenes/Tristan's Workspace.unity
     guid: 032f234231c2cd446b0a792f169e5de6
   m_configObjects: {}

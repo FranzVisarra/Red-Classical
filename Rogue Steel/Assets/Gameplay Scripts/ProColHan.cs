@@ -68,24 +68,24 @@ public class ProColHan : MonoBehaviour
                     //----------Hit Calc----------//
                     CalcHit();
                     //----------Hit Calc----------//
-                    Debug.Log("Hit with a " + Ang + "* compared to " + othInf.Ang + "*");
+                    //Debug.Log("Hit with a " + Ang + "* compared to " + othInf.Ang + "*");
                     if (Ang <= othInf.Ang)
                     {
-                        Debug.Log("Hit with a " + Ang + "* compared to " + othInf.Ang + "*");
+                        //Debug.Log("Hit with a " + Ang + "* compared to " + othInf.Ang + "*");
                         if (PenRoll > BlockRoll)
                         {
-                            Debug.Log("Penetrate");
+                            //Debug.Log("Penetrate");
                             penetrate(ray);
                         }
                         else
                         {
-                            Debug.Log("No Penetrate");
+                            //Debug.Log("No Penetrate");
                             noPenHit();
                         }
                     }
                     else
                     {
-                        Debug.Log("Miss with a " + Ang + "* compared to " + othInf.Ang + "*");
+                        //Debug.Log("Miss with a " + Ang + "* compared to " + othInf.Ang + "*");
                         ricochet();
                     }
                     break;

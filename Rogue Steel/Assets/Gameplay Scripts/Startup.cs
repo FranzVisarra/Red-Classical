@@ -90,7 +90,7 @@ public class Startup : MonoBehaviour
         //InstPlay.transform.Find("Chassis").Find("Tank Image").GetComponent<RectTransform>().
 
         //load objectives
-        obj.Add(new Objectives("Kill light tanks", "Light Tanks:",0,5,500,"kill light"));
+        obj.Add(new Objectives("Kill light tanks", "Light Tanks:",0,2,500,"kill light"));
         obj.Add(new Objectives("Capture crates", "Crates:",0,2,1000, "cap crate"));
         
 
@@ -191,7 +191,13 @@ public class Startup : MonoBehaviour
         }
         string tileChance(int surround, string item)
         {
+            /*
             if (Random.Range(0, surround + 1) == 0)
+            {
+                return item;
+            }
+            */
+            if (surround == 0&&Random.Range(0,2)==0)
             {
                 return item;
             }

@@ -80,7 +80,8 @@ public class TestSpawnEnemy : MonoBehaviour
         //ammo
         storage.Add(new StoredAmmo("30mm AP", "30mm", 50));
         storage.Add(new StoredAmmo("30mm APC", "30mm", 30));
-        InstEnemy = Instantiate(Enemy, new Vector3(pos.x, pos.y, 0), new Quaternion());
+        InstEnemy = Instantiate(Enemy,this.transform);
+        InstEnemy.transform.Translate(new Vector2(Random.Range(-10, 10), Random.Range(-10, 10)));
         InstEnemy.GetComponentInChildren<AllBodCom>().components = tnk;
         InstEnemy.GetComponentInChildren<AllTnkStats>().tnkName = "Light Tank";
         InstEnemy.GetComponentInChildren<AllTnkStats>().storage = storage;

@@ -125,14 +125,14 @@ public class EnGunMov : MonoBehaviour
     void SightRay()
     {
         //----------ray bound----------//
-        Debug.DrawRay(this.transform.position, Quaternion.Euler(0, 0, -25) * this.gameObject.transform.right * -100, Color.magenta);
-        Debug.DrawRay(this.transform.position, Quaternion.Euler(0, 0, 25) * this.gameObject.transform.right * -100, Color.magenta);
+        Debug.DrawRay(this.transform.position, Quaternion.Euler(0, 0, -25) * this.gameObject.transform.right * -10, Color.magenta);
+        Debug.DrawRay(this.transform.position, Quaternion.Euler(0, 0, 25) * this.gameObject.transform.right * -10, Color.magenta);
         //----------ray bound----------//
-        Physics2D.Raycast(this.transform.position, Quaternion.Euler(0, 0, 25 - time % 25) * this.gameObject.transform.right * -100, cf2d, lRay, info.detectionLength);
-        Debug.DrawRay(this.transform.position, Quaternion.Euler(0, 0, 25 - time % 25) * this.gameObject.transform.right * -100, Color.red);
+        Physics2D.Raycast(this.transform.position, Quaternion.Euler(0, 0, 25 - time % 25) * this.gameObject.transform.right * -10, cf2d, lRay, info.detectionLength);
+        Debug.DrawRay(this.transform.position, Quaternion.Euler(0, 0, 25 - time % 25) * this.gameObject.transform.right * -10, Color.red);
         
         Physics2D.Raycast(this.transform.position, Quaternion.Euler(0, 0, time % 25 - 25) * this.gameObject.transform.right * -100, cf2d, rRay, info.detectionLength);
-        Debug.DrawRay(this.transform.position, Quaternion.Euler(0, 0, time % 25 - 25) * this.gameObject.transform.right * -100, Color.blue);
+        Debug.DrawRay(this.transform.position, Quaternion.Euler(0, 0, time % 25 - 25) * this.gameObject.transform.right * -10, Color.blue);
         if (RayHit(lRay)||RayHit(rRay))
         {
             EScript.enemySeen(targ.transform.position);
